@@ -7,6 +7,11 @@ import javafx.scene.control.Button;
 public class PantallaInicio {
 
 
+    public void iniciarSesion(ActionEvent event) {
+    }
+    public void cancelar(ActionEvent event) {
+    }
+
     public class PleaseProvideControllerClassName {
 
         @FXML
