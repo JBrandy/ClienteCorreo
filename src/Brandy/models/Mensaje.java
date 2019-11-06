@@ -1,8 +1,31 @@
 package Brandy.models;
+import Brandy.logica.Logica;
+import com.sun.mail.imap.IMAPFolder;
+import com.sun.mail.util.MailSSLSocketFactory;
 
-public class Message {
+import javax.mail.*;
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+import java.util.Properties;
 
-    public static void main(String [] args) throws MessagingException, IOException, GeneralSecurityException {
+public class Mensaje {
+
+    private Message message;
+
+    public Mensaje (Message message){
+        this.message=message;
+    }
+
+    public String getSubject()
+    {
+        try {
+            return this.message.getSubject();
+        } catch (MessagingException e) {
+            return "";
+        }
+    }
+
+    public  void cargarMensajes() throws MessagingException, IOException, GeneralSecurityException {
         IMAPFolder folder = null;
         Store store = null;
         String subject = null;
@@ -43,6 +66,7 @@ public class Message {
                 //Object String;
                 //System.out.println(folder.getUID(msg)
 
+
                 subject = msg.getSubject();
 
                 System.out.println("Subject: " + subject);
@@ -53,6 +77,11 @@ public class Message {
                 System.out.println(msg.getFlags());
                 System.out.println("Body: \n"+ msg.getContent());
                 System.out.println(msg.getContentType());
+
+
+
+                Logica.getInstance().getMensajes().add(msg);
+
 // for each message message: folder.getMessager
                 //lita.add(new Email(message)
             }
@@ -66,4 +95,4 @@ public class Message {
     }
 
 }
-}
+

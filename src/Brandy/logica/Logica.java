@@ -1,17 +1,43 @@
 package Brandy.logica;
 
+import Brandy.models.Mensaje;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.TableView;
 
 public class Logica {
 
-    public void printTable(TableView<ObservableList> table, String subject, String from) {
 
-        //Data.
+
+        private static Logica INSTANCE = null;
+        private ObservableList<Mensaje> mensajes = FXCollections.observableArrayList();
+
+
+        private Logica() {
+
+        }
+
+
+
+        public static Logica getInstance() {
+            if (INSTANCE == null) {
+                INSTANCE = new Logica();
+            }
+
+            return INSTANCE;
+        }
+
+    public ObservableList<Mensaje> getMensajes() {
+            return mensajes;
+    }
+
+
+
+  /* public void printTable(TableView<ObservableList> table, String subject, String from) {
+
+
         ObservableList<ObservableList> data = FXCollections.observableArrayList();
 
-        //Columns.
+
         javafx.scene.control.TableColumn col = new javafx.scene.control.TableColumn();
         col.setText("de");
         table.getColumns().addAll(col);
@@ -22,7 +48,7 @@ public class Logica {
 
 
 
-        //Row.
+
         ObservableList<String> row = FXCollections.observableArrayList();
 
         row.add(subject);
@@ -33,6 +59,9 @@ public class Logica {
         data.add(row);
 
 
-    }
+    }*/
+
+
 }
+
 

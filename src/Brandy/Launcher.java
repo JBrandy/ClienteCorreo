@@ -21,7 +21,7 @@ public class Launcher extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("vistas/PantallaInicio.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("vistas/MainPrincipal.fxml"));
         stage.setTitle("Bandeja");
         stage.setScene(new Scene(root, 850, 400));
         stage.show();
