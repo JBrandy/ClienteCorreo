@@ -1,13 +1,18 @@
 package Brandy.controladores;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TreeView;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-public class MainPrincipalControlador {
+
+import java.net.URL;
+import java.util.Date;
+import java.util.ResourceBundle;
+
+public class MainPrincipalControlador implements Initializable {
 
 
     public void abrir_CargarMensajes(ActionEvent event) {
@@ -29,6 +34,11 @@ public class MainPrincipalControlador {
     }
 
     public void quitarFiltro(ActionEvent event) {
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 
     public class PleaseProvideControllerClassName {
@@ -109,7 +119,11 @@ public class MainPrincipalControlador {
         void salir(ActionEvent event) {
 
         }
+        @FXML
+        private TableView<?> tableView;
 
     }
+
+
 
 }
