@@ -1,18 +1,8 @@
 package Brandy.models;
-import Brandy.logica.Logica;
-import com.sun.mail.imap.IMAPFolder;
-import com.sun.mail.util.MailSSLSocketFactory;
-
-import javax.mail.*;
 import java.io.IOException;
-import java.security.GeneralSecurityException;
-import java.util.Properties;
-import javafx.beans.Observable;
-
 import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import java.io.IOException;
 
 public class Mensaje   {
 

@@ -23,6 +23,8 @@ public class Logica {
 
     private ObservableList<Mensaje> listaCorreos;
 
+    private String email;
+    private String contra;
 
     private Logica() {
         listaCorreos = FXCollections.observableArrayList();
@@ -32,19 +34,16 @@ public class Logica {
     public static Logica getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new Logica();
-            System.out.println("!sdasdas");
         }
         return INSTANCE;
     }
 
     public ObservableList<Mensaje> getListaCorreos() {
-        System.out.println("!sdasassasaasasdas");
         return listaCorreos;
-
     }
 
+
     public void cargarListaCorreos() {
-        System.out.println("!sdasdas");
         IMAPFolder folder = null;
         Store store = null;
         String subject = null;
@@ -60,12 +59,9 @@ public class Logica {
 
             Session session = Session.getDefaultInstance(props, null);
             store = session.getStore("imaps");
-            store.connect("imap.googlemail.com","damdijb@gmail.com", "123456A@");
+            store.connect("imap.googlemail.com",email, contra);
 
-
-
-            folder = (IMAPFolder) store.getFolder("[Gmail]/Todos"); // This doesn't work for other email account
-
+            folder = (IMAPFolder) store.getFolder("[Gmail]/Todos");
 
             if (!folder.isOpen())
                 folder.open(Folder.READ_WRITE);

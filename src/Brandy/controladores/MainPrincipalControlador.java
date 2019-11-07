@@ -8,6 +8,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Scanner;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
@@ -15,6 +17,7 @@ import javafx.scene.control.TextField;
 
 public class MainPrincipalControlador implements Initializable {
 
+    static Scanner teclado = new Scanner(System.in);
     @FXML
     private MenuItem miInicioSesion;
 
@@ -95,8 +98,11 @@ public class MainPrincipalControlador implements Initializable {
 
 
         public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
             Logica.getInstance().cargarListaCorreos();
             tableView.setItems(Logica.getInstance().getListaCorreos());
+
         }
     }
 
