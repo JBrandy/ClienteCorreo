@@ -129,8 +129,8 @@ public class MainPrincipalControlador implements Initializable {
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
             Logica.getInstance().cargarListaCorreos();
-            remitente.setCellValueFactory(new PropertyValueFactory<Mensaje, String>("remitente"));
-            asunto.setCellValueFactory(new PropertyValueFactory<Mensaje, String>("asunto"));
+            remitente.setCellValueFactory(new PropertyValueFactory<Mensaje, String>("Remitente"));
+            asunto.setCellValueFactory(new PropertyValueFactory<Mensaje, String>("Asunto"));
             tableView.setItems(Logica.getInstance().getListaCorreos());
         }
     }
