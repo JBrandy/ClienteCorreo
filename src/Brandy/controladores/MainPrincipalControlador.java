@@ -1,6 +1,6 @@
 package Brandy.controladores;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import Brandy.logica.Logica;
+import Brandy.models.Mensaje;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,7 +9,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 import java.net.URL;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class MainPrincipalControlador implements Initializable {
@@ -41,7 +40,7 @@ public class MainPrincipalControlador implements Initializable {
 
     }
 
-    public class PleaseProvideControllerClassName {
+    public class PleaseProvideControllerClassName implements Initializable {
 
         @FXML
         private MenuItem miInicioSesion;
@@ -120,8 +119,13 @@ public class MainPrincipalControlador implements Initializable {
 
         }
         @FXML
-        private TableView<?> tableView;
+        private TableView<Mensaje> tableView;
 
+        @Override
+        public void initialize(URL url, ResourceBundle resourceBundle) {
+            Logica.getInstance().cargarListaCorreos();
+            tableView.setItems(Logica.getInstance().getListaCorreos());
+        }
     }
 
 

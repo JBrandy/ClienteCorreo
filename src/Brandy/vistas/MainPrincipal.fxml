@@ -80,15 +80,14 @@
               <children>
                         <TableView fx:id="tableView" layoutY="51.0" prefHeight="431.0" prefWidth="430.0" AnchorPane.bottomAnchor="63.400000000000034" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="51.0">
                           <columns>
+                            <TableColumn prefWidth="165.0" text="Remitente">
+                              <cellValueFactory><PropertyValueFactory property="remitente" /></cellValueFactory>
+                            </TableColumn>
+                            <TableColumn prefWidth="165.0" text="Asunto">
+                              <cellValueFactory><PropertyValueFactory property="asunto" /></cellValueFactory>
+                            </TableColumn>
 
-                            <TableColumn text="De">
-                              <cellValueFactory><PropertyValueFactory property="from" />
-                              </cellValueFactory>
-                            </TableColumn>
-                            <TableColumn text="Asunto">
-                              <cellValueFactory><PropertyValueFactory property="subject" />
-                              </cellValueFactory>
-                            </TableColumn>
+
                           </columns>
                         </TableView>
                 <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Correos" textAlignment="CENTER" textFill="$x2" wrapText="false" />
