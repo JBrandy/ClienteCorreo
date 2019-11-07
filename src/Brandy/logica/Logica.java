@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javax.mail.*;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.util.Collections;
 import java.util.Properties;
 
 public class Logica {
@@ -29,17 +30,21 @@ public class Logica {
     }
 
     public static Logica getInstance() {
-        if (INSTANCE == null)
+        if (INSTANCE == null) {
             INSTANCE = new Logica();
-
+            System.out.println("!sdasdas");
+        }
         return INSTANCE;
     }
 
     public ObservableList<Mensaje> getListaCorreos() {
+        System.out.println("!sdasassasaasasdas");
         return listaCorreos;
+
     }
 
     public void cargarListaCorreos() {
+        System.out.println("!sdasdas");
         IMAPFolder folder = null;
         Store store = null;
         String subject = null;
@@ -66,9 +71,11 @@ public class Logica {
                 folder.open(Folder.READ_WRITE);
             Message[] messages = folder.getMessages();
             Mensaje correo;
+            System.out.println(messages[0].toString());
             for(int i=0;i<messages.length;i++)
             {
-                correo=new Mensaje(messages[i],messages[i].getSubject());
+                correo=new Mensaje(messages[i]/*,messages[i].getSubject()*/);
+             System.out.println(correo.toString());
                 listaCorreos.add(correo);
             }
 

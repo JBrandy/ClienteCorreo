@@ -17,10 +17,8 @@ import java.io.IOException;
 public class Mensaje   {
 
     private Message mensaje;
-    public String asunto;
-    public Mensaje(Message mensaje,String asunto) {
+    public Mensaje(Message mensaje) {
         this.mensaje = mensaje;
-        this.asunto =getAsunto();
     }
 
 
@@ -54,5 +52,10 @@ public class Mensaje   {
         return String.valueOf(sub[0]);
     }
 
-
+    @Override
+    public String toString() {
+        return "Mensaje{" +
+                "mensaje=" + mensaje +
+                '}';
+    }
 }
