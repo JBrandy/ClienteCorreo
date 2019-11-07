@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -120,10 +121,16 @@ public class MainPrincipalControlador implements Initializable {
         }
         @FXML
         private TableView<Mensaje> tableView;
+        @FXML
+        private TableColumn<Mensaje, String> remitente;
 
+        @FXML
+        private TableColumn<Mensaje, String> asunto;
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
             Logica.getInstance().cargarListaCorreos();
+            remitente.setCellValueFactory(new PropertyValueFactory<Mensaje, String>("remitente"));
+            asunto.setCellValueFactory(new PropertyValueFactory<Mensaje, String>("asunto"));
             tableView.setItems(Logica.getInstance().getListaCorreos());
         }
     }
