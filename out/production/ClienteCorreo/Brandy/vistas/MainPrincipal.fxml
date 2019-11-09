@@ -13,22 +13,22 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TreeView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.web.WebView?>
 
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <VBox prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #2f3379;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Brandy.controladores.MainPrincipalControlador">
   <children>
     <MenuBar prefHeight="36.0" prefWidth="900.0" VBox.vgrow="NEVER">
       <menus>
         <Menu mnemonicParsing="false" text="Inicio">
           <items>
-            <MenuItem fx:id="miInicioSesion" mnemonicParsing="false" text="Iniciar Sesion" />
+            <MenuItem fx:id="miInicioSesion" mnemonicParsing="false" onAction="#abrirVentana" text="Iniciar Sesion" />
             <MenuItem fx:id="miAbrir" mnemonicParsing="false" onAction="#abrir_CargarMensajes" text="Open…" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <SeparatorMenuItem mnemonicParsing="false" />
@@ -101,8 +101,8 @@
         </ScrollPane>
         <AnchorPane>
           <children>
+                  <WebView fx:id="webView" layoutX="11.0" layoutY="78.0" prefHeight="406.0" prefWidth="200.0" />
             <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Detalle del mensaje" textAlignment="CENTER" textFill="$x2" wrapText="false" />
-                  <TextFlow layoutX="5.0" layoutY="48.0" prefHeight="442.0" prefWidth="211.0" AnchorPane.bottomAnchor="5.600000000000023" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.400000000000006" AnchorPane.topAnchor="48.0" />
           </children>
         </AnchorPane>
       </items>
