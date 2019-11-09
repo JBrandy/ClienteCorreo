@@ -9,6 +9,12 @@ import javafx.scene.control.TextField;
 public class PantallaMensajeControlador {
 
 
+    public void enviar(ActionEvent event) {
+    }
+
+    public void cancelar(ActionEvent event) {
+    }
+
     public class PleaseProvideControllerClassName {
 
         @FXML

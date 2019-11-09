@@ -3,6 +3,7 @@
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/../activation.jar!/" />
       <root url="jar://$PROJECT_DIR$/../javax.mail.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../validation-api-1.1.0.final.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

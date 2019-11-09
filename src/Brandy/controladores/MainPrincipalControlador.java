@@ -1,19 +1,29 @@
 package Brandy.controladores;
 import Brandy.logica.Logica;
+import Brandy.logica.UsuarioCorreo;
 import Brandy.models.Mensaje;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class MainPrincipalControlador implements Initializable {
 
@@ -55,11 +65,23 @@ public class MainPrincipalControlador implements Initializable {
     private TableView<Mensaje> tableView;
 
     @FXML
+    private WebView webView;
+    @FXML
     private Font x3;
 
     @FXML
     private Color x4;
 
+
+
+
+    @FXML
+    private Label labelRemitente;
+    @FXML
+    void abrirVentana(ActionEvent event) {
+        anadirUsuario();
+
+    }
     @FXML
     void abrir_CargarMensajes(ActionEvent event) {
 
@@ -98,13 +120,35 @@ public class MainPrincipalControlador implements Initializable {
 
 
         public void initialize(URL url, ResourceBundle resourceBundle) {
+          // anadirUsuario();
 
 
-            Logica.getInstance().cargarListaCorreos();
-            tableView.setItems(Logica.getInstance().getListaCorreos());
+            webView = new WebView();
+
+            WebEngine webEngine = webView.getEngine();
+
+            webView.getEngine().load("www.as.com");
+
+
 
         }
+
+    private void anadirUsuario() {
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Brandy/vistas/PantallaInicio.fxml"));
+            Parent root = fxmlLoader.load();
+            stage.setTitle("Correo");
+            stage.setScene(new Scene(root, 850, 400));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.showAndWait();
+        tableView.setItems(Logica.getInstance().getListaCorreos());
     }
+}
 
 
 

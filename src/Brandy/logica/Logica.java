@@ -13,7 +13,9 @@ import javafx.collections.ObservableList;
 import javax.mail.*;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Properties;
 
 public class Logica {
@@ -22,13 +24,14 @@ public class Logica {
 
 
     private ObservableList<Mensaje> listaCorreos;
+    private List<UsuarioCorreo> listaUsuarios;
 
     private String email;
     private String contra;
 
     private Logica() {
         listaCorreos = FXCollections.observableArrayList();
-
+        listaUsuarios= new ArrayList<>();
     }
 
     public static Logica getInstance() {
@@ -41,9 +44,15 @@ public class Logica {
     public ObservableList<Mensaje> getListaCorreos() {
         return listaCorreos;
     }
+    public List<UsuarioCorreo> getListaUsuarios() {
+        return listaUsuarios;
+    }
+    public void anadirUsuario(UsuarioCorreo u){
+        listaUsuarios.add(u);
+    }
 
 
-    public void cargarListaCorreos() {
+    public void cargarListaCorreos(UsuarioCorreo usuarioCorreo) {
         IMAPFolder folder = null;
         Store store = null;
         String subject = null;
@@ -59,7 +68,7 @@ public class Logica {
 
             Session session = Session.getDefaultInstance(props, null);
             store = session.getStore("imaps");
-            store.connect("imap.googlemail.com",email, contra);
+            store.connect("imap.googlemail.com",usuarioCorreo.getEmail(), usuarioCorreo.getContra());
 
             folder = (IMAPFolder) store.getFolder("[Gmail]/Todos");
 

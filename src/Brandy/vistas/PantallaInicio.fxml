@@ -22,8 +22,8 @@
               </Label>
                   <Label layoutX="85.0" layoutY="74.0" text="Inserte su correo electronico" textFill="WHITE" />
                   <Label layoutX="130.0" layoutY="137.0" text="Contraseña" textFill="WHITE" />
-                  <TextField layoutX="23.0" layoutY="103.0" prefHeight="26.0" prefWidth="274.0" />
-                  <TextField layoutX="23.0" layoutY="171.0" prefHeight="26.0" prefWidth="274.0" />
+                  <TextField fx:id="tvCorreo" layoutX="23.0" layoutY="103.0" prefHeight="26.0" prefWidth="274.0" />
+                  <TextField fx:id="tvContrasena" layoutX="23.0" layoutY="171.0" prefHeight="26.0" prefWidth="274.0" />
                   <Button fx:id="btInicio" layoutX="34.0" layoutY="227.0" mnemonicParsing="false" onAction="#iniciarSesion" text="Iniciar sesión" />
                   <Button fx:id="btSalir" layoutX="196.0" layoutY="226.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="26.0" prefWidth="77.0" text="Salir" />
                </children>
