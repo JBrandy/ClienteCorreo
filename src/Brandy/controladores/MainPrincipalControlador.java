@@ -25,6 +25,9 @@ import java.util.Scanner;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+
 public class MainPrincipalControlador implements Initializable {
 
     static Scanner teclado = new Scanner(System.in);
@@ -120,18 +123,25 @@ public class MainPrincipalControlador implements Initializable {
 
 
         public void initialize(URL url, ResourceBundle resourceBundle) {
-          // anadirUsuario();
+           anadirUsuario();
+
+         WebEngine webEngine = webView.getEngine();
+
+          // webView.getEngine().load("https://as.com/");
+            //webView.getEngine().load();
+            try {
+                //webView.getEngine().load(Logica.getInstance().getMessageContent(Logica.getInstance().getListaCorreos().get(0)));
+                System.out.println((Logica.getInstance().getMessageContent(Logica.getInstance().getListaCorreos().get(0))));
+                webView.getEngine().loadContent(Logica.getInstance().getMessageContent(Logica.getInstance().getListaCorreos().get(0)));
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            }
 
 
-            webView = new WebView();
-
-            WebEngine webEngine = webView.getEngine();
-
-            webView.getEngine().load("www.as.com");
-
-/* haver pruebas */
 
         }
+
+
 
     private void anadirUsuario() {
         Stage stage = new Stage();

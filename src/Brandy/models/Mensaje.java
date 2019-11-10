@@ -48,4 +48,8 @@ public class Mensaje   {
                 "mensaje=" + mensaje +
                 '}';
     }
+
+    public Message getMensaje() {
+        return mensaje;
+    }
 }

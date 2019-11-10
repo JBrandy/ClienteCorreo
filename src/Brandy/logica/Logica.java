@@ -7,14 +7,15 @@ import javafx.collections.ObservableList;
 
 
 import com.sun.mail.imap.IMAPFolder;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.scene.control.TableView;
 
 import javax.mail.*;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
@@ -28,6 +29,7 @@ public class Logica {
 
     private String email;
     private String contra;
+    private Message usuarioVer;
 
     private Logica() {
         listaCorreos = FXCollections.observableArrayList();
@@ -95,36 +97,52 @@ public class Logica {
             e.printStackTrace();
         }
     }
+
+    public void verContenido(Message usuarioCorreoVer) throws IOException, MessagingException {
+
+        this.usuarioVer = usuarioCorreoVer;
+
+        Multipart multipart = (Multipart) usuarioCorreoVer.getContent();
+        for(int k = 0; k < multipart.getCount(); k++){
+            BodyPart bodyPart = multipart.getBodyPart(k);
+            InputStream stream =
+                    (InputStream) bodyPart.getInputStream();
+            BufferedReader bufferedReader =
+                    new BufferedReader(new InputStreamReader(stream));
+
+            while (bufferedReader.ready()) {
+                System.out.println(bufferedReader.readLine());
+            }
+        }
+
+
+
+    }
+    //--------------------------------------
+    public String getMessageContent(Mensaje correo) throws MessagingException {
+        Message message =correo.getMensaje();
+        try {
+            Object content = message.getContent();
+            if (content instanceof Multipart) {
+                StringBuffer messageContent = new StringBuffer();
+                Multipart multipart = (Multipart) content;
+                for (int i = 0; i < multipart.getCount(); i++) {
+                    Part part = multipart.getBodyPart(i);
+                    if (part.isMimeType("text/plain")) {
+                        messageContent.append(part.getContent().toString());
+                    }
+                }
+                return messageContent.toString();
+            }
+            return content.toString();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
 }
 
-  /* public void printTable(TableView<ObservableList> table, String subject, String from) {
-
-
-        ObservableList<ObservableList> data = FXCollections.observableArrayList();
-
-
-        javafx.scene.control.TableColumn col = new javafx.scene.control.TableColumn();
-        col.setText("de");
-        table.getColumns().addAll(col);
-
-        javafx.scene.control.TableColumn col2 = new javafx.scene.control.TableColumn();
-        col.setText("asunto");
-        table.getColumns().addAll(col2);
-
-
-
-
-        ObservableList<String> row = FXCollections.observableArrayList();
-
-        row.add(subject);
-        row.add(from);
-
-
-        //Adding the row to the data.
-        data.add(row);
-
-
-    }*/
 
 
 
