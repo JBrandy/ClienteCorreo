@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -39,7 +40,7 @@ public class PantallaInicio implements Initializable {
     }
 
     @FXML
-    void iniciarSesion(ActionEvent event) {
+    void iniciarSesion(ActionEvent event) throws IOException {
 
         // cbDivision.getItems().addAll(Division.values()); Esta seria la manera correcta
         String email = tvCorreo.getText();
@@ -47,6 +48,8 @@ public class PantallaInicio implements Initializable {
         u =new UsuarioCorreo(email,contra);
         Logica.getInstance().anadirUsuario(u);
         Logica.getInstance().cargarListaCorreos(u);
+
+
 
 
 

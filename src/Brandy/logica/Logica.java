@@ -119,6 +119,9 @@ public class Logica {
 
     }
     //--------------------------------------
+
+
+
     public String getMessageContent(Mensaje correo) throws MessagingException {
         Message message =correo.getMensaje();
         try {

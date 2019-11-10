@@ -6,12 +6,14 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -125,23 +127,29 @@ public class MainPrincipalControlador implements Initializable {
         public void initialize(URL url, ResourceBundle resourceBundle) {
            anadirUsuario();
 
-         WebEngine webEngine = webView.getEngine();
+
+
+
 
           // webView.getEngine().load("https://as.com/");
             //webView.getEngine().load();
-            try {
-                //webView.getEngine().load(Logica.getInstance().getMessageContent(Logica.getInstance().getListaCorreos().get(0)));
-                System.out.println((Logica.getInstance().getMessageContent(Logica.getInstance().getListaCorreos().get(0))));
-                webView.getEngine().loadContent(Logica.getInstance().getMessageContent(Logica.getInstance().getListaCorreos().get(0)));
-            } catch (MessagingException e) {
-                e.printStackTrace();
-            }
+
 
 
 
         }
 
+    @FXML
+    void selección(MouseEvent event) {
+        WebEngine webEngine = webView.getEngine();
+        try {
+            int indice = tableView.getSelectionModel().getSelectedIndex();
+            webView.getEngine().loadContent(Logica.getInstance().getMessageContent(Logica.getInstance().getListaCorreos().get(indice)));
+        } catch (MessagingException  e) {
+            e.printStackTrace();
+        }
 
+    }
 
     private void anadirUsuario() {
         Stage stage = new Stage();
@@ -157,6 +165,7 @@ public class MainPrincipalControlador implements Initializable {
         }
         stage.showAndWait();
         tableView.setItems(Logica.getInstance().getListaCorreos());
+        //stage.close();
     }
 }
 
