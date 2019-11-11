@@ -128,13 +128,18 @@ public class MainPrincipalControlador implements Initializable {
            anadirUsuario();
 
 
+/*
 
+  TreeItem<File> archivos = new TreeItem<>();
+    TreeView<File> treeView = new TreeView<>();
+    treeView.setShowRoot(false);
+    treeView.setRoot(archivos);
 
+    File[] roots = File.listRoots();
+    for (File disk : roots)
+        archivos.getChildren().add(createNode(disk));
 
-          // webView.getEngine().load("https://as.com/");
-            //webView.getEngine().load();
-
-
+ */
 
 
         }

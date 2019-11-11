@@ -118,7 +118,7 @@ public class Logica {
 
 
     }
-    //--------------------------------------
+    //----------https://stackoverflow.com/questions/11240368/how-to-read-text-inside-body-of-mail-using-javax-mail
 
 
 
