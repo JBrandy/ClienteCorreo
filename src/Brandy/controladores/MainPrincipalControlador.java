@@ -140,7 +140,7 @@ public class MainPrincipalControlador implements Initializable {
         }
 
     @FXML
-    void selección(MouseEvent event) {
+    void seleccion(MouseEvent event) {
         WebEngine webEngine = webView.getEngine();
         try {
             int indice = tableView.getSelectionModel().getSelectedIndex();
@@ -157,6 +157,8 @@ public class MainPrincipalControlador implements Initializable {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Brandy/vistas/PantallaInicio.fxml"));
             Parent root = fxmlLoader.load();
+            PantallaInicio pantallaInicio = (PantallaInicio)fxmlLoader.getController();
+            pantallaInicio.setStage(stage);
             stage.setTitle("Correo");
             stage.setScene(new Scene(root, 850, 400));
 
@@ -166,6 +168,8 @@ public class MainPrincipalControlador implements Initializable {
         stage.showAndWait();
         tableView.setItems(Logica.getInstance().getListaCorreos());
         //stage.close();
+
+        // metter los botones en un toolbar
     }
 }
 

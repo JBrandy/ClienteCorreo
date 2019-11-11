@@ -10,6 +10,10 @@ public class UsuarioCorreo {
         this.contra = contra;
     }
 
+    public UsuarioCorreo() {
+
+    }
+
     public String getEmail() {
         return email;
     }

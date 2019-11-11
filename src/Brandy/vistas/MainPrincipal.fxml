@@ -82,7 +82,7 @@
           <content>
             <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="430.0">
               <children>
-                        <TableView fx:id="tableView" layoutY="57.0" onMouseClicked="#selección" prefHeight="431.0" prefWidth="430.0" AnchorPane.bottomAnchor="57.400000000000034" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="57.0">
+                        <TableView fx:id="tableView" layoutY="57.0" onMouseClicked="#seleccion" prefHeight="431.0" prefWidth="430.0" AnchorPane.bottomAnchor="57.400000000000034" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="57.0">
                           <columns>
                             <TableColumn prefWidth="165.0" text="Remitente">
                               <cellValueFactory><PropertyValueFactory property="remitente" /></cellValueFactory>

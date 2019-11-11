@@ -33,6 +33,7 @@ public class PantallaInicio implements Initializable {
 
     @FXML
     private Button btSalir;
+    private Stage stage;
 
     @FXML
     void cancelar(ActionEvent event) {
@@ -48,10 +49,7 @@ public class PantallaInicio implements Initializable {
         u =new UsuarioCorreo(email,contra);
         Logica.getInstance().anadirUsuario(u);
         Logica.getInstance().cargarListaCorreos(u);
-
-
-
-
+        stage.close();
 
     }
 
@@ -65,6 +63,10 @@ public class PantallaInicio implements Initializable {
 
         btInicio.disableProperty().bind(vs.invalidProperty());*/
 
+
 }
 
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 }
