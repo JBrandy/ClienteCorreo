@@ -1,24 +1,19 @@
 package Brandy.controladores;
 
 import Brandy.logica.Logica;
-import Brandy.logica.UsuarioCorreo;
+import Brandy.models.UsuarioCorreo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PantallaInicio implements Initializable {
+public class LoginController implements Initializable {
 
     UsuarioCorreo u ;
 

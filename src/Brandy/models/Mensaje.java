@@ -1,8 +1,11 @@
 package Brandy.models;
+import org.apache.commons.mail.util.MimeMessageParser;
+
 import java.io.IOException;
 import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 
 public class Mensaje   {
 
@@ -52,4 +55,20 @@ public class Mensaje   {
     public Message getMensaje() {
         return mensaje;
     }
+
+
+    public String getContent() throws Exception {
+
+        String result = "";
+        MimeMessageParser parser = new MimeMessageParser((MimeMessage) mensaje);
+        parser.parse();
+
+        if (mensaje.isMimeType("text/plain")) {
+            result = parser.getPlainContent();
+        } else if (mensaje.isMimeType("multipart/*")) {
+            result = parser.getHtmlContent();
+        }
+        return result;
+    }
+
 }

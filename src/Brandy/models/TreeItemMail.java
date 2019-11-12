@@ -1,10 +1,8 @@
-package Brandy.logica;
+package Brandy.models;
 
-import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
 
 import javax.mail.Folder;
-import java.io.File;
 
 public class TreeItemMail extends TreeItem<String> {
   private String nombre;

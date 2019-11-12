@@ -1,12 +1,7 @@
 package Brandy.controladores;
 import Brandy.logica.Logica;
-import Brandy.logica.UsuarioCorreo;
 import Brandy.models.Mensaje;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,7 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.web.WebEngine;
@@ -27,7 +21,6 @@ import java.util.Scanner;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import javax.mail.Message;
 import javax.mail.MessagingException;
 
 public class MainPrincipalControlador implements Initializable {
@@ -149,8 +142,10 @@ public class MainPrincipalControlador implements Initializable {
         WebEngine webEngine = webView.getEngine();
         try {
             int indice = tableView.getSelectionModel().getSelectedIndex();
-            webView.getEngine().loadContent(Logica.getInstance().getMessageContent(Logica.getInstance().getListaCorreos().get(indice)));
+            webView.getEngine().loadContent(tableView.getSelectionModel().getSelectedItem().getContent());
         } catch (MessagingException  e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -160,9 +155,9 @@ public class MainPrincipalControlador implements Initializable {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Brandy/vistas/PantallaInicio.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Brandy/vistas/Login.fxml"));
             Parent root = fxmlLoader.load();
-            PantallaInicio pantallaInicio = (PantallaInicio)fxmlLoader.getController();
+            LoginController pantallaInicio = (LoginController)fxmlLoader.getController();
             pantallaInicio.setStage(stage);
             stage.setTitle("Correo");
             stage.setScene(new Scene(root, 850, 400));

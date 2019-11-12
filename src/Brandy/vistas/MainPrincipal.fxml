@@ -12,6 +12,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -44,22 +45,22 @@
         </Menu>
       </menus>
     </MenuBar>
-      <Pane prefHeight="105.0" prefWidth="900.0">
-         <children>
+      <ToolBar prefHeight="40.0" prefWidth="200.0">
+        <items>
             <Button fx:id="btNuevoCorreo" mnemonicParsing="false" onAction="#enviarCorreo" prefHeight="55.0" prefWidth="106.0" text="Nuevo Correo" />
-            <Button fx:id="btBorrar" layoutX="106.0" mnemonicParsing="false" onAction="#borrarCorreo" prefHeight="55.0" prefWidth="100.0" text="Borrar" />
-            <Button fx:id="btReenviar" layoutX="206.0" mnemonicParsing="false" onAction="#reenviarCorreo" prefHeight="55.0" prefWidth="93.0" text="Reenviar" />
-            <Button fx:id="btGuardar" layoutX="299.0" mnemonicParsing="false" onAction="#guardarFichero" prefHeight="55.0" prefWidth="93.0" text="Guardar" />
-            <TextField fx:id="tfBuscador" layoutX="528.0" layoutY="15.0" prefHeight="25.0" prefWidth="229.0" />
-            <Button fx:id="btQuitarFiltro" layoutX="797.0" mnemonicParsing="false" onAction="#quitarFiltro" prefHeight="55.0" prefWidth="80.0" text="Quitar Filtro" />
-            <Label layoutX="422.0" layoutY="14.0" prefHeight="26.0" prefWidth="80.0" text="Buscador" textFill="WHITE">
+            <Button fx:id="btBorrar" mnemonicParsing="false" onAction="#borrarCorreo" prefHeight="55.0" prefWidth="100.0" text="Borrar" />
+            <Button fx:id="btReenviar" mnemonicParsing="false" onAction="#reenviarCorreo" prefHeight="55.0" prefWidth="93.0" text="Reenviar" />
+            <Button fx:id="btGuardar" mnemonicParsing="false" onAction="#guardarFichero" prefHeight="55.0" prefWidth="93.0" text="Guardar" />
+            <Label prefHeight="26.0" prefWidth="80.0" text="Buscador" textFill="WHITE">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-         </children>
-      </Pane>
-    <SplitPane dividerPositions="0.2505567928730512, 0.7505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+            <TextField fx:id="tfBuscador" prefHeight="26.0" prefWidth="301.0" />
+            <Button fx:id="btQuitarFiltro" mnemonicParsing="false" onAction="#quitarFiltro" prefHeight="55.0" prefWidth="80.0" text="Quitar Filtro" />
+        </items>
+      </ToolBar>
+    <SplitPane dividerPositions="0.2505567928730512, 0.7505567928730512" focusTraversable="true" prefHeight="535.0" prefWidth="900.0" VBox.vgrow="ALWAYS">
       <items>
         <AnchorPane prefHeight="543.0" prefWidth="218.0">
           <children>
@@ -99,9 +100,9 @@
             </AnchorPane>
           </content>
         </ScrollPane>
-        <AnchorPane>
+        <AnchorPane prefHeight="471.0" prefWidth="234.0">
           <children>
-                  <WebView fx:id="webView" layoutY="75.0" prefHeight="406.0" prefWidth="250.0" AnchorPane.rightAnchor="6.103515630684342E-6" />
+                  <WebView fx:id="webView" layoutY="75.0" prefHeight="406.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0" />
             <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Detalle del mensaje" textAlignment="CENTER" textFill="$x2" wrapText="false" />
           </children>
         </AnchorPane>

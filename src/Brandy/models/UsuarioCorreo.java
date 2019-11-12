@@ -1,4 +1,4 @@
-package Brandy.logica;
+package Brandy.models;
 
 public class UsuarioCorreo {
 

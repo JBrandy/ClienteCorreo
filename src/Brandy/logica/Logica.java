@@ -1,13 +1,13 @@
 package Brandy.logica;
 
 import Brandy.models.Mensaje;
+import Brandy.models.UsuarioCorreo;
 import com.sun.mail.util.MailSSLSocketFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
 import com.sun.mail.imap.IMAPFolder;
-import javafx.scene.control.TableView;
 
 import javax.mail.*;
 import java.io.BufferedReader;

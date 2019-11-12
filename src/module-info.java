@@ -6,6 +6,7 @@ module ClienteCorreo {
     requires java.mail;
    // requires validation.api;
     requires javafx.web;
+    requires commons.email;
 
 
 
