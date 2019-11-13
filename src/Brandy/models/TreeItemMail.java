@@ -19,7 +19,48 @@ public class TreeItemMail extends TreeItem<String> {
 
 
 
- /* private ObservableList<TreeItem<String>> buildChildren(TreeItem<String> TreeItem) {
+  private TreeItem a;
+  public void cargarTree (UsuarioCorreo user){
+
+  }
+   /* TreeItem<String> rootItem = new TreeItem<String> ("Inbox");
+    rootItem.setExpanded(true);
+    for (int i = 1; i < lengt; i++) {
+      TreeItem<String> item = new TreeItem<String> ("Message" + i);
+      rootItem.getChildren().add(item)
+*/
+  }
+
+
+ /*
+
+ metodo q es return de Treeitem cargarcarpetas( UsuarioCorreo c){
+
+ 0 crear el emailtreeItem raiz
+ 1 conectar a store
+ 2 obtener carpetas primer nivel
+ 3 creo un emailtreeitem por carpeta
+ 4 añadir a la raiz
+
+
+   TreeItem<CustomItem> root = new TreeItem<CustomItem>(new CustomItem(new Label("Root")));
+
+    initialize TreeItem<CustomItem> as container for CustomItem object
+ TreeItem<CustomItem> node = new TreeItem<CustomItem>(new CustomItem(new Label("Node 1"), new Button("Button 1")));
+
+   add node to root
+    root.getChildren().add(node);
+
+   set tree root
+    tree.setRoot(root);
+
+   add items to the layout
+    layout.setCenter(tree);
+
+
+
+
+ private ObservableList<TreeItem<String>> buildChildren(TreeItem<String> TreeItem) {
     File f = new File(TreeItem.getValue());
     if (f != null && f.isDirectory()) {
       File[] files = f.listFiles();
@@ -32,6 +73,7 @@ public class TreeItemMail extends TreeItem<String> {
       }
     }
     return FXCollections.emptyObservableList();
-  }*/
-
+  }
+*/
 }
+        }
