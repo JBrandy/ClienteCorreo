@@ -161,7 +161,25 @@ public class Logica  {
         return rootItem;
     }
 
+    public TreeItemMail cargaCarpetas() throws MessagingException {
 
+        TreeItemMail rootItem = new TreeItemMail(listaUsuarios.get(0).getEmail(), listaUsuarios.get(0));
+
+        Properties prop = new Properties();
+        prop.setProperty("mail.store.protocol", "imaps");
+        Session sesion = Session.getInstance(prop);
+        Store store = sesion.getStore("imaps");
+        store.connect("imap.googlemail.com",listaUsuarios.get(0).getEmail(), listaUsuarios.get(0).getContra());
+        Folder[] folders = store.getDefaultFolder().list(/*"*"*/);
+        rootItem.setExpanded(true);
+        for (Folder folder : folders) {
+            if ((folder.getType() & Folder.HOLDS_MESSAGES) != 0) {
+                TreeItemMail item = new TreeItemMail(folder.getName().toString(), listaUsuarios.get(0));
+                rootItem.getChildren().add(item);
+            }
+        }
+        return rootItem;
+    }
 
 }
 
