@@ -1,6 +1,7 @@
 package Brandy.logica;
 
 import Brandy.models.Mensaje;
+import Brandy.models.TreeItemMail;
 import Brandy.models.UsuarioCorreo;
 import com.sun.mail.util.MailSSLSocketFactory;
 import javafx.collections.FXCollections;
@@ -8,6 +9,7 @@ import javafx.collections.ObservableList;
 
 
 import com.sun.mail.imap.IMAPFolder;
+import javafx.scene.control.TreeItem;
 
 import javax.mail.*;
 import java.io.BufferedReader;
@@ -19,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class Logica {
+public class Logica  {
 
     private static Logica INSTANCE = null;
 
@@ -144,6 +146,23 @@ public class Logica {
         }
         return "";
     }
+
+    public TreeItemMail cargaCarpetas() throws MessagingException {
+        TreeItemMail rootItem = new TreeItemMail("nombre",usuarioCorreo,"direccion email");
+        Folder[] folders = store.getDefaultFolder().list(/*"*"*/);
+        rootItem.setExpanded(true);
+        for (Folder folder : folders) {
+            if ((folder.getType() & Folder.HOLDS_MESSAGES) != 0) {
+                TreeItemMail item = new TreeItemMail("nombre",usuarioCorreo,folder.getName().toString());
+                rootItem.getChildren().add(item);
+
+            }
+        }
+        return rootItem;
+    }
+
+
+
 }
 
 

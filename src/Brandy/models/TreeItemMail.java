@@ -6,14 +6,14 @@ import javax.mail.Folder;
 
 public class TreeItemMail extends TreeItem<String> {
   private String nombre;
-  private UsuarioCorreo user;
+  private UsuarioCorreo usuarioCorreo;
   private Folder[] folder;
 
-  public TreeItemMail(String nombre, UsuarioCorreo user, Folder[] folder) {
+  public TreeItemMail(String nombre, UsuarioCorreo usuarioCorreo, Folder[] folder) {
     super(nombre);
 
     this.nombre = nombre;
-    this.user = user;
+    this.usuarioCorreo = usuarioCorreo;
     this.folder = folder;
   }
 
@@ -23,6 +23,9 @@ public class TreeItemMail extends TreeItem<String> {
   public void cargarTree (UsuarioCorreo user){
 
   }
+
+
+
    /* TreeItem<String> rootItem = new TreeItem<String> ("Inbox");
     rootItem.setExpanded(true);
     for (int i = 1; i < lengt; i++) {
@@ -75,5 +78,3 @@ public class TreeItemMail extends TreeItem<String> {
     return FXCollections.emptyObservableList();
   }
 */
-}
-        }
