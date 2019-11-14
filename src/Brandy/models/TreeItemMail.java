@@ -7,9 +7,9 @@ import javax.mail.Folder;
 public class TreeItemMail extends TreeItem<String> {
   private String nombre;
   private UsuarioCorreo usuarioCorreo;
-  private Folder[] folder;
+  private Folder folder;
 
-  public TreeItemMail(String nombre, UsuarioCorreo usuarioCorreo, Folder[] folder) {
+  public TreeItemMail(String nombre, UsuarioCorreo usuarioCorreo, Folder folder) {
     super(nombre);
 
     this.nombre = nombre;

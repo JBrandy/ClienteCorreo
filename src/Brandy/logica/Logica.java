@@ -31,6 +31,7 @@ public class Logica  {
 
     private String email;
     private String contra;
+    private UsuarioCorreo usuarioCorreo;
     private Message usuarioVer;
 
     private Logica() {
@@ -120,66 +121,39 @@ public class Logica  {
 
 
     }
-    //----------https://stackoverflow.com/questions/11240368/how-to-read-text-inside-body-of-mail-using-javax-mail
+   /* private TreeItemMail getfolders(Folder [] folders, TreeItemMail foldersRoot, UsuarioCorreo emailAccount ){
+      for (Folder folder: folders) {
+          treeitem e = new rre
 
+                  if(folder.gettype== holds_)
 
+      }
+    }*/
 
-    public String getMessageContent(Mensaje correo) throws MessagingException {
-        Message message =correo.getMensaje();
-        try {
-            Object content = message.getContent();
-            if (content instanceof Multipart) {
-                StringBuffer messageContent = new StringBuffer();
-                Multipart multipart = (Multipart) content;
-                for (int i = 0; i < multipart.getCount(); i++) {
-                    Part part = multipart.getBodyPart(i);
-                    if (part.isMimeType("text/plain")) {
-                        messageContent.append(part.getContent().toString());
-                    }
-                }
-                return messageContent.toString();
-            }
-            return content.toString();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
-
-    public TreeItemMail cargaCarpetas() throws MessagingException {
-        TreeItemMail rootItem = new TreeItemMail("nombre",usuarioCorreo,"direccion email");
-        Folder[] folders = store.getDefaultFolder().list(/*"*"*/);
-        rootItem.setExpanded(true);
-        for (Folder folder : folders) {
-            if ((folder.getType() & Folder.HOLDS_MESSAGES) != 0) {
-                TreeItemMail item = new TreeItemMail("nombre",usuarioCorreo,folder.getName().toString());
-                rootItem.getChildren().add(item);
-
-            }
-        }
-        return rootItem;
-    }
-
-    public TreeItemMail cargaCarpetas() throws MessagingException {
-
-        TreeItemMail rootItem = new TreeItemMail(listaUsuarios.get(0).getEmail(), listaUsuarios.get(0));
-
+    public TreeItemMail cargaCarpetas(UsuarioCorreo usuarioCorreo1) throws MessagingException, GeneralSecurityException {
         Properties prop = new Properties();
         prop.setProperty("mail.store.protocol", "imaps");
-        Session sesion = Session.getInstance(prop);
-        Store store = sesion.getStore("imaps");
-        store.connect("imap.googlemail.com",listaUsuarios.get(0).getEmail(), listaUsuarios.get(0).getContra());
+        MailSSLSocketFactory sf = new MailSSLSocketFactory();
+        sf.setTrustAllHosts(true);
+        prop.put("mail.imaps.ssl.trust", "*");
+        prop.put("mail.imaps.ssl.socketFactory", sf);
+
+        Session session = Session.getDefaultInstance(prop, null);
+        Store store = session.getStore("imaps");
+        store.connect("imap.googlemail.com",usuarioCorreo1.getEmail(), usuarioCorreo1.getContra());
+        TreeItemMail rootItem = new TreeItemMail(usuarioCorreo1.getEmail(),usuarioCorreo1,null);
         Folder[] folders = store.getDefaultFolder().list(/*"*"*/);
         rootItem.setExpanded(true);
         for (Folder folder : folders) {
-            if ((folder.getType() & Folder.HOLDS_MESSAGES) != 0) {
-                TreeItemMail item = new TreeItemMail(folder.getName().toString(), listaUsuarios.get(0));
+            //if ((folder.getType() & Folder.HOLDS_MESSAGES) != 0) {
+                TreeItemMail item = new TreeItemMail(folder.getName(),usuarioCorreo1,folder);
                 rootItem.getChildren().add(item);
-            }
+            //}
         }
         return rootItem;
     }
+
+
 
 }
 

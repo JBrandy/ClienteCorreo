@@ -1,6 +1,11 @@
 package Brandy.controladores;
+
 import Brandy.logica.Logica;
 import Brandy.models.Mensaje;
+import Brandy.models.TreeItemMail;
+import Brandy.models.UsuarioCorreo;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,8 +18,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+
 import java.io.IOException;
 import java.net.URL;
+import java.security.GeneralSecurityException;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
@@ -71,15 +78,23 @@ public class MainPrincipalControlador implements Initializable {
     private Color x4;
 
 
-
-
     @FXML
     private Label labelRemitente;
+
+    @FXML
+    private TreeView<String> treeview;
+
+    @FXML
+    void caragarListaMensajes(MouseEvent event) {
+
+    }
+
     @FXML
     void abrirVentana(ActionEvent event) {
         anadirUsuario();
 
     }
+
     @FXML
     void abrir_CargarMensajes(ActionEvent event) {
 
@@ -116,40 +131,44 @@ public class MainPrincipalControlador implements Initializable {
     }
 
 
-
-        public void initialize(URL url, ResourceBundle resourceBundle) {
-           anadirUsuario();
-
-
-/*
-
-  TreeItem<File> archivos = new TreeItem<>();
-    TreeView<File> treeView = new TreeView<>();
-    treeView.setShowRoot(false);
-    treeView.setRoot(archivos);
-
-    File[] roots = File.listRoots();
-    for (File disk : roots)
-        archivos.getChildren().add(createNode(disk));
-
- */
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        anadirUsuario();
+        try {
+            treeview.setRoot(Logica.getInstance().cargaCarpetas(Logica.getInstance().getListaUsuarios().get(0)));
 
 
+            tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Mensaje>() {
+                @Override
+                public void changed(ObservableValue<? extends Mensaje> observable, Mensaje oldValue, Mensaje newValue) {
+                    try {
+                        webView.getEngine().loadContent(newValue.getContent());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        } catch (GeneralSecurityException e) {
+            e.printStackTrace();
         }
 
-    @FXML
+
+    }
+
+   /* @FXML
     void seleccion(MouseEvent event) {
         WebEngine webEngine = webView.getEngine();
         try {
-            int indice = tableView.getSelectionModel().getSelectedIndex();
+            //int indice = tableView.getSelectionModel().getSelectedIndex();
             webView.getEngine().loadContent(tableView.getSelectionModel().getSelectedItem().getContent());
-        } catch (MessagingException  e) {
+        } catch (MessagingException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-    }
+    }*/
 
     private void anadirUsuario() {
         Stage stage = new Stage();
@@ -157,7 +176,7 @@ public class MainPrincipalControlador implements Initializable {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Brandy/vistas/Login.fxml"));
             Parent root = fxmlLoader.load();
-            LoginController pantallaInicio = (LoginController)fxmlLoader.getController();
+            LoginController pantallaInicio = (LoginController) fxmlLoader.getController();
             pantallaInicio.setStage(stage);
             stage.setTitle("Correo");
             stage.setScene(new Scene(root, 850, 400));
@@ -167,9 +186,7 @@ public class MainPrincipalControlador implements Initializable {
         }
         stage.showAndWait();
         tableView.setItems(Logica.getInstance().getListaCorreos());
-        //stage.close();
 
-        // metter los botones en un toolbar
     }
 }
 
