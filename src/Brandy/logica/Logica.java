@@ -58,44 +58,24 @@ public class Logica  {
     }
 
 
-    public void cargarListaCorreos(UsuarioCorreo usuarioCorreo) {
-        IMAPFolder folder = null;
-        Store store = null;
-        String subject = null;
-        Flags.Flag flag = null;
+    public void cargarListaCorreos(String folderString) {
+        listaCorreos.clear();
         try {
-            Properties props = System.getProperties();
-            props.setProperty("mail.store.protocol", "imaps");
-
-            MailSSLSocketFactory sf = new MailSSLSocketFactory();
-            sf.setTrustAllHosts(true);
-            props.put("mail.imaps.ssl.trust", "*");
-            props.put("mail.imaps.ssl.socketFactory", sf);
-
-            Session session = Session.getDefaultInstance(props, null);
-            store = session.getStore("imaps");
-            store.connect("imap.googlemail.com",usuarioCorreo.getEmail(), usuarioCorreo.getContra());
-
-            folder = (IMAPFolder) store.getFolder("[Gmail]/Todos");
-
+           // IMAPFolder folder = (IMAPFolder) store.getFolder("[Gmail]/Todos");
+            IMAPFolder folder = (IMAPFolder) store.getFolder(folderString);
             if (!folder.isOpen())
                 folder.open(Folder.READ_WRITE);
             Message[] messages = folder.getMessages();
             Mensaje correo;
             System.out.println(messages[0].toString());
-            for(int i=0;i<messages.length;i++)
-            {
-                correo=new Mensaje(messages[i]/*,messages[i].getSubject()*/);
-             System.out.println(correo.toString());
+            for(int i=0;i<messages.length;i++) {
+                correo = new Mensaje(messages[i]);
+                System.out.println(correo.toString());
                 listaCorreos.add(correo);
             }
-
-
         } catch (NoSuchProviderException e) {
             e.printStackTrace();
         } catch (MessagingException e) {
-            e.printStackTrace();
-        } catch (GeneralSecurityException e) {
             e.printStackTrace();
         }
     }

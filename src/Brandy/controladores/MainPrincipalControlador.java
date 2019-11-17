@@ -2,6 +2,7 @@ package Brandy.controladores;
 
 import Brandy.logica.Logica;
 import Brandy.models.Mensaje;
+import Brandy.models.TreeItemMail;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -130,6 +131,20 @@ public class MainPrincipalControlador implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         anadirUsuario();
+
+
+
+        /* Para verdonde esta el filderdel tree view mire en el debug el selectitem y abriendo vi
+         un folder que dentro tenia un fullname que es la ruta que necesito parapasarlo*/
+        treeview.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TreeItem<String>>() {
+            @Override
+            public void changed(ObservableValue<? extends TreeItem<String>> observableValue, TreeItem<String> stringTreeItem, TreeItem<String> t1) {
+                System.out.println(treeview.getSelectionModel().getSelectedItem().toString());
+                Logica.getInstance().cargarListaCorreos(((TreeItemMail)t1).getFolder().getFullName());
+
+
+            }
+        });
         try {
             Logica.getInstance().iniciarSesion(Logica.getInstance().getListaUsuarios().get(0));
             treeview.setRoot(Logica.getInstance().cargaCarpetas(Logica.getInstance().getListaUsuarios().get(0), null, null));

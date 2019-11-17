@@ -18,9 +18,16 @@ public class TreeItemMail extends TreeItem<String> {
     this.folder = folder;
   }
 
+  public Folder getFolder() {
+    return folder;
+  }
+
+  public void setFolder(Folder folder) {
+    this.folder = folder;
+  }
 
 
-   /* TreeItem<String> rootItem = new TreeItem<String> ("Inbox");
+/* TreeItem<String> rootItem = new TreeItem<String> ("Inbox");
     rootItem.setExpanded(true);
     for (int i = 1; i < lengt; i++) {
       TreeItem<String> item = new TreeItem<String> ("Message" + i);
