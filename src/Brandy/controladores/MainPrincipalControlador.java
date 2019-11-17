@@ -187,7 +187,7 @@ public class MainPrincipalControlador implements Initializable {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Brandy/vistas/Login.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Brandy/vistas/login.fxml"));
             Parent root = fxmlLoader.load();
             LoginControlador pantallaInicio = (LoginControlador) fxmlLoader.getController();
             pantallaInicio.setStage(stage);
