@@ -33,7 +33,7 @@
             <MenuItem fx:id="miAbrir" mnemonicParsing="false" onAction="#abrir_CargarMensajes" text="Open…" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Configurar Cuentas" />
+            <MenuItem mnemonicParsing="false" text="Configurar Cuentas" onAction="#configuarCuentas"/>
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem fx:id="miSalir" mnemonicParsing="false" onAction="#salir" text="Salir" />
           </items>

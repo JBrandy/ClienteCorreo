@@ -83,6 +83,26 @@ public class MainPrincipalControlador implements Initializable {
     private TreeView<String> treeview;
 
     @FXML
+    private MenuItem btCongif;
+    @FXML
+    void configuarCuentas(ActionEvent event) {
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Brandy/vistas/configurarCorreo.fxml"));
+            Parent root = fxmlLoader.load();
+            LoginControlador pantallaConfigCorreo = (LoginControlador) fxmlLoader.getController();
+            pantallaConfigCorreo.setStage(stage);
+            stage.setTitle("Correo");
+            stage.setScene(new Scene(root, 850, 400));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.showAndWait();
+    }
+
+    @FXML
     void caragarListaMensajes(MouseEvent event) {
 
     }
@@ -169,19 +189,7 @@ public class MainPrincipalControlador implements Initializable {
 
     }
 
-   /* @FXML
-    void seleccion(MouseEvent event) {
-        WebEngine webEngine = webView.getEngine();
-        try {
-            //int indice = tableView.getSelectionModel().getSelectedIndex();
-            webView.getEngine().loadContent(tableView.getSelectionModel().getSelectedItem().getContent());
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
-    }*/
 
     private void anadirUsuario() {
         Stage stage = new Stage();

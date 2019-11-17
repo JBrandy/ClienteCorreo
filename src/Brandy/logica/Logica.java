@@ -37,7 +37,7 @@ public class Logica  {
 
     private Logica() {
         listaCorreos = FXCollections.observableArrayList();
-        listaUsuarios= new ArrayList<>();
+        listaUsuarios= FXCollections.observableArrayList();
     }
 
     public static Logica getInstance() {
