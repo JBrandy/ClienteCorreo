@@ -2,8 +2,6 @@ package Brandy.controladores;
 
 import Brandy.logica.Logica;
 import Brandy.models.Mensaje;
-import Brandy.models.TreeItemMail;
-import Brandy.models.UsuarioCorreo;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -16,7 +14,6 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
 import java.io.IOException;
@@ -130,11 +127,12 @@ public class MainPrincipalControlador implements Initializable {
 
     }
 
-
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         anadirUsuario();
         try {
-            treeview.setRoot(Logica.getInstance().cargaCarpetas(Logica.getInstance().getListaUsuarios().get(0)));
+            Logica.getInstance().iniciarSesion(Logica.getInstance().getListaUsuarios().get(0));
+            treeview.setRoot(Logica.getInstance().cargaCarpetas(Logica.getInstance().getListaUsuarios().get(0), null, null));
 
 
             tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Mensaje>() {
@@ -176,7 +174,7 @@ public class MainPrincipalControlador implements Initializable {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Brandy/vistas/Login.fxml"));
             Parent root = fxmlLoader.load();
-            LoginController pantallaInicio = (LoginController) fxmlLoader.getController();
+            LoginControlador pantallaInicio = (LoginControlador) fxmlLoader.getController();
             pantallaInicio.setStage(stage);
             stage.setTitle("Correo");
             stage.setScene(new Scene(root, 850, 400));

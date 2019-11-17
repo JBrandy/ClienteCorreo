@@ -33,6 +33,7 @@ public class Logica  {
     private String contra;
     private UsuarioCorreo usuarioCorreo;
     private Message usuarioVer;
+    private Store store;
 
     private Logica() {
         listaCorreos = FXCollections.observableArrayList();
@@ -90,8 +91,6 @@ public class Logica  {
             }
 
 
-
-
         } catch (NoSuchProviderException e) {
             e.printStackTrace();
         } catch (MessagingException e) {
@@ -101,36 +100,40 @@ public class Logica  {
         }
     }
 
-    public void verContenido(Message usuarioCorreoVer) throws IOException, MessagingException {
 
-        this.usuarioVer = usuarioCorreoVer;
+    public TreeItemMail cargaCarpetas(UsuarioCorreo usuarioCorreo1, Folder carpeta,TreeItemMail rootItem) throws MessagingException, GeneralSecurityException {
 
-        Multipart multipart = (Multipart) usuarioCorreoVer.getContent();
-        for(int k = 0; k < multipart.getCount(); k++){
-            BodyPart bodyPart = multipart.getBodyPart(k);
-            InputStream stream =
-                    (InputStream) bodyPart.getInputStream();
-            BufferedReader bufferedReader =
-                    new BufferedReader(new InputStreamReader(stream));
+        Folder[] folders = null;
+        if(store!=null) {
 
-            while (bufferedReader.ready()) {
-                System.out.println(bufferedReader.readLine());
+            if(carpeta==null){
+                folders = store.getDefaultFolder().list(); //todas las del sistema
+            }else{
+                folders = carpeta.list();      //carpetas de la carpeta en la que estoy
             }
-        }
+            if(rootItem==null){
+                rootItem = new TreeItemMail(usuarioCorreo1.getEmail(), usuarioCorreo1, carpeta);
+            }else{
+                System.out.println("cojo el delrecursirvo");
+            }
 
-
-
+            rootItem.setExpanded(true);
+             for (Folder folder : folders) {
+                 //Añadiendo carpetas al tree
+                 TreeItemMail item = new TreeItemMail(folder.getName(), usuarioCorreo1, folder);
+                 if ((folder.getType() & Folder.HOLDS_FOLDERS) != 0
+                         && folder.list().length>0) { //si tiene carpetas
+                     cargaCarpetas(usuarioCorreo1, folder, item);
+                }else{
+                     System.out.println("La carpeta " + folder.getName() + " no tiene hijos.");
+                 }
+                 rootItem.getChildren().add(item);
+             }
     }
-   /* private TreeItemMail getfolders(Folder [] folders, TreeItemMail foldersRoot, UsuarioCorreo emailAccount ){
-      for (Folder folder: folders) {
-          treeitem e = new rre
+        return rootItem;
+    }
 
-                  if(folder.gettype== holds_)
-
-      }
-    }*/
-
-    public TreeItemMail cargaCarpetas(UsuarioCorreo usuarioCorreo1) throws MessagingException, GeneralSecurityException {
+    public void iniciarSesion(UsuarioCorreo usuarioCorreo1) throws GeneralSecurityException, MessagingException {
         Properties prop = new Properties();
         prop.setProperty("mail.store.protocol", "imaps");
         MailSSLSocketFactory sf = new MailSSLSocketFactory();
@@ -139,20 +142,9 @@ public class Logica  {
         prop.put("mail.imaps.ssl.socketFactory", sf);
 
         Session session = Session.getDefaultInstance(prop, null);
-        Store store = session.getStore("imaps");
+        store = session.getStore("imaps");
         store.connect("imap.googlemail.com",usuarioCorreo1.getEmail(), usuarioCorreo1.getContra());
-        TreeItemMail rootItem = new TreeItemMail(usuarioCorreo1.getEmail(),usuarioCorreo1,null);
-        Folder[] folders = store.getDefaultFolder().list(/*"*"*/);
-        rootItem.setExpanded(true);
-        for (Folder folder : folders) {
-            //if ((folder.getType() & Folder.HOLDS_MESSAGES) != 0) {
-                TreeItemMail item = new TreeItemMail(folder.getName(),usuarioCorreo1,folder);
-                rootItem.getChildren().add(item);
-            //}
-        }
-        return rootItem;
     }
-
 
 
 }

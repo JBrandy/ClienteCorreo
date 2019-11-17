@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LoginController implements Initializable {
+public class LoginControlador implements Initializable {
 
     UsuarioCorreo u ;
 
@@ -35,10 +35,16 @@ public class LoginController implements Initializable {
 
     }
 
+
+
+
+
+
     @FXML
     void iniciarSesion(ActionEvent event) throws IOException {
 
         // cbDivision.getItems().addAll(Division.values()); Esta seria la manera correcta
+
         String email = tvCorreo.getText();
         String contra =tvContrasena.getText();
         u =new UsuarioCorreo(email,contra);
@@ -50,6 +56,9 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        tvCorreo.setText("damdijb@gmail.com");
+        tvContrasena.setText("123456A@");
 
        /*ValidationSupport vs = new ValidationSupport();
         vs.registerValidator(tvContrasena, Validator.createEmptyValidator("el campo no puede estar vacio"));

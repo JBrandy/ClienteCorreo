@@ -8,6 +8,7 @@ public class TreeItemMail extends TreeItem<String> {
   private String nombre;
   private UsuarioCorreo usuarioCorreo;
   private Folder folder;
+ // private TreeItem a;
 
   public TreeItemMail(String nombre, UsuarioCorreo usuarioCorreo, Folder folder) {
     super(nombre);
@@ -15,13 +16,6 @@ public class TreeItemMail extends TreeItem<String> {
     this.nombre = nombre;
     this.usuarioCorreo = usuarioCorreo;
     this.folder = folder;
-  }
-
-
-
-  private TreeItem a;
-  public void cargarTree (UsuarioCorreo user){
-
   }
 
 
