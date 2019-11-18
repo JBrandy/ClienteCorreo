@@ -7,11 +7,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ConfigurarCorreoController implements Initializable {
+public class ConfigurarCorreoControlador implements Initializable {
+
+    private Stage stage;
 
     @FXML
     private TableView<UsuarioCorreo> tableCorreos;
@@ -45,6 +48,11 @@ public class ConfigurarCorreoController implements Initializable {
         tableCorreos.setItems((ObservableList<UsuarioCorreo>) Logica.getInstance().getListaUsuarios());
 
     }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
 }
 
 

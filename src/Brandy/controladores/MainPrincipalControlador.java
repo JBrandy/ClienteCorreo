@@ -91,7 +91,7 @@ public class MainPrincipalControlador implements Initializable {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Brandy/vistas/configurarCorreo.fxml"));
             Parent root = fxmlLoader.load();
-            LoginControlador pantallaConfigCorreo = (LoginControlador) fxmlLoader.getController();
+            ConfigurarCorreoControlador pantallaConfigCorreo = (ConfigurarCorreoControlador) fxmlLoader.getController();
             pantallaConfigCorreo.setStage(stage);
             stage.setTitle("Correo");
             stage.setScene(new Scene(root, 850, 400));
