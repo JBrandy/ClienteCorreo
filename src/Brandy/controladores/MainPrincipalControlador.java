@@ -153,7 +153,8 @@ public class MainPrincipalControlador implements Initializable {
         anadirUsuario();
 
         /* Para verdonde esta el filderdel treeview mire en el debug el selectitem y abriendo vi
-         un folder que dentro tenia un fullname que es la ruta que necesito parapasarlo*/
+         un folder que dentro tenia un fullname que es la ruta que necesito parapasarlo
+         Para ver los correos del treeView en la tabla*/
         treeview.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TreeItem<String>>() {
             @Override
             public void changed(ObservableValue<? extends TreeItem<String>> observableValue, TreeItem<String> stringTreeItem, TreeItem<String> t1) {
@@ -163,11 +164,14 @@ public class MainPrincipalControlador implements Initializable {
 
             }
         });
+
+
         try {
+            // Cargo carpetas del tree po posicion
             Logica.getInstance().iniciarSesion(Logica.getInstance().getListaUsuarios().get(0));
             treeview.setRoot(Logica.getInstance().cargaCarpetas(Logica.getInstance().getListaUsuarios().get(0), null, null));
 
-
+            // para ver el contenido del correoseleccionado en la tabla
             tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Mensaje>() {
                 @Override
                 public void changed(ObservableValue<? extends Mensaje> observable, Mensaje oldValue, Mensaje newValue) {

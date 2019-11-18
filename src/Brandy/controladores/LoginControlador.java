@@ -36,14 +36,8 @@ public class LoginControlador implements Initializable {
     }
 
 
-
-
-
-
     @FXML
     void iniciarSesion(ActionEvent event) throws IOException {
-
-        // cbDivision.getItems().addAll(Division.values()); Esta seria la manera correcta
 
         String email = tvCorreo.getText();
         String contra =tvContrasena.getText();

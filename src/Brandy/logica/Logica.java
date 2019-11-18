@@ -50,9 +50,11 @@ public class Logica  {
     public ObservableList<Mensaje> getListaCorreos() {
         return listaCorreos;
     }
+
     public List<UsuarioCorreo> getListaUsuarios() {
         return listaUsuarios;
     }
+
     public void anadirUsuario(UsuarioCorreo u){
         listaUsuarios.add(u);
     }
@@ -61,7 +63,7 @@ public class Logica  {
     public void cargarListaCorreos(String folderString) {
         listaCorreos.clear();
         try {
-           // IMAPFolder folder = (IMAPFolder) store.getFolder("[Gmail]/Todos");
+           // IMAPFolder folder = (IMAPFolder) store.getFolder("[Gmail]/Todos"); el final es la ruta
             IMAPFolder folder = (IMAPFolder) store.getFolder(folderString);
             if (!folder.isOpen())
                 folder.open(Folder.READ_WRITE);
