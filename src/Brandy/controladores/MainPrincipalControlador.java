@@ -152,9 +152,7 @@ public class MainPrincipalControlador implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         anadirUsuario();
 
-
-
-        /* Para verdonde esta el filderdel tree view mire en el debug el selectitem y abriendo vi
+        /* Para verdonde esta el filderdel treeview mire en el debug el selectitem y abriendo vi
          un folder que dentro tenia un fullname que es la ruta que necesito parapasarlo*/
         treeview.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TreeItem<String>>() {
             @Override
