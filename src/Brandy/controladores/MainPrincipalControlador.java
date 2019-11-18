@@ -86,6 +86,7 @@ public class MainPrincipalControlador implements Initializable {
     private MenuItem btCongif;
     @FXML
     void configuarCuentas(ActionEvent event) {
+
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         try {
@@ -94,13 +95,14 @@ public class MainPrincipalControlador implements Initializable {
             ConfigurarCorreoControlador pantallaConfigCorreo = (ConfigurarCorreoControlador) fxmlLoader.getController();
             pantallaConfigCorreo.setStage(stage);
             stage.setTitle("Correo");
-            stage.setScene(new Scene(root, 850, 400));
+            stage.setScene(new Scene(root, 600, 400));
 
         } catch (IOException e) {
             e.printStackTrace();
         }
         stage.showAndWait();
-    }
+
+            }
 
     @FXML
     void caragarListaMensajes(MouseEvent event) {
@@ -168,8 +170,8 @@ public class MainPrincipalControlador implements Initializable {
 
         try {
             // Cargo carpetas del tree po posicion
-            Logica.getInstance().iniciarSesion(Logica.getInstance().getListaUsuarios().get(0));
-            treeview.setRoot(Logica.getInstance().cargaCarpetas(Logica.getInstance().getListaUsuarios().get(0), null, null));
+            actualizarTree();
+
 
             // para ver el contenido del correoseleccionado en la tabla
             tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Mensaje>() {
@@ -191,6 +193,12 @@ public class MainPrincipalControlador implements Initializable {
 
     }
 
+    public void actualizarTree() throws GeneralSecurityException, MessagingException {
+        for (int i = 0; i< Logica.getInstance().getListaUsuarios().size(); i++){
+            Logica.getInstance().iniciarSesion(Logica.getInstance().getListaUsuarios().get(i));
+            treeview.setRoot(Logica.getInstance().cargaCarpetas(Logica.getInstance().getListaUsuarios().get(i), null, null));
+        }
+    }
 
 
     private void anadirUsuario() {
@@ -208,6 +216,7 @@ public class MainPrincipalControlador implements Initializable {
             e.printStackTrace();
         }
         stage.showAndWait();
+
         tableView.setItems(Logica.getInstance().getListaCorreos());
 
     }

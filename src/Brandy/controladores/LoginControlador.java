@@ -9,8 +9,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.net.URL;
+import java.security.GeneralSecurityException;
 import java.util.ResourceBundle;
 
 public class LoginControlador implements Initializable {
@@ -37,7 +39,7 @@ public class LoginControlador implements Initializable {
 
 
     @FXML
-    void iniciarSesion(ActionEvent event) throws IOException {
+    void iniciarSesion(ActionEvent event) throws IOException, GeneralSecurityException, MessagingException {
 
         String email = tvCorreo.getText();
         String contra =tvContrasena.getText();

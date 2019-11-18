@@ -10,8 +10,10 @@ import javafx.collections.ObservableList;
 
 import com.sun.mail.imap.IMAPFolder;
 import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
 
 import javax.mail.*;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -127,6 +129,18 @@ public class Logica  {
         store = session.getStore("imaps");
         store.connect("imap.googlemail.com",usuarioCorreo1.getEmail(), usuarioCorreo1.getContra());
     }
+
+
+    /*
+    Clase de configurar mwetodos
+     */
+    public void eliminar (UsuarioCorreo u) throws GeneralSecurityException, MessagingException {
+        Logica.getInstance().getListaUsuarios().remove(u);
+
+
+    }
+
+
 
 
 }
