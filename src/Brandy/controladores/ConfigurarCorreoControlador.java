@@ -36,7 +36,7 @@ public class ConfigurarCorreoControlador implements Initializable {
     private Button btSalir;
 
     @FXML
-    void anadir(ActionEvent event) {
+    void anadir(ActionEvent event) throws GeneralSecurityException, MessagingException {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         try {

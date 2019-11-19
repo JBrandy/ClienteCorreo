@@ -80,7 +80,7 @@ public class MainPrincipalControlador implements Initializable {
     private Label labelRemitente;
 
     @FXML
-    private TreeView<String> treeview;
+    public  TreeView<String> treeview;
 
     @FXML
     private MenuItem btCongif;
@@ -154,6 +154,7 @@ public class MainPrincipalControlador implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         anadirUsuario();
 
+        //https://medium.com/@keeptoo/javafx-java-modern-ui-design-starter-pack-aab1c331fd3c
         /* Para verdonde esta el filderdel treeview mire en el debug el selectitem y abriendo vi
          un folder que dentro tenia un fullname que es la ruta que necesito parapasarlo
          Para ver los correos del treeView en la tabla*/
@@ -162,11 +163,8 @@ public class MainPrincipalControlador implements Initializable {
             public void changed(ObservableValue<? extends TreeItem<String>> observableValue, TreeItem<String> stringTreeItem, TreeItem<String> t1) {
                 System.out.println(treeview.getSelectionModel().getSelectedItem().toString());
                 Logica.getInstance().cargarListaCorreos(((TreeItemMail)t1).getFolder().getFullName());
-
-
             }
         });
-
 
         try {
             // Cargo carpetas del tree po posicion
@@ -191,12 +189,16 @@ public class MainPrincipalControlador implements Initializable {
         }
 
 
+
     }
 
-    public void actualizarTree() throws GeneralSecurityException, MessagingException {
+    public  void actualizarTree() throws GeneralSecurityException, MessagingException {
+        TreeItem nodoRaiz = new TreeItem("Correos");
+        treeview.setRoot(nodoRaiz);
         for (int i = 0; i< Logica.getInstance().getListaUsuarios().size(); i++){
             Logica.getInstance().iniciarSesion(Logica.getInstance().getListaUsuarios().get(i));
-            treeview.setRoot(Logica.getInstance().cargaCarpetas(Logica.getInstance().getListaUsuarios().get(i), null, null));
+            nodoRaiz.setExpanded(true);
+            nodoRaiz.getChildren().add((Logica.getInstance().cargaCarpetas(Logica.getInstance().getListaUsuarios().get(i), null, null)));
         }
     }
 

@@ -45,6 +45,7 @@ public class LoginControlador implements Initializable {
         String contra =tvContrasena.getText();
         u =new UsuarioCorreo(email,contra);
         Logica.getInstance().anadirUsuario(u);
+
         stage.close();
 
     }

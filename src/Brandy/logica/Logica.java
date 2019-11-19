@@ -84,6 +84,7 @@ public class Logica  {
         }
     }
 
+    public TreeItem<String> root2;
 
     public TreeItemMail cargaCarpetas(UsuarioCorreo usuarioCorreo1, Folder carpeta,TreeItemMail rootItem) throws MessagingException, GeneralSecurityException {
 
@@ -91,12 +92,18 @@ public class Logica  {
         if(store!=null) {
 
             if(carpeta==null){
+
+
                 folders = store.getDefaultFolder().list(); //todas las del sistema
+                System.out.println("La carpeta " + folders.toString() );
             }else{
-                folders = carpeta.list();      //carpetas de la carpeta en la que estoy
+                folders = carpeta.list();
+                System.out.println("La carpeta " + carpeta.getName() );
+//carpetas de la carpeta en la que estoy
             }
             if(rootItem==null){
                 rootItem = new TreeItemMail(usuarioCorreo1.getEmail(), usuarioCorreo1, carpeta);
+                System.out.println("La carpeta " + rootItem.toString() );
             }else{
                 System.out.println("cojo el delrecursirvo");
             }
