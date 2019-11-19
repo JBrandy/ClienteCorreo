@@ -147,7 +147,15 @@ public class Logica  {
 
     }
 
-
+    public  void actualizarTree(TreeView treeview) throws GeneralSecurityException, MessagingException {
+        TreeItem nodoRaiz = new TreeItem("Correos");
+        treeview.setRoot(nodoRaiz);
+        for (int i = 0; i< Logica.getInstance().getListaUsuarios().size(); i++){
+            Logica.getInstance().iniciarSesion(Logica.getInstance().getListaUsuarios().get(i));
+            nodoRaiz.setExpanded(true);
+            nodoRaiz.getChildren().add((Logica.getInstance().cargaCarpetas(Logica.getInstance().getListaUsuarios().get(i), null, null)));
+        }
+    }
 
 
 }

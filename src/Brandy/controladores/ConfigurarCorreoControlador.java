@@ -51,6 +51,7 @@ public class ConfigurarCorreoControlador implements Initializable {
             e.printStackTrace();
         }
         stage.showAndWait();
+
     }
 
     @FXML

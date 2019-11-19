@@ -126,7 +126,8 @@ public class MainPrincipalControlador implements Initializable {
     }
 
     @FXML
-    void enviarCorreo(ActionEvent event) {
+    void enviarCorreo(ActionEvent event) throws GeneralSecurityException, MessagingException {
+        actualizarTree();
 
     }
 
@@ -191,7 +192,8 @@ public class MainPrincipalControlador implements Initializable {
 
 
     }
-
+ // Funciona lo tengo uesto en lboton de enviar correo
+    // tengo dudas decomo uponerlo tmb lo tengo en logica este mismo metodo AYUDA!!!!!!!!!!!!!!!
     public  void actualizarTree() throws GeneralSecurityException, MessagingException {
         TreeItem nodoRaiz = new TreeItem("Correos");
         treeview.setRoot(nodoRaiz);

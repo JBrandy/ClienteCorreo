@@ -33,7 +33,7 @@
             <MenuItem fx:id="miAbrir" mnemonicParsing="false" onAction="#abrir_CargarMensajes" text="Open…" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Configurar Cuentas" onAction="#configuarCuentas"/>
+            <MenuItem mnemonicParsing="false" onAction="#configuarCuentas" text="Configurar Cuentas" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem fx:id="miSalir" mnemonicParsing="false" onAction="#salir" text="Salir" />
           </items>
@@ -83,18 +83,26 @@
           <content>
             <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="430.0">
               <children>
-                        <TableView fx:id="tableView" layoutY="57.0" prefHeight="431.0" prefWidth="430.0" AnchorPane.bottomAnchor="57.400000000000034" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="57.0">
-                          <columns>
-                            <TableColumn prefWidth="165.0" text="Remitente">
-                              <cellValueFactory><PropertyValueFactory property="remitente" /></cellValueFactory>
-                            </TableColumn>
-                            <TableColumn prefWidth="165.0" text="Asunto">
-                              <cellValueFactory><PropertyValueFactory property="asunto" /></cellValueFactory>
-                            </TableColumn>
-
-
-                          </columns>
-                        </TableView>
+                        <AnchorPane layoutY="57.0" prefHeight="429.0" prefWidth="443.0" AnchorPane.bottomAnchor="59.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="57.0">
+                           <children>
+                              <TableView fx:id="tableView" layoutY="1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="411.0" prefWidth="443.0" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
+                                <columns>
+                                  <TableColumn prefWidth="165.0" text="Remitente">
+                                    <cellValueFactory>
+                                          <PropertyValueFactory property="remitente" />
+                                       </cellValueFactory>
+                                  </TableColumn>
+                                  <TableColumn prefWidth="165.0" text="Asunto">
+                                    <cellValueFactory>
+                                          <PropertyValueFactory property="asunto" />
+                                       </cellValueFactory>
+                                  </TableColumn>
+      
+      
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
                 <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Correos" textAlignment="CENTER" textFill="$x2" wrapText="false" />
               </children>
             </AnchorPane>
