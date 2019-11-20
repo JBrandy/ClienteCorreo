@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -79,35 +78,27 @@
 
           </children>
         </AnchorPane>
-        <ScrollPane prefHeight="-1.0" prefWidth="-1.0">
-          <content>
-            <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="430.0">
-              <children>
-                        <AnchorPane layoutY="57.0" prefHeight="429.0" prefWidth="443.0" AnchorPane.bottomAnchor="59.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="57.0">
-                           <children>
-                              <TableView fx:id="tableView" layoutY="1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="411.0" prefWidth="443.0" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
-                                <columns>
-                                  <TableColumn prefWidth="165.0" text="Remitente">
-                                    <cellValueFactory>
-                                          <PropertyValueFactory property="remitente" />
-                                       </cellValueFactory>
-                                  </TableColumn>
-                                  <TableColumn prefWidth="165.0" text="Asunto">
-                                    <cellValueFactory>
-                                          <PropertyValueFactory property="asunto" />
-                                       </cellValueFactory>
-                                  </TableColumn>
-      
-      
-                                </columns>
-                              </TableView>
-                           </children>
-                        </AnchorPane>
-                <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Correos" textAlignment="CENTER" textFill="$x2" wrapText="false" />
-              </children>
-            </AnchorPane>
-          </content>
-        </ScrollPane>
+      <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="214.0" prefWidth="430.0">
+        <children>
+          <Label alignment="CENTER" font="$x1" layoutX="26.0" layoutY="21.0" style="&#10;" text="Correos" textAlignment="CENTER" textFill="$x2" wrapText="false" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="21.0" />
+                  <TableView fx:id="tableView" layoutX="7.0" layoutY="118.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="293.0" prefWidth="430.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+                    <columns>
+                      <TableColumn prefWidth="165.0" text="Remitente">
+                        <cellValueFactory>
+                              <PropertyValueFactory property="remitente" />
+                           </cellValueFactory>
+                      </TableColumn>
+                      <TableColumn prefWidth="165.0" text="Asunto">
+                        <cellValueFactory>
+                              <PropertyValueFactory property="asunto" />
+                           </cellValueFactory>
+                      </TableColumn>
+
+
+                    </columns>
+                  </TableView>
+        </children>
+      </AnchorPane>
         <AnchorPane prefHeight="471.0" prefWidth="234.0">
           <children>
                   <WebView fx:id="webView" layoutY="75.0" prefHeight="406.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0" />

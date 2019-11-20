@@ -80,10 +80,12 @@ public class MainPrincipalControlador implements Initializable {
     private Label labelRemitente;
 
     @FXML
-    public  TreeView<String> treeview;
+    public TreeView<String> treeview;
 
     @FXML
     private MenuItem btCongif;
+    private TreeItemMail TreeItem;
+
     @FXML
     void configuarCuentas(ActionEvent event) {
 
@@ -127,7 +129,7 @@ public class MainPrincipalControlador implements Initializable {
 
     @FXML
     void enviarCorreo(ActionEvent event) throws GeneralSecurityException, MessagingException {
-        actualizarTree();
+        //actualizarTree();
 
     }
 
@@ -155,6 +157,15 @@ public class MainPrincipalControlador implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         anadirUsuario();
 
+        try {
+
+            treeview.setRoot(Logica.getInstance().actualizarTree());
+        } catch (GeneralSecurityException e) {
+            e.printStackTrace();
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
         //https://medium.com/@keeptoo/javafx-java-modern-ui-design-starter-pack-aab1c331fd3c
         /* Para verdonde esta el filderdel treeview mire en el debug el selectitem y abriendo vi
          un folder que dentro tenia un fullname que es la ruta que necesito parapasarlo
@@ -167,34 +178,34 @@ public class MainPrincipalControlador implements Initializable {
             }
         });
 
-        try {
-            // Cargo carpetas del tree po posicion
-            actualizarTree();
 
 
-            // para ver el contenido del correoseleccionado en la tabla
-            tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Mensaje>() {
-                @Override
-                public void changed(ObservableValue<? extends Mensaje> observable, Mensaje oldValue, Mensaje newValue) {
-                    try {
-                        webView.getEngine().loadContent(newValue.getContent());
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+
+        // para ver el contenido del correoseleccionado en la tabla
+        tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Mensaje>() {
+            @Override
+            public void changed(ObservableValue<? extends Mensaje> observable, Mensaje oldValue, Mensaje newValue) {
+                try {
+                    webView.getEngine().loadContent(newValue.getContent());
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            });
-        } catch (MessagingException e) {
-            e.printStackTrace();
+            }
+        });
+
+        try {
+            Logica.getInstance().actualizarTree();
         } catch (GeneralSecurityException e) {
             e.printStackTrace();
+        } catch (MessagingException e) {
+            e.printStackTrace();
         }
-
 
 
     }
  // Funciona lo tengo uesto en lboton de enviar correo
     // tengo dudas decomo uponerlo tmb lo tengo en logica este mismo metodo AYUDA!!!!!!!!!!!!!!!
-    public  void actualizarTree() throws GeneralSecurityException, MessagingException {
+   /* public  void actualizarTree() throws GeneralSecurityException, MessagingException {
         TreeItem nodoRaiz = new TreeItem("Correos");
         treeview.setRoot(nodoRaiz);
         for (int i = 0; i< Logica.getInstance().getListaUsuarios().size(); i++){
@@ -202,7 +213,7 @@ public class MainPrincipalControlador implements Initializable {
             nodoRaiz.setExpanded(true);
             nodoRaiz.getChildren().add((Logica.getInstance().cargaCarpetas(Logica.getInstance().getListaUsuarios().get(i), null, null)));
         }
-    }
+    }*/
 
 
     private void anadirUsuario() {
@@ -220,7 +231,6 @@ public class MainPrincipalControlador implements Initializable {
             e.printStackTrace();
         }
         stage.showAndWait();
-
         tableView.setItems(Logica.getInstance().getListaCorreos());
 
     }

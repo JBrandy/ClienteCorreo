@@ -1,5 +1,6 @@
 package Brandy.logica;
 
+import Brandy.controladores.MainPrincipalControlador;
 import Brandy.models.Mensaje;
 import Brandy.models.TreeItemMail;
 import Brandy.models.UsuarioCorreo;
@@ -30,6 +31,8 @@ public class Logica  {
 
     private ObservableList<Mensaje> listaCorreos;
     private List<UsuarioCorreo> listaUsuarios;
+
+    private TreeItem nodoRaiz =new TreeItem("Correos");
 
     private String email;
     private String contra;
@@ -84,9 +87,9 @@ public class Logica  {
         }
     }
 
-    public TreeItem<String> root2;
 
-    public TreeItemMail cargaCarpetas(UsuarioCorreo usuarioCorreo1, Folder carpeta,TreeItemMail rootItem) throws MessagingException, GeneralSecurityException {
+
+    private TreeItemMail cargaCarpetas(UsuarioCorreo usuarioCorreo1, Folder carpeta,TreeItemMail rootItem) throws MessagingException, GeneralSecurityException {
 
         Folder[] folders = null;
         if(store!=null) {
@@ -147,14 +150,18 @@ public class Logica  {
 
     }
 
-    public  void actualizarTree(TreeView treeview) throws GeneralSecurityException, MessagingException {
-        TreeItem nodoRaiz = new TreeItem("Correos");
-        treeview.setRoot(nodoRaiz);
-        for (int i = 0; i< Logica.getInstance().getListaUsuarios().size(); i++){
-            Logica.getInstance().iniciarSesion(Logica.getInstance().getListaUsuarios().get(i));
+
+    public  TreeItem actualizarTree() throws GeneralSecurityException, MessagingException {
+        nodoRaiz.getChildren().clear();
+        //nodoRaiz = new TreeItem("Correos");
+        for (int i = 0; i< getListaUsuarios().size(); i++){
+           iniciarSesion(getListaUsuarios().get(i));
             nodoRaiz.setExpanded(true);
-            nodoRaiz.getChildren().add((Logica.getInstance().cargaCarpetas(Logica.getInstance().getListaUsuarios().get(i), null, null)));
+            nodoRaiz.getChildren().add((cargaCarpetas(getListaUsuarios().get(i), null, null)));
         }
+
+        return nodoRaiz;
+        //devolvemos el nodo raiz para que el controller pueda pasarlselo al treeview
     }
 
 
