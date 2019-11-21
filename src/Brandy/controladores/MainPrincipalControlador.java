@@ -137,6 +137,23 @@ public class MainPrincipalControlador implements Initializable {
             folder.close();
         }
 
+        // el metodo anterior es desues de hacer
+        //copumessage(m,folder.trush)
+
+        /*
+        if (m esta en trush)
+         Mensaje m;
+        int indice = tableView.getSelectionModel().getSelectedIndex();
+        m = tableView.getItems().get(indice);
+        m.borrarMensaje();
+        //folder.close(true);
+        Folder folder = ((TreeItemMail)treeview.getSelectionModel().getSelectedItem()).getFolder();
+        if (folder.isOpen()){
+            folder.close();
+        }else
+        copumessage(m,folder.trush)
+         */
+
 
     }
 
