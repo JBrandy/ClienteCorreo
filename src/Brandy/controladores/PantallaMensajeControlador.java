@@ -1,24 +1,39 @@
 package Brandy.controladores;
 
 
+import Brandy.logica.Logica;
+import Brandy.models.UsuarioCorreo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.web.HTMLEditor;
 import javafx.stage.Stage;
 
-public class PantallaMensajeControlador {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class PantallaMensajeControlador implements Initializable {
 
 
     private Stage stage;
     @FXML
     private HTMLEditor cuerpoMensaje;
 
+    @FXML
+    private ComboBox<UsuarioCorreo> cbDe;
+
     public void enviar(ActionEvent event) {
     }
 
     public void cancelar(ActionEvent event) {
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        cbDe.getItems().addAll(Logica.getInstance().getListaUsuarios());
     }
 
     public class PleaseProvideControllerClassName {
