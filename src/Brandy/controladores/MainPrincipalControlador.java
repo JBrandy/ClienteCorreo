@@ -26,6 +26,8 @@ import java.util.Scanner;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javax.mail.Flags;
+import javax.mail.Message;
 import javax.mail.MessagingException;
 
 public class MainPrincipalControlador implements Initializable {
@@ -75,7 +77,6 @@ public class MainPrincipalControlador implements Initializable {
     @FXML
     private Color x4;
 
-
     @FXML
     private Label labelRemitente;
 
@@ -84,6 +85,7 @@ public class MainPrincipalControlador implements Initializable {
 
     @FXML
     private MenuItem btCongif;
+
     private TreeItemMail TreeItem;
 
     @FXML
@@ -124,7 +126,11 @@ public class MainPrincipalControlador implements Initializable {
 
     @FXML
     void borrarCorreo(ActionEvent event) {
-
+        /*Mensaje m;
+        int indice = tableView.getSelectionModel().getSelectedIndex();
+        m = tableView.getItems().get(indice);
+        m.setFlag(Flags.Flag.DELETED, true);
+        folder.close(true);*/
     }
 
     @FXML
