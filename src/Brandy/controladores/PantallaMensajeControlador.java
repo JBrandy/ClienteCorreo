@@ -23,7 +23,7 @@ public class PantallaMensajeControlador implements Initializable {
     private HTMLEditor cuerpoMensaje;
 
     @FXML
-    private ComboBox<String> cbDe;
+    private ComboBox<UsuarioCorreo> cbDe;
 
     public void enviar(ActionEvent event) {
     }
@@ -33,7 +33,9 @@ public class PantallaMensajeControlador implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        /*for (int i =0; 0<=Logica.getInstance().getListaUsuarios().size();i++){
+        cbDe.getItems().addAll(Logica.getInstance().getListaUsuarios());
+
+       /* for (int i =0; 0<Logica.getInstance().getListaUsuarios().size();i++){
             cbDe.getItems().add(Logica.getInstance().getListaUsuarios().get(i).getEmail());
         }*/
 

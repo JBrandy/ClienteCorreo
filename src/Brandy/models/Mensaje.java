@@ -3,11 +3,12 @@ import org.apache.commons.mail.util.MimeMessageParser;
 
 import java.io.IOException;
 import javax.mail.Address;
+import javax.mail.Flags;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
-public class Mensaje   {
+public class Mensaje  {
 
     private Message mensaje;
     public Mensaje(Message mensaje) {
@@ -69,5 +70,11 @@ public class Mensaje   {
         }
         return resultado;
     }
+
+    public void borrarMensaje() throws MessagingException {
+       mensaje.setFlag(Flags.Flag.DELETED, true);
+    }
+
+
 
 }

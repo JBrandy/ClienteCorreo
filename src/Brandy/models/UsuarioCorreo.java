@@ -29,4 +29,11 @@ public class UsuarioCorreo {
     public void setContra(String contra) {
         this.contra = contra;
     }
+
+    @Override
+    public String toString() {
+        return "<" +
+                  email + '\'' +
+                '>';
+    }
 }

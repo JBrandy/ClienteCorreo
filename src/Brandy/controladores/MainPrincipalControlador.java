@@ -27,6 +27,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import javax.mail.Flags;
+import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 
@@ -125,12 +126,18 @@ public class MainPrincipalControlador implements Initializable {
     }
 
     @FXML
-    void borrarCorreo(ActionEvent event) {
-        /*Mensaje m;
+    void borrarCorreo(ActionEvent event) throws MessagingException, GeneralSecurityException {
+        Mensaje m;
         int indice = tableView.getSelectionModel().getSelectedIndex();
         m = tableView.getItems().get(indice);
-        m.setFlag(Flags.Flag.DELETED, true);
-        folder.close(true);*/
+        m.borrarMensaje();
+        //folder.close(true);
+        Folder folder = ((TreeItemMail)treeview.getSelectionModel().getSelectedItem()).getFolder();
+        if (folder.isOpen()){
+            folder.close();
+        }
+
+
     }
 
     @FXML
