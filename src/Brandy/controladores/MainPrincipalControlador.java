@@ -137,7 +137,7 @@ public class MainPrincipalControlador implements Initializable {
             PantallaMensajeControlador pantallaInicio = (PantallaMensajeControlador) fxmlLoader.getController();
             pantallaInicio.setStage(stage);
             stage.setTitle("Nuevo Correo");
-            stage.setScene(new Scene(root, 850, 400));
+            stage.setScene(new Scene(root, 850, 600));
 
         } catch (IOException e) {
             e.printStackTrace();
