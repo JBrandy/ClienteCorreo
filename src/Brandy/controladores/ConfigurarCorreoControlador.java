@@ -58,6 +58,7 @@ public class ConfigurarCorreoControlador implements Initializable {
     void eliminar(ActionEvent event) throws GeneralSecurityException, MessagingException {
 
        Logica.getInstance().eliminar(tableCorreos.getSelectionModel().getSelectedItem());
+       Logica.getInstance().actualizarTree();
 
     }
 

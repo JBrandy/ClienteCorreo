@@ -5,9 +5,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.web.HTMLEditor;
+import javafx.stage.Stage;
 
 public class PantallaMensajeControlador {
 
+
+    private Stage stage;
+    @FXML
+    private HTMLEditor cuerpoMensaje;
 
     public void enviar(ActionEvent event) {
     }
@@ -45,5 +51,8 @@ public class PantallaMensajeControlador {
 
         }
 
+    }
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 }

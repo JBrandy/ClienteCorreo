@@ -95,8 +95,6 @@ public class Logica  {
         if(store!=null) {
 
             if(carpeta==null){
-
-
                 folders = store.getDefaultFolder().list(); //todas las del sistema
                 System.out.println("La carpeta " + folders.toString() );
             }else{

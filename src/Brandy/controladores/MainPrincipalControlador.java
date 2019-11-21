@@ -129,7 +129,20 @@ public class MainPrincipalControlador implements Initializable {
 
     @FXML
     void enviarCorreo(ActionEvent event) throws GeneralSecurityException, MessagingException {
-        //actualizarTree();
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Brandy/vistas/pantallaMensaje.fxml"));
+            Parent root = fxmlLoader.load();
+            PantallaMensajeControlador pantallaInicio = (PantallaMensajeControlador) fxmlLoader.getController();
+            pantallaInicio.setStage(stage);
+            stage.setTitle("Nuevo Correo");
+            stage.setScene(new Scene(root, 850, 400));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.showAndWait();
 
     }
 
