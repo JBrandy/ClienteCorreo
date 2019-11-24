@@ -12,6 +12,8 @@ import javax.mail.internet.MimeMessage;
 public class ServiciosEmail {
 
 
+    // https://www.javatpoint.com/example-of-sending-email-using-java-mail-api
+
     public boolean enviarCorreo(UsuarioCorreo usuarioCorreo, String to, String cc, String asunto, String cuerpo) {
        Session session = getSession(usuarioCorreo);
         //Prepare email message
@@ -66,7 +68,15 @@ public class ServiciosEmail {
         properties.put("mail.smtp.host", "smtp.gmail.com");
         //Set smtp port
         properties.put("mail.smtp.port", "587");
+/*
+ props.put("mail.smtp.host", "smtp.gmail.com");
+          props.put("mail.smtp.socketFactory.port", "465");
+          props.put("mail.smtp.socketFactory.class",
+                    "javax.net.ssl.SSLSocketFactory");
+          props.put("mail.smtp.auth", "true");
+          props.put("mail.smtp.port", "465");
 
+ */
         //Your gmail address
         String myAccountEmail = usuarioCorreo.getEmail();
         //Your gmail password
