@@ -2,7 +2,9 @@ package Brandy.controladores;
 
 
 import Brandy.logica.Logica;
+import Brandy.logica.ServiciosEmail;
 import Brandy.models.UsuarioCorreo;
+import javafx.css.StyleConverter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,12 +22,46 @@ public class PantallaMensajeControlador implements Initializable {
 
     private Stage stage;
     @FXML
-    private HTMLEditor cuerpoMensaje;
+    private HTMLEditor htmlCuerpoMensaje;
 
     @FXML
     private ComboBox<UsuarioCorreo> cbDe;
 
-    public void enviar(ActionEvent event) {
+    @FXML
+    private TextField tfPara;
+
+    @FXML
+    private TextField tfCc;
+
+    @FXML
+    private TextField tfAsunto;
+
+    @FXML
+    private Button btEnviar;
+
+    @FXML
+    private TextField tfDe;
+
+    @FXML
+    private Button btCancelar;
+
+    private ServiciosEmail serviciosEmail;
+
+
+
+    @FXML
+    public void enviar() {
+      UsuarioCorreo usuarioCorreo = cbDe.getSelectionModel().getSelectedItem();
+      String to = tfPara.getText();
+      String cc = tfCc.getText();
+      String asunto = tfAsunto.getText();
+      String cuerpo = htmlCuerpoMensaje.getHtmlText();
+      if(usuarioCorreo!=null && to!=null && !to.isEmpty()){
+            boolean mailEnviado = serviciosEmail.enviarCorreo(usuarioCorreo, to, cc, asunto, cuerpo);
+      }
+
+
+
     }
 
     public void cancelar(ActionEvent event) {
@@ -34,44 +70,15 @@ public class PantallaMensajeControlador implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cbDe.getItems().addAll(Logica.getInstance().getListaUsuarios());
-
+        serviciosEmail = new ServiciosEmail();
        /* for (int i =0; 0<Logica.getInstance().getListaUsuarios().size();i++){
             cbDe.getItems().add(Logica.getInstance().getListaUsuarios().get(i).getEmail());
         }*/
 
     }
 
-    public class PleaseProvideControllerClassName {
 
-        @FXML
-        private TextField tfPara;
 
-        @FXML
-        private TextField tfCc;
-
-        @FXML
-        private TextField tfAsunto;
-
-        @FXML
-        private Button btEnviar;
-
-        @FXML
-        private TextField tfDe;
-
-        @FXML
-        private Button btCancelar;
-
-        @FXML
-        void cancelar(ActionEvent event) {
-
-        }
-
-        @FXML
-        void enviar(ActionEvent event) {
-
-        }
-
-    }
     public void setStage(Stage stage) {
         this.stage = stage;
     }
