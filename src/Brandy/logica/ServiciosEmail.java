@@ -47,11 +47,12 @@ public class ServiciosEmail {
 
     }
 
+    //Windows -> Preferencs -> Java -> JRES instalado ->
 
     private Session getSession(UsuarioCorreo usuarioCorreo){
         System.out.println("Preparing to send email");
         Properties properties = new Properties();
-        MailSSLSocketFactory sf = null;
+       /* MailSSLSocketFactory sf = null;
         try {
             sf = new MailSSLSocketFactory();
         } catch (GeneralSecurityException e) {
@@ -68,15 +69,15 @@ public class ServiciosEmail {
         properties.put("mail.smtp.host", "smtp.gmail.com");
         //Set smtp port
         properties.put("mail.smtp.port", "587");
-/*
- props.put("mail.smtp.host", "smtp.gmail.com");
-          props.put("mail.smtp.socketFactory.port", "465");
-          props.put("mail.smtp.socketFactory.class",
+*/
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.socketFactory.port", "465");
+        properties.put("mail.smtp.socketFactory.class",
                     "javax.net.ssl.SSLSocketFactory");
-          props.put("mail.smtp.auth", "true");
-          props.put("mail.smtp.port", "465");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.port", "465");
 
- */
+
         //Your gmail address
         String myAccountEmail = usuarioCorreo.getEmail();
         //Your gmail password
