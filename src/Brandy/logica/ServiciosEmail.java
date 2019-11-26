@@ -52,24 +52,7 @@ public class ServiciosEmail {
     private Session getSession(UsuarioCorreo usuarioCorreo){
         System.out.println("Preparing to send email");
         Properties properties = new Properties();
-       /* MailSSLSocketFactory sf = null;
-        try {
-            sf = new MailSSLSocketFactory();
-        } catch (GeneralSecurityException e) {
-            e.printStackTrace();
-        }
-        sf.setTrustAllHosts(true);
-        properties.put("mail.imaps.ssl.trust", "*");
-        properties.put("mail.imaps.ssl.socketFactory", sf);
-        //Enable authentication
-        properties.put("mail.smtp.auth", "true");
-        //Set TLS encryption enabled
-        properties.put("mail.smtp.starttls.enable", "true");
-        //Set SMTP host
-        properties.put("mail.smtp.host", "smtp.gmail.com");
-        //Set smtp port
-        properties.put("mail.smtp.port", "587");
-*/
+
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.socketFactory.port", "465");
         properties.put("mail.smtp.socketFactory.class",

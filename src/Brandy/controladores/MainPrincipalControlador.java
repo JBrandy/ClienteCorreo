@@ -3,6 +3,7 @@ package Brandy.controladores;
 import Brandy.logica.Logica;
 import Brandy.models.Mensaje;
 import Brandy.models.TreeItemMail;
+import Brandy.models.UsuarioCorreo;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -188,7 +189,24 @@ public class MainPrincipalControlador implements Initializable {
 
     @FXML
     void reenviarCorreo(ActionEvent event) {
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Brandy/vistas/pantallaMensaje.fxml"));
+            Parent root = fxmlLoader.load();
+            PantallaMensajeControlador pantallaInicio = (PantallaMensajeControlador) fxmlLoader.getController();
+            Mensaje msg = tableView.getSelectionModel().getSelectedItem();
+            pantallaInicio.reenviar(msg);
+            pantallaInicio.setStage(stage);
+            stage.setTitle("Nuevo Correo");
+            stage.setScene(new Scene(root, 850, 600));
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        stage.showAndWait();
     }
 
     @FXML
@@ -213,10 +231,12 @@ public class MainPrincipalControlador implements Initializable {
         /* Para verdonde esta el filderdel treeview mire en el debug el selectitem y abriendo vi
          un folder que dentro tenia un fullname que es la ruta que necesito parapasarlo
          Para ver los correos del treeView en la tabla*/
+
         treeview.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TreeItem<String>>() {
             @Override
             public void changed(ObservableValue<? extends TreeItem<String>> observableValue, TreeItem<String> stringTreeItem, TreeItem<String> t1) {
                 System.out.println(treeview.getSelectionModel().getSelectedItem().toString());
+
                 Logica.getInstance().cargarListaCorreos(((TreeItemMail)t1).getFolder().getFullName());
             }
         });
@@ -246,17 +266,7 @@ public class MainPrincipalControlador implements Initializable {
 
 
     }
- // Funciona lo tengo uesto en lboton de enviar correo
-    // tengo dudas decomo uponerlo tmb lo tengo en logica este mismo metodo AYUDA!!!!!!!!!!!!!!!
-   /* public  void actualizarTree() throws GeneralSecurityException, MessagingException {
-        TreeItem nodoRaiz = new TreeItem("Correos");
-        treeview.setRoot(nodoRaiz);
-        for (int i = 0; i< Logica.getInstance().getListaUsuarios().size(); i++){
-            Logica.getInstance().iniciarSesion(Logica.getInstance().getListaUsuarios().get(i));
-            nodoRaiz.setExpanded(true);
-            nodoRaiz.getChildren().add((Logica.getInstance().cargaCarpetas(Logica.getInstance().getListaUsuarios().get(i), null, null)));
-        }
-    }*/
+
 
 
     private void anadirUsuario() {

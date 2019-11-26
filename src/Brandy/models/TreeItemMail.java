@@ -3,11 +3,13 @@ package Brandy.models;
 import javafx.scene.control.TreeItem;
 
 import javax.mail.Folder;
+import javax.mail.Store;
 
 public class TreeItemMail extends TreeItem<String> {
   private String nombre;
   private UsuarioCorreo usuarioCorreo;
   private Folder folder;
+  private Store store;
 
   public TreeItemMail(String nombre, UsuarioCorreo usuarioCorreo, Folder folder) {
     super(nombre);
@@ -21,60 +23,34 @@ public class TreeItemMail extends TreeItem<String> {
     return folder;
   }
 
+  public String getNombre() {
+    return nombre;
+  }
+
+  public void setNombre(String nombre) {
+    this.nombre = nombre;
+  }
+
+  public UsuarioCorreo getUsuarioCorreo() {
+    return usuarioCorreo;
+  }
+
+  public void setUsuarioCorreo(UsuarioCorreo usuarioCorreo) {
+    this.usuarioCorreo = usuarioCorreo;
+  }
+
   public void setFolder(Folder folder) {
     this.folder = folder;
   }
 
-
-/* TreeItem<String> rootItem = new TreeItem<String> ("Inbox");
-    rootItem.setExpanded(true);
-    for (int i = 1; i < lengt; i++) {
-      TreeItem<String> item = new TreeItem<String> ("Message" + i);
-      rootItem.getChildren().add(item)
-*/
+  public Store getStore() {
+    return store;
   }
 
-
- /*
-
- metodo q es return de Treeitem cargarcarpetas( UsuarioCorreo c){
-
- 0 crear el emailtreeItem raiz
- 1 conectar a store
- 2 obtener carpetas primer nivel
- 3 creo un emailtreeitem por carpeta
- 4 añadir a la raiz
-
-
-   TreeItem<CustomItem> root = new TreeItem<CustomItem>(new CustomItem(new Label("Root")));
-
-    initialize TreeItem<CustomItem> as container for CustomItem object
- TreeItem<CustomItem> node = new TreeItem<CustomItem>(new CustomItem(new Label("Node 1"), new Button("Button 1")));
-
-   add node to root
-    root.getChildren().add(node);
-
-   set tree root
-    tree.setRoot(root);
-
-   add items to the layout
-    layout.setCenter(tree);
-
-
-
-
- private ObservableList<TreeItem<String>> buildChildren(TreeItem<String> TreeItem) {
-    File f = new File(TreeItem.getValue());
-    if (f != null && f.isDirectory()) {
-      File[] files = f.listFiles();
-      if (files != null) {
-        ObservableList<TreeItem<File>> children = FXCollections.observableArrayList();
-        for (File childFile : files) {
-          children.add(createNode(childFile));
-        }
-        return children;
-      }
-    }
-    return FXCollections.emptyObservableList();
+  public void setStore(Store store) {
+    this.store = store;
   }
-*/
+}
+
+
+

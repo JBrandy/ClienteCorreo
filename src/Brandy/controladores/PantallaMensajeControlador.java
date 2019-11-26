@@ -3,6 +3,7 @@ package Brandy.controladores;
 
 import Brandy.logica.Logica;
 import Brandy.logica.ServiciosEmail;
+import Brandy.models.Mensaje;
 import Brandy.models.UsuarioCorreo;
 import javafx.css.StyleConverter;
 import javafx.event.ActionEvent;
@@ -81,5 +82,17 @@ public class PantallaMensajeControlador implements Initializable {
 
     public void setStage(Stage stage) {
         this.stage = stage;
+    }
+
+    public void reenviar(Mensaje msg) throws Exception {
+        UsuarioCorreo usuarioCorreo = cbDe.getSelectionModel().getSelectedItem();
+        tfPara.setText(msg.toString());
+        tfCc.setText(msg.getRemitente());
+         tfAsunto.setText(msg.getAsunto());
+        htmlCuerpoMensaje.setHtmlText(msg.getContent());
+
+          enviar();
+
+
     }
 }

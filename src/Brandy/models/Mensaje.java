@@ -53,9 +53,7 @@ public class Mensaje  {
                 '}';
     }
 
-    public Message getMensaje() {
-        return mensaje;
-    }
+
 
 
     public String getContent() throws Exception {
