@@ -114,7 +114,10 @@ public class MainPrincipalControlador implements Initializable {
     void caragarListaMensajes(MouseEvent event) {
 
     }
+    @FXML
+    void filtrarTable(ActionEvent event) {
 
+    }
     @FXML
     void abrirVentana(ActionEvent event) {
         anadirUsuario();

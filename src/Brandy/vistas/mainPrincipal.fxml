@@ -55,7 +55,7 @@
                   <Font size="19.0" />
                </font>
             </Label>
-            <TextField fx:id="tfBuscador" prefHeight="26.0" prefWidth="301.0" />
+            <TextField fx:id="tfBuscador" onAction="#filtrarTable" prefHeight="26.0" prefWidth="301.0" />
             <Button fx:id="btQuitarFiltro" mnemonicParsing="false" onAction="#quitarFiltro" prefHeight="55.0" prefWidth="80.0" text="Quitar Filtro" />
         </items>
       </ToolBar>
