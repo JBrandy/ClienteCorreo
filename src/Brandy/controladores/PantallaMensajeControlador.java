@@ -66,6 +66,7 @@ public class PantallaMensajeControlador implements Initializable {
     }
 
     public void cancelar(ActionEvent event) {
+        stage.close();
     }
 
     @Override
