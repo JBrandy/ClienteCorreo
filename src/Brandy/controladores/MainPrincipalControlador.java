@@ -220,6 +220,28 @@ logica..getstore.getfolder(ruta)
 
     }
 
+    private void anadirUsuario() {
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Brandy/vistas/login.fxml"));
+            Parent root = fxmlLoader.load();
+            LoginControlador pantallaInicio = (LoginControlador) fxmlLoader.getController();
+            pantallaInicio.setStage(stage);
+            stage.setTitle("Correo");
+            stage.setScene(new Scene(root, 850, 400));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.showAndWait();
+        tableView.setItems(Logica.getInstance().getListaCorreos());
+
+    }
+
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         anadirUsuario();
@@ -248,8 +270,6 @@ logica..getstore.getfolder(ruta)
         });
 
 
-
-
         // para ver el contenido del correoseleccionado en la tabla
         tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Mensaje>() {
             @Override
@@ -270,27 +290,6 @@ logica..getstore.getfolder(ruta)
             e.printStackTrace();
         }
 
-
-    }
-
-
-
-    private void anadirUsuario() {
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Brandy/vistas/login.fxml"));
-            Parent root = fxmlLoader.load();
-            LoginControlador pantallaInicio = (LoginControlador) fxmlLoader.getController();
-            pantallaInicio.setStage(stage);
-            stage.setTitle("Correo");
-            stage.setScene(new Scene(root, 850, 400));
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        stage.showAndWait();
-        tableView.setItems(Logica.getInstance().getListaCorreos());
 
     }
 }
