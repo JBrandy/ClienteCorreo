@@ -25,7 +25,7 @@ public class ServiciosEmail {
                 System.out.println("Message sent successfully");
                 return true;
             }catch (MessagingException ex){
-                System.out.println(ex.getMessage());
+                //System.out.println(ex.getMessage());
             }
         }
         return false;
@@ -38,7 +38,7 @@ public class ServiciosEmail {
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
             message.setSubject(asunto);
             message.setContent(cuerpo, "text/html");
-            //message.setReplyTo(cc); hacer un array de copias
+            //message.setReplyTo(cc); hacer un array de cuentas a enviar
             return message;
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -52,13 +52,26 @@ public class ServiciosEmail {
     private Session getSession(UsuarioCorreo usuarioCorreo){
         System.out.println("Preparing to send email");
         Properties properties = new Properties();
-
-        properties.put("mail.smtp.host", "smtp.gmail.com");
-        properties.put("mail.smtp.socketFactory.port", "465");
-        properties.put("mail.smtp.socketFactory.class",
-                    "javax.net.ssl.SSLSocketFactory");
+        MailSSLSocketFactory sf = null;
+        try {
+            sf = new MailSSLSocketFactory();
+        } catch (GeneralSecurityException e) {
+            e.printStackTrace();
+        }
+        sf.setTrustAllHosts(true);
+        properties.put("mail.imaps.ssl.trust", "*");
+        properties.put("mail.imaps.ssl.socketFactory", sf);
+        properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        //Enable authentication
         properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.port", "465");
+        //Set TLS encryption enabled
+        properties.put("mail.smtp.starttls.enable", "true");
+        //Set SMTP host
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        //Set smtp port
+        properties.put("mail.smtp.port", "587");
+
+
 
 
         //Your gmail address

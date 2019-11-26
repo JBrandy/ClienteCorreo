@@ -142,6 +142,9 @@ public class MainPrincipalControlador implements Initializable {
         //copumessage(m,folder.trush)
 
         /*
+
+logica..getstore.getfolder(ruta)
+
         if (m esta en trush)
          Mensaje m;
         int indice = tableView.getSelectionModel().getSelectedIndex();
