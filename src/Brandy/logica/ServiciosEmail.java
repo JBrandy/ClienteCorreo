@@ -49,7 +49,6 @@ public class ServiciosEmail {
 
     }
 
-    //Windows -> Preferencs -> Java -> JRES instalado ->
 
     private Session getSession(UsuarioCorreo usuarioCorreo){
         System.out.println("Preparing to send email");

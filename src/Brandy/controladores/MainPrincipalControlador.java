@@ -284,7 +284,7 @@ logica..getstore.getfolder(ruta)
             public void changed(ObservableValue<? extends TreeItem<String>> observableValue, TreeItem<String> stringTreeItem, TreeItem<String> t1) {
                 System.out.println(treeview.getSelectionModel().getSelectedItem().toString());
 
-                Logica.getInstance().cargarListaCorreos(((TreeItemMail)t1).getFolder().getFullName());
+                Logica.getInstance().cargarListaCorreos(((TreeItemMail)t1).getFolder());
             }
         });
 

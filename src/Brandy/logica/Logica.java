@@ -65,11 +65,11 @@ public class Logica  {
     }
 
 
-    public void cargarListaCorreos(String folderString) {
+    public void cargarListaCorreos(Folder folder) {
         listaCorreos.clear();
         try {
            // IMAPFolder folder = (IMAPFolder) store.getFolder("[Gmail]/Todos"); el final es la ruta
-            IMAPFolder folder = (IMAPFolder) store.getFolder(folderString);
+            //IMAPFolder folder = (IMAPFolder) store.getFolder(folderString);
             if (!folder.isOpen())
                 folder.open(Folder.READ_WRITE);
             Message[] messages = folder.getMessages();

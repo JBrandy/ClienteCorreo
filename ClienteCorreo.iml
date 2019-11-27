@@ -12,6 +12,7 @@
     <orderEntry type="library" name="activation" level="application" />
     <orderEntry type="library" name="javax.mail" level="project" />
     <orderEntry type="library" exported="" name="org.apache.commons:commons-email:1.5" level="project" />
-    <orderEntry type="library" exported="" name="validation-api-1.1.0.final" level="project" />
+    <orderEntry type="library" name="validation-api-1.1.0.final" level="project" />
+    <orderEntry type="library" exported="" name="org.testfx:testfx-junit:4.0.15-alpha" level="application" />
   </component>
 </module>
