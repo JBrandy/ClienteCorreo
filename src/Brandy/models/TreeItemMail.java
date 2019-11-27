@@ -17,6 +17,7 @@ public class TreeItemMail extends TreeItem<String> {
     this.nombre = nombre;
     this.usuarioCorreo = usuarioCorreo;
     this.folder = folder;
+
   }
 
   public Folder getFolder() {

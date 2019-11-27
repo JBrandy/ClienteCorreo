@@ -142,8 +142,8 @@ public class MainPrincipalControlador implements Initializable {
             alert_null.setContentText("No hay mensajes seleccionados");
             alert_null.showAndWait();
         } else {
-            ServiciosEmail.borrar_email(m,email_tree);
-            TreeItem t1 =treeview.getSelectionModel().getSelectedItem();
+           Logica.getInstance().borrar_email(m,email_tree);
+
 
         }
     }
