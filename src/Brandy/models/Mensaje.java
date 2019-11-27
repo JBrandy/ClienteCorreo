@@ -69,10 +69,11 @@ public class Mensaje  {
         return resultado;
     }
 
-    public void borrarMensaje() throws MessagingException {
-       mensaje.setFlag(Flags.Flag.DELETED, true);
+    public Message getMensaje() {
+        return mensaje;
     }
 
-
-
+    public void setMensaje(Message mensaje) {
+        this.mensaje = mensaje;
+    }
 }

@@ -1,6 +1,7 @@
 package Brandy.controladores;
 
 import Brandy.logica.Logica;
+import Brandy.logica.ServiciosEmail;
 import Brandy.models.Mensaje;
 import Brandy.models.TreeItemMail;
 import Brandy.models.UsuarioCorreo;
@@ -131,7 +132,25 @@ public class MainPrincipalControlador implements Initializable {
 
     @FXML
     void borrarCorreo(ActionEvent event) throws MessagingException, GeneralSecurityException {
-        Mensaje m;
+
+        Mensaje m = tableView.getSelectionModel().getSelectedItem();
+        TreeItemMail email_tree = (TreeItemMail)treeview.getSelectionModel().getSelectedItem();
+
+        if (m == null) {
+            Alert alert_null = new Alert(Alert.AlertType.WARNING);
+            alert_null.setTitle("Alerta");
+            alert_null.setContentText("No hay mensajes seleccionados");
+            alert_null.showAndWait();
+        } else {
+            ServiciosEmail.borrar_email(m,email_tree);
+            TreeItem t1 =treeview.getSelectionModel().getSelectedItem();
+
+        }
+    }
+
+
+
+        /*Mensaje m;
         int indice = tableView.getSelectionModel().getSelectedIndex();
         m = tableView.getItems().get(indice);
         m.borrarMensaje();
@@ -139,7 +158,7 @@ public class MainPrincipalControlador implements Initializable {
         Folder folder = ((TreeItemMail)treeview.getSelectionModel().getSelectedItem()).getFolder();
         if (folder.isOpen()){
             folder.close();
-        }
+        }*/
 
         // el metodo anterior es desues de hacer
         //copumessage(m,folder.trush)
@@ -162,7 +181,7 @@ logica..getstore.getfolder(ruta)
          */
 
 
-    }
+
 
     @FXML
     void enviarCorreo(ActionEvent event) throws GeneralSecurityException, MessagingException {

@@ -1,5 +1,7 @@
 package Brandy.logica;
 
+import Brandy.models.Mensaje;
+import Brandy.models.TreeItemMail;
 import Brandy.models.UsuarioCorreo;
 import com.sun.mail.util.MailSSLSocketFactory;
 
@@ -88,6 +90,28 @@ public class ServiciosEmail {
         return session;
     }
 
+    public static void borrar_email(Mensaje m_borrar, TreeItemMail email_tree) {
 
+        if(email_tree.getFolder().toString().equals("[Gmail]/Papelera")){
 
+            try {
+                m_borrar.getMensaje().setFlag(Flags.Flag.DELETED, true);
+                email_tree.getFolder().close();
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            }
+
+        }else {
+            Message[] m = new Message[]{m_borrar.getMensaje()};
+            Folder trash = null;
+            try {
+                trash = email_tree.getStore().getFolder("[Gmail]/Papelera");
+                email_tree.getFolder().copyMessages(m, trash);
+                email_tree.getFolder().close();
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            }
+        }
+
+}
 }
