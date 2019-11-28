@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -23,9 +24,9 @@
                   <Label layoutX="85.0" layoutY="74.0" text="Inserte su correo electronico" textFill="WHITE" />
                   <Label layoutX="130.0" layoutY="137.0" text="Contraseña" textFill="WHITE" />
                   <TextField fx:id="tvCorreo" layoutX="23.0" layoutY="103.0" prefHeight="26.0" prefWidth="274.0" />
-                  <TextField fx:id="tvContrasena" layoutX="23.0" layoutY="171.0" prefHeight="26.0" prefWidth="274.0" />
                   <Button fx:id="btInicio" layoutX="34.0" layoutY="227.0" mnemonicParsing="false" onAction="#iniciarSesion" text="Iniciar sesión" />
                   <Button fx:id="btSalir" layoutX="196.0" layoutY="226.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="26.0" prefWidth="77.0" text="Salir" />
+                  <PasswordField fx:id="tvContrasena" layoutX="23.0" layoutY="171.0" prefHeight="25.0" prefWidth="274.0" />
                </children>
             </AnchorPane>
             <ImageView fitHeight="310.0" fitWidth="423.0" layoutX="379.0" layoutY="45.0" opacity="0.86" pickOnBounds="true" preserveRatio="true">
