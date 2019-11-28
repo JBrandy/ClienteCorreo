@@ -132,7 +132,7 @@ public class Logica  {
         sf.setTrustAllHosts(true);
         prop.put("mail.imaps.ssl.trust", "*");
         prop.put("mail.imaps.ssl.socketFactory", sf);
-
+       store = usuarioCorreo1.getStore();
         Session session = Session.getDefaultInstance(prop, null);
         store = session.getStore("imaps");
         store.connect("imap.googlemail.com",usuarioCorreo1.getEmail(), usuarioCorreo1.getContra());
@@ -164,13 +164,13 @@ public class Logica  {
 
 
 
-    public  void borrar_email(Mensaje m_borrar, TreeItemMail email_tree) {
+    public  void borrar_email(Mensaje m_borrar, Folder email_tree) {
 
-        if(email_tree.getFolder().toString().equals("[Gmail]/Papelera")){
+        if(email_tree.toString().equals("[Gmail]/Papelera")){
 
             try {
                 m_borrar.getMensaje().setFlag(Flags.Flag.DELETED, true);
-                email_tree.getFolder().close();
+                email_tree.close();
             } catch (MessagingException e) {
                 e.printStackTrace();
             }
@@ -179,9 +179,10 @@ public class Logica  {
             Message[] m = new Message[]{m_borrar.getMensaje()};
             Folder trash = null;
             try {
-                trash = store.getFolder("[Gmail]/Papelera");
-                email_tree.getFolder().copyMessages(m, trash);
-                email_tree.getFolder().close();
+               trash = email_tree.getStore().getFolder("[Gmail]/Papelera");
+               // trash = store.getFolder("[Gmail]/Papelera");
+                email_tree.copyMessages(m, trash);
+                email_tree.close();
             } catch (MessagingException e) {
                 e.printStackTrace();
             }

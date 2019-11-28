@@ -142,43 +142,12 @@ public class MainPrincipalControlador implements Initializable {
             alert_null.setContentText("No hay mensajes seleccionados");
             alert_null.showAndWait();
         } else {
-           Logica.getInstance().borrar_email(m,email_tree);
+           Logica.getInstance().borrar_email(m,email_tree.getFolder());
 
 
         }
     }
 
-
-
-        /*Mensaje m;
-        int indice = tableView.getSelectionModel().getSelectedIndex();
-        m = tableView.getItems().get(indice);
-        m.borrarMensaje();
-        //folder.close(true);
-        Folder folder = ((TreeItemMail)treeview.getSelectionModel().getSelectedItem()).getFolder();
-        if (folder.isOpen()){
-            folder.close();
-        }*/
-
-        // el metodo anterior es desues de hacer
-        //copumessage(m,folder.trush)
-
-        /*
-
-logica..getstore.getfolder(ruta)
-
-        if (m esta en trush)
-         Mensaje m;
-        int indice = tableView.getSelectionModel().getSelectedIndex();
-        m = tableView.getItems().get(indice);
-        m.borrarMensaje();
-        //folder.close(true);
-        Folder folder = ((TreeItemMail)treeview.getSelectionModel().getSelectedItem()).getFolder();
-        if (folder.isOpen()){
-            folder.close();
-        }else
-        copumessage(m,folder.trush)
-         */
 
 
 
