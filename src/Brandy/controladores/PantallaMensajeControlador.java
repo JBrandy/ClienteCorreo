@@ -59,7 +59,11 @@ public class PantallaMensajeControlador implements Initializable {
       String cuerpo = htmlCuerpoMensaje.getHtmlText();
       if(usuarioCorreo!=null && to!=null && !to.isEmpty()){
             boolean mailEnviado = serviciosEmail.enviarCorreo(usuarioCorreo, to, cc, asunto, cuerpo);
+            if (mailEnviado==true){
+                stage.close();
+            }
       }
+
 
 
 

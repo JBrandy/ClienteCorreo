@@ -65,7 +65,11 @@ public class Mensaje  {
             resultado = parser.getPlainContent();
         } else if (mensaje.isMimeType("multipart/*")) {
             resultado = parser.getHtmlContent();
+        } else if (mensaje.isMimeType(" text/html")) {
+            resultado = parser.getHtmlContent();
+
         }
+
         return resultado;
     }
 
