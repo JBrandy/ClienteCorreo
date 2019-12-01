@@ -1,17 +1,17 @@
 package Brandy.controladores;
 
 
+import Brandy.logica.EnviarMensajeService;
 import Brandy.logica.Logica;
 import Brandy.logica.ServiciosEmail;
 import Brandy.models.Mensaje;
 import Brandy.models.UsuarioCorreo;
-import javafx.css.StyleConverter;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.web.HTMLEditor;
 import javafx.stage.Stage;
 
@@ -46,11 +46,28 @@ public class PantallaMensajeControlador implements Initializable {
     @FXML
     private Button btCancelar;
 
+    @FXML
+    private ProgressIndicator progressIndicator;
+
     private ServiciosEmail serviciosEmail;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        cbDe.getItems().addAll(Logica.getInstance().getListaUsuarios());
+        serviciosEmail = new ServiciosEmail();
+        progressIndicator.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
+        progressIndicator.setVisible(false);
+/**
+ * Asigno al botonel servicio
+ */
+        btEnviar.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                enviar();
+            }
+        });
 
+    }
 
-    @FXML
     public void enviar() {
       UsuarioCorreo usuarioCorreo = cbDe.getSelectionModel().getSelectedItem();
       String to = tfPara.getText();
@@ -58,10 +75,35 @@ public class PantallaMensajeControlador implements Initializable {
       String asunto = tfAsunto.getText();
       String cuerpo = htmlCuerpoMensaje.getHtmlText();
       if(usuarioCorreo!=null && to!=null && !to.isEmpty()){
-            boolean mailEnviado = serviciosEmail.enviarCorreo(usuarioCorreo, to, cc, asunto, cuerpo);
-            if (mailEnviado==true){
-                stage.close();
-            }
+            //boolean mailEnviado = serviciosEmail.enviarCorreo(usuarioCorreo, to, cc, asunto, cuerpo);
+          EnviarMensajeService enviarMensajeService = new EnviarMensajeService(usuarioCorreo, to, cc, asunto, cuerpo);
+          enviarMensajeService.start();
+
+          enviarMensajeService.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+              @Override
+              public void handle(WorkerStateEvent workerStateEvent) {
+                  //Recuperamos el valor de retorno
+
+                  progressIndicator.setVisible(false);
+                  stage.close();
+              }
+          });
+          enviarMensajeService.setOnFailed(new EventHandler<WorkerStateEvent>() {
+              @Override
+              public void handle(WorkerStateEvent workerStateEvent) {
+
+
+              }
+          });
+
+          enviarMensajeService.setOnRunning(new EventHandler<WorkerStateEvent>() {
+              @Override
+              public void handle(WorkerStateEvent workerStateEvent) {
+                  progressIndicator.setVisible(true);
+              }
+          });
+
+
       }
 
 
@@ -73,15 +115,7 @@ public class PantallaMensajeControlador implements Initializable {
         stage.close();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        cbDe.getItems().addAll(Logica.getInstance().getListaUsuarios());
-        serviciosEmail = new ServiciosEmail();
-       /* for (int i =0; 0<Logica.getInstance().getListaUsuarios().size();i++){
-            cbDe.getItems().add(Logica.getInstance().getListaUsuarios().get(i).getEmail());
-        }*/
 
-    }
 
 
 
@@ -100,4 +134,7 @@ public class PantallaMensajeControlador implements Initializable {
 
 
     }
+
+
+
 }

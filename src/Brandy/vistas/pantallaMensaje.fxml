@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -24,11 +25,12 @@
             <TextField fx:id="tfPara" layoutX="94.0" layoutY="59.0" prefHeight="11.0" prefWidth="482.0" AnchorPane.leftAnchor="94.0" AnchorPane.rightAnchor="63.60000000000002" AnchorPane.topAnchor="59.0" />
             <TextField fx:id="tfCc" layoutX="94.0" layoutY="85.0" prefHeight="18.0" prefWidth="482.0" AnchorPane.leftAnchor="94.0" AnchorPane.rightAnchor="63.60000000000002" AnchorPane.topAnchor="85.0" />
             <TextField fx:id="tfAsunto" layoutX="94.0" layoutY="110.0" prefHeight="16.0" prefWidth="482.0" AnchorPane.leftAnchor="94.0" AnchorPane.rightAnchor="63.60000000000002" AnchorPane.topAnchor="110.0" />
-            <Button fx:id="btEnviar" layoutX="350.0" layoutY="353.0" mnemonicParsing="false" onAction="#enviar" prefHeight="26.0" prefWidth="85.0" text="Enviar" AnchorPane.bottomAnchor="20.6" AnchorPane.rightAnchor="204.4" />
+            <Button fx:id="btEnviar" layoutX="350.0" layoutY="353.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" text="Enviar" AnchorPane.bottomAnchor="20.6" AnchorPane.rightAnchor="204.4" />
             <Label layoutX="47.0" layoutY="32.0" prefHeight="26.0" prefWidth="58.0" text="De:" AnchorPane.leftAnchor="47.0" AnchorPane.topAnchor="32.0" />
             <Button fx:id="btCancelar" layoutX="504.0" layoutY="353.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="26.0" prefWidth="85.0" text="Cancelar" AnchorPane.bottomAnchor="20.600000000000023" AnchorPane.rightAnchor="50.39999999999998" />
-            <HTMLEditor fx:id="htmlCuerpoMensaje" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="21.0" layoutY="151.0" prefHeight="255.0" prefWidth="598.0" AnchorPane.bottomAnchor="64.19999999999999" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="20.600000000000023" AnchorPane.topAnchor="151.0" />
+            <HTMLEditor fx:id="htmlCuerpoMensaje" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="21.0" layoutY="156.0" prefHeight="250.0" prefWidth="590.0" AnchorPane.bottomAnchor="64.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="156.0" />
             <ComboBox fx:id="cbDe" layoutX="94.0" layoutY="33.0" prefHeight="26.0" prefWidth="482.0" AnchorPane.leftAnchor="94.0" AnchorPane.rightAnchor="63.60000000000002" AnchorPane.topAnchor="33.0" />
+            <ProgressIndicator fx:id="progressIndicator" layoutX="53.0" layoutY="417.0" progress="0.0" AnchorPane.bottomAnchor="6.999999999999979" AnchorPane.leftAnchor="53.0" />
       </children>
     </AnchorPane>
   </children>

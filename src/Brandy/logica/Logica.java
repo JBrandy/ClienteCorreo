@@ -67,23 +67,28 @@ public class Logica  {
 
     public void cargarListaCorreos(Folder folder) {
         listaCorreos.clear();
-        try {
-           // IMAPFolder folder = (IMAPFolder) store.getFolder("[Gmail]/Todos"); el final es la ruta
-            //IMAPFolder folder = (IMAPFolder) store.getFolder(folderString);
-            if (!folder.isOpen())
-                folder.open(Folder.READ_WRITE);
-            Message[] messages = folder.getMessages();
-            Mensaje correo;
-            System.out.println(messages[0].toString());
-            for(int i=0;i<messages.length;i++) {
-                correo = new Mensaje(messages[i]);
-                System.out.println(correo.toString());
-                listaCorreos.add(correo);
+
+
+        if(folder!=null){
+            try {
+               // IMAPFolder folder = (IMAPFolder) store.getFolder("[Gmail]/Todos"); el final es la ruta
+                //IMAPFolder folder = (IMAPFolder) store.getFolder(folderString);
+
+                if (!folder.isOpen())
+                    folder.open(Folder.READ_WRITE);
+                Message[] messages = folder.getMessages();
+                Mensaje correo;
+                System.out.println(messages[0].toString());
+                for(int i=0;i<messages.length;i++) {
+                    correo = new Mensaje(messages[i]);
+                    System.out.println(correo.toString());
+                    listaCorreos.add(correo);
+                }
+            } catch (NoSuchProviderException e) {
+                //e.printStackTrace();
+            } catch (MessagingException e) {
+                //e.printStackTrace();
             }
-        } catch (NoSuchProviderException e) {
-            e.printStackTrace();
-        } catch (MessagingException e) {
-            e.printStackTrace();
         }
     }
 

@@ -27,7 +27,7 @@ public class ServiciosEmail {
                 System.out.println("Message sent successfully");
                 return true;
             }catch (MessagingException ex){
-                //System.out.println(ex.getMessage());
+               return false;
             }
         }
         return false;
@@ -48,6 +48,8 @@ public class ServiciosEmail {
         return null;
 
     }
+
+    //Message.RecipientType.BCC Destinatario al que se envía copia, pero sin que los demás destinatarios puedan verlo.
 
 
     private Session getSession(UsuarioCorreo usuarioCorreo){
@@ -71,9 +73,6 @@ public class ServiciosEmail {
         properties.put("mail.smtp.host", "smtp.gmail.com");
         //Set smtp port
         properties.put("mail.smtp.port", "587");
-
-
-
 
         //Your gmail address
         String myAccountEmail = usuarioCorreo.getEmail();
