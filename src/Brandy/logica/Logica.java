@@ -68,7 +68,6 @@ public class Logica  {
     public void cargarListaCorreos(Folder folder) {
         listaCorreos.clear();
 
-
         if(folder!=null){
             try {
                // IMAPFolder folder = (IMAPFolder) store.getFolder("[Gmail]/Todos"); el final es la ruta
@@ -195,7 +194,10 @@ public class Logica  {
 
     }
 
-
+    public void actualizaTable (Folder folder){
+       listaCorreos.clear();
+       cargarListaCorreos(folder);
+    }
 }
 
 

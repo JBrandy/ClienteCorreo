@@ -143,6 +143,10 @@ public class MainPrincipalControlador implements Initializable {
             alert_null.showAndWait();
         } else {
            Logica.getInstance().borrar_email(m,email_tree.getFolder());
+           webView.getEngine().loadContent("");
+           Logica.getInstance().actualizaTable(((TreeItemMail) treeview.getSelectionModel().getSelectedItem()).getFolder());
+
+
 
 
         }
