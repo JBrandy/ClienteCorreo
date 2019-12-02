@@ -135,7 +135,7 @@ public class MainPrincipalControlador implements Initializable {
             ConfiguracionTemaControlador pantallaConfigCorreo = (ConfiguracionTemaControlador) fxmlLoader.getController();
             pantallaConfigCorreo.setStage(stage);
             stage.setTitle("Configuracion visual");
-            stage.setScene(new Scene(root, 600, 400));
+            stage.setScene(new Scene(root, 400, 400));
 
         } catch (IOException e) {
             e.printStackTrace();
