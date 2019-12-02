@@ -143,10 +143,8 @@ public class MainPrincipalControlador implements Initializable {
             alert_null.showAndWait();
         } else {
            Logica.getInstance().borrar_email(m,email_tree.getFolder());
-           webView.getEngine().loadContent("");
+           webView.getEngine().loadContent(""); // Preguntar si es la manera correcta?
            Logica.getInstance().actualizaTable(((TreeItemMail) treeview.getSelectionModel().getSelectedItem()).getFolder());
-
-
 
 
         }
@@ -177,8 +175,9 @@ public class MainPrincipalControlador implements Initializable {
     }
 
     @FXML
-    void guardarFichero(ActionEvent event) {
-
+    void enviarRecibir(ActionEvent event) {
+        webView.getEngine().loadContent(""); // Preguntar si es la manera correcta?
+        Logica.getInstance().actualizaTable(((TreeItemMail) treeview.getSelectionModel().getSelectedItem()).getFolder());
     }
 
     @FXML

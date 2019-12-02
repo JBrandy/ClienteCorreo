@@ -35,6 +35,17 @@ public class ServiciosEmail {
 
     private Message prepareMessage(Session session, String from, String to, String asunto, String cuerpo, String cc) {
         try {
+            /*
+            InternetAddress[] myToList = InternetAddress.parse("gopi.mani@xyz.com,Maimsa.SF@xyz.com");
+            InternetAddress[] myBccList = InternetAddress.parse("Usha.B@xyz.com");
+            InternetAddress[] myCcList = InternetAddress.parse("NEHA.SIVA@xyz.com");
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(objEmail.getFrom()));
+            message.setRecipients(Message.RecipientType.TO,myToList);
+            // changes,...
+            message.addRecipient(Message.RecipientType.BCC,myBccList);
+            message.addRecipient(Message.RecipientType.CC,myCcList);
+             */
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(from));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(to));

@@ -83,7 +83,6 @@ public class PantallaMensajeControlador implements Initializable {
               @Override
               public void handle(WorkerStateEvent workerStateEvent) {
                   //Recuperamos el valor de retorno
-
                   progressIndicator.setVisible(false);
                   stage.close();
               }
@@ -91,7 +90,7 @@ public class PantallaMensajeControlador implements Initializable {
           enviarMensajeService.setOnFailed(new EventHandler<WorkerStateEvent>() {
               @Override
               public void handle(WorkerStateEvent workerStateEvent) {
-
+                //Preguntar si con estose puede comprobar si no envia
 
               }
           });
