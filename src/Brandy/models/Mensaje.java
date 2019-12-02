@@ -80,4 +80,13 @@ public class Mensaje  {
     public void setMensaje(Message mensaje) {
         this.mensaje = mensaje;
     }
+
+    public boolean getReed()  {
+
+        try {
+            return mensaje.isSet(Flags.Flag.SEEN);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }return true;
+    }
 }

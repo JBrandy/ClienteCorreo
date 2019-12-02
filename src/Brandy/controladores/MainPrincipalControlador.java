@@ -27,6 +27,7 @@ import java.util.Scanner;
 
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import javax.mail.Flags;
 import javax.mail.Folder;
@@ -299,6 +300,13 @@ public class MainPrincipalControlador implements Initializable {
         }
 
 
+        //Preguntar
+        /*tableView.setRowFactory(new Callback<TableView<Mensaje>, TableRow<Mensaje>>() {
+            @Override
+            public TableRow<Mensaje> call(TableView<Mensaje> param) {
+                return null;
+            }
+        });*/
     }
 }
 

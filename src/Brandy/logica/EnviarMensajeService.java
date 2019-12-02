@@ -26,7 +26,7 @@ public class EnviarMensajeService extends Service<Boolean> {
     protected Task<Boolean> createTask() {
         return new Task<>() {
             @Override
-            protected Boolean call() {
+            protected Boolean call() throws Exception{
                 return serviciosEmail.enviarCorreo(usuarioCorreo,to,cc,asunto,cuerpo);
             }
         };

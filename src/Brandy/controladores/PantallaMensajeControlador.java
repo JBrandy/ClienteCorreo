@@ -57,12 +57,11 @@ public class PantallaMensajeControlador implements Initializable {
         serviciosEmail = new ServiciosEmail();
         progressIndicator.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
         progressIndicator.setVisible(false);
-/**
- * Asigno al botonel servicio
- */
+    /**
+     * Asigno al botonel servicio
+     */
         btEnviar.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-
                     enviar();
             }
         });
@@ -70,13 +69,6 @@ public class PantallaMensajeControlador implements Initializable {
     }
 
     public void enviar() {
-        /*if (cbDe==null){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERROR");
-            alert.setHeaderText("Debes seleccionar una valor en el combo");
-            alert.show();
-        }else*/
-
 
       UsuarioCorreo usuarioCorreo = cbDe.getSelectionModel().getSelectedItem();
       String to = tfPara.getText();
@@ -99,7 +91,10 @@ public class PantallaMensajeControlador implements Initializable {
           enviarMensajeService.setOnFailed(new EventHandler<WorkerStateEvent>() {
               @Override
               public void handle(WorkerStateEvent workerStateEvent) {
-                //Preguntar si con estose puede comprobar si no envia
+                  Alert alert_null = new Alert(Alert.AlertType.WARNING);
+                  alert_null.setTitle("Alerta");
+                  alert_null.setContentText("Error al enviar");
+                  alert_null.showAndWait();
 
               }
           });
@@ -107,16 +102,19 @@ public class PantallaMensajeControlador implements Initializable {
           enviarMensajeService.setOnRunning(new EventHandler<WorkerStateEvent>() {
               @Override
               public void handle(WorkerStateEvent workerStateEvent) {
+
                   progressIndicator.setVisible(true);
               }
           });
 
 
+      }else{
+          Alert alert = new Alert(Alert.AlertType.ERROR);
+          alert.setTitle("ERROR");
+          alert.setHeaderText("Debes seleccionar una valor en el combo y ara quien va el mensaje");
+          alert.show();
       }
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("ERROR");
-        alert.setHeaderText("Debes seleccionar una valor en el combo");
-        alert.show();
+
 
         }
 
