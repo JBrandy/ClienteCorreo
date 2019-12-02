@@ -137,10 +137,22 @@ public class PantallaMensajeControlador implements Initializable {
         UsuarioCorreo usuarioCorreo = cbDe.getSelectionModel().getSelectedItem();
         tfPara.setText(msg.toString());
         tfCc.setText(msg.getRemitente());
-         tfAsunto.setText(msg.getAsunto());
+        tfAsunto.setText(msg.getAsunto());
         htmlCuerpoMensaje.setHtmlText(msg.getContent());
 
-          enviar();
+        //enviar();
+
+
+    }
+    public void responder(Mensaje msg) throws Exception {
+        UsuarioCorreo usuarioCorreo = cbDe.getSelectionModel().getSelectedItem();
+        tfPara.setText(msg.getRemitente());
+        tfCc.setText("");
+        tfAsunto.setText("RE:"+msg.getAsunto());
+        String contentResponder = "\n..............................................................\n"+msg.getContent();
+        htmlCuerpoMensaje.setHtmlText(contentResponder);
+
+       // enviar();
 
 
     }

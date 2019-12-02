@@ -65,6 +65,9 @@ public class MainPrincipalControlador implements Initializable {
     private Button btQuitarFiltro;
 
     @FXML
+    private Button btResponder;
+
+    @FXML
     private Font x1;
 
     @FXML
@@ -229,6 +232,7 @@ public class MainPrincipalControlador implements Initializable {
 
     }
 
+
     private void anadirUsuario() {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -248,6 +252,28 @@ public class MainPrincipalControlador implements Initializable {
 
     }
 
+
+    @FXML
+    void responder(ActionEvent event) {
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Brandy/vistas/pantallaMensaje.fxml"));
+            Parent root = fxmlLoader.load();
+            PantallaMensajeControlador pantallaInicio = (PantallaMensajeControlador) fxmlLoader.getController();
+            Mensaje msg = tableView.getSelectionModel().getSelectedItem();
+            pantallaInicio.responder(msg);
+            pantallaInicio.setStage(stage);
+            stage.setTitle("Nuevo Correo");
+            stage.setScene(new Scene(root, 850, 600));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        stage.showAndWait();
+    }
 
 
 
