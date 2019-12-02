@@ -62,13 +62,22 @@ public class PantallaMensajeControlador implements Initializable {
  */
         btEnviar.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                enviar();
+
+                    enviar();
             }
         });
 
     }
 
     public void enviar() {
+        /*if (cbDe==null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Debes seleccionar una valor en el combo");
+            alert.show();
+        }else*/
+
+
       UsuarioCorreo usuarioCorreo = cbDe.getSelectionModel().getSelectedItem();
       String to = tfPara.getText();
       String cc = tfCc.getText();
@@ -104,11 +113,15 @@ public class PantallaMensajeControlador implements Initializable {
 
 
       }
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("ERROR");
+        alert.setHeaderText("Debes seleccionar una valor en el combo");
+        alert.show();
+
+        }
 
 
 
-
-    }
 
     public void cancelar(ActionEvent event) {
         stage.close();
