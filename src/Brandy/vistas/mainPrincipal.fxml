@@ -29,7 +29,7 @@
         <Menu mnemonicParsing="false" text="Inicio">
           <items>
             <MenuItem fx:id="miInicioSesion" mnemonicParsing="false" onAction="#abrirVentana" text="Iniciar Sesion" />
-            <MenuItem fx:id="miAbrir" mnemonicParsing="false" onAction="#abrir_CargarMensajes" text="Open…" />
+            <MenuItem fx:id="configurarTema" mnemonicParsing="false" onAction="#cambiartema" text="Configuración" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" onAction="#configuarCuentas" text="Configurar Cuentas" />
@@ -88,7 +88,7 @@
                               <PropertyValueFactory property="remitente" />
                            </cellValueFactory>
                       </TableColumn>
-                      <TableColumn prefWidth="165.0" text="Asunto">
+                      <TableColumn prefWidth="276.00010681152344" text="Asunto">
                         <cellValueFactory>
                               <PropertyValueFactory property="asunto" />
                            </cellValueFactory>

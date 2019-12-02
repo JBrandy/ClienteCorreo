@@ -40,7 +40,7 @@ public class MainPrincipalControlador implements Initializable {
     private MenuItem miInicioSesion;
 
     @FXML
-    private MenuItem miAbrir;
+    private MenuItem configurarTema;
 
     @FXML
     private MenuItem miSalir;
@@ -126,9 +126,25 @@ public class MainPrincipalControlador implements Initializable {
     }
 
     @FXML
-    void abrir_CargarMensajes(ActionEvent event) {
+    void cambiartema(ActionEvent event) {
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Brandy/vistas/configuracionTema.fxml"));
+            Parent root = fxmlLoader.load();
+            ConfiguracionTemaControlador pantallaConfigCorreo = (ConfiguracionTemaControlador) fxmlLoader.getController();
+            pantallaConfigCorreo.setStage(stage);
+            stage.setTitle("Configuracion visual");
+            stage.setScene(new Scene(root, 600, 400));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.showAndWait();
 
     }
+
+
 
     @FXML
     void borrarCorreo(ActionEvent event) throws MessagingException, GeneralSecurityException {
