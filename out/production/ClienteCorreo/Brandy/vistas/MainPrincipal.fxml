@@ -29,9 +29,9 @@
         <Menu mnemonicParsing="false" text="Inicio">
           <items>
             <MenuItem fx:id="miInicioSesion" mnemonicParsing="false" onAction="#abrirVentana" text="Iniciar Sesion" />
-            <MenuItem fx:id="configurarTema" mnemonicParsing="false" onAction="#cambiartema" text="Configuración" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem fx:id="configurarTema" mnemonicParsing="false" onAction="#cambiartema" text="Configuración temas" />
             <MenuItem mnemonicParsing="false" onAction="#configuarCuentas" text="Configurar Cuentas" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem fx:id="miSalir" mnemonicParsing="false" onAction="#salir" text="Salir" />

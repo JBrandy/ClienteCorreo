@@ -301,12 +301,24 @@ public class MainPrincipalControlador implements Initializable {
 
 
         //Preguntar
-        /*tableView.setRowFactory(new Callback<TableView<Mensaje>, TableRow<Mensaje>>() {
+        tableView.setRowFactory(new Callback<TableView<Mensaje>, TableRow<Mensaje>>() {
             @Override
             public TableRow<Mensaje> call(TableView<Mensaje> param) {
-                return null;
+                return new TableRow<>()
+                {
+                    @Override
+                    protected void updateItem(Mensaje item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if(item!=null){
+                            if(!item.getReed()){
+                                setStyle("-fx-font-weight:bold");
+                            }else
+                                setStyle("");
+                        }
+                    }
+                };
             }
-        });*/
+        });
     }
 }
 

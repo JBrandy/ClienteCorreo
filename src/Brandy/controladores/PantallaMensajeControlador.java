@@ -111,7 +111,7 @@ public class PantallaMensajeControlador implements Initializable {
       }else{
           Alert alert = new Alert(Alert.AlertType.ERROR);
           alert.setTitle("ERROR");
-          alert.setHeaderText("Debes seleccionar una valor en el combo y ara quien va el mensaje");
+          alert.setHeaderText("Debes seleccionar una valor en el combo y para quien va el mensaje");
           alert.show();
       }
 

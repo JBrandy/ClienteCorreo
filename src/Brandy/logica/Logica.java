@@ -87,8 +87,11 @@ public class Logica  {
                 //e.printStackTrace();
             } catch (MessagingException e) {
                 //e.printStackTrace();
+            }catch (ArrayIndexOutOfBoundsException e) {
+                //e.printStackTrace();
             }
         }
+
     }
 
 
