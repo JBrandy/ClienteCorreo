@@ -97,7 +97,6 @@ public class PantallaMensajeControlador implements Initializable {
                   alert_null.showAndWait();
                   progressIndicator.setVisible(false);
 
-
               }
           });
 

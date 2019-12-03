@@ -301,13 +301,15 @@ public class MainPrincipalControlador implements Initializable {
             }
         });
 
-
         // para ver el contenido del correoseleccionado en la tabla
         tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Mensaje>() {
             @Override
             public void changed(ObservableValue<? extends Mensaje> observable, Mensaje oldValue, Mensaje newValue) {
                 try {
-                    webView.getEngine().loadContent(newValue.getContent());
+                    if (newValue!=null)
+                        webView.getEngine().loadContent(newValue.getContent());
+                    else
+                        webView.getEngine().loadContent("");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -321,7 +323,6 @@ public class MainPrincipalControlador implements Initializable {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
-
 
         //Poner en negrita
         tableView.setRowFactory(new Callback<TableView<Mensaje>, TableRow<Mensaje>>() {
