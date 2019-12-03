@@ -61,13 +61,7 @@ private  Stage stage;
         public void initialize(URL url, ResourceBundle resourceBundle) {
             cbTema.getItems().addAll(Application.STYLESHEET_CASPIAN,Application.STYLESHEET_MODENA);
             cbTema.getSelectionModel().select(Application.getUserAgentStylesheet()); //Este método nos devuelve el tema actual
-           // cbTema.setOnAction(new EventHandler<ActionEvent>() {
-             //   @Override
-               // public void handle(ActionEvent actionEvent) {
-                 //   if (cbTema.getSelectionModel().getSelectedItem()!=null)
-                   //     Application.setUserAgentStylesheet(cbTema.getSelectionModel().getSelectedItem());
-               // }
-            //});
+
         }
 }
 

@@ -60,6 +60,7 @@ public class ConfigurarCorreoControlador implements Initializable {
        Logica.getInstance().eliminar(tableCorreos.getSelectionModel().getSelectedItem());
        Logica.getInstance().actualizarTree();
 
+
     }
 
     @FXML

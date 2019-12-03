@@ -95,6 +95,8 @@ public class PantallaMensajeControlador implements Initializable {
                   alert_null.setTitle("Alerta");
                   alert_null.setContentText("Error al enviar");
                   alert_null.showAndWait();
+                  progressIndicator.setVisible(false);
+
 
               }
           });
@@ -140,7 +142,7 @@ public class PantallaMensajeControlador implements Initializable {
         tfAsunto.setText(msg.getAsunto());
         htmlCuerpoMensaje.setHtmlText(msg.getContent());
 
-        //enviar();
+
 
 
     }
@@ -149,10 +151,9 @@ public class PantallaMensajeControlador implements Initializable {
         tfPara.setText(msg.getRemitente());
         tfCc.setText("");
         tfAsunto.setText("RE:"+msg.getAsunto());
-        String contentResponder = "\n..............................................................\n"+msg.getContent();
+        String contentResponder = "\n......................................................................................\n"+msg.getContent();
         htmlCuerpoMensaje.setHtmlText(contentResponder);
 
-       // enviar();
 
 
     }

@@ -35,7 +35,7 @@ public class LoginControlador implements Initializable {
 
     @FXML
     void cancelar(ActionEvent event) {
-
+stage.close();
     }
 
 

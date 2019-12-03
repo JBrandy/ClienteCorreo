@@ -1,10 +1,9 @@
 package Brandy.controladores;
 
+import Brandy.logica.CargartableServicio;
 import Brandy.logica.Logica;
-import Brandy.logica.ServiciosEmail;
 import Brandy.models.Mensaje;
 import Brandy.models.TreeItemMail;
-import Brandy.models.UsuarioCorreo;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -29,8 +28,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
-import javax.mail.Flags;
-import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 
@@ -326,7 +323,7 @@ public class MainPrincipalControlador implements Initializable {
         }
 
 
-        //Preguntar
+        //Poner en negrita
         tableView.setRowFactory(new Callback<TableView<Mensaje>, TableRow<Mensaje>>() {
             @Override
             public TableRow<Mensaje> call(TableView<Mensaje> param) {
@@ -336,7 +333,9 @@ public class MainPrincipalControlador implements Initializable {
                     protected void updateItem(Mensaje item, boolean empty) {
                         super.updateItem(item, empty);
                         if(item!=null){
-                            if(!item.getReed()){
+
+
+                            if(!item.isRead()){
                                 setStyle("-fx-font-weight:bold");
                             }else
                                 setStyle("");
