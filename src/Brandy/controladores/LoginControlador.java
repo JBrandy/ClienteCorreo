@@ -63,7 +63,24 @@ stage.close();
         vs.registerValidator(tvCorreo, Validator.createEmptyValidator("el campo no puede estar vacio"));
 
 
-        btInicio.disableProperty().bind(vs.invalidProperty());*/
+        btInicio.disableProperty().bind(vs.invalidProperty());
+
+        validationSupport.registerValidator(textField3, new Validator<String>()
+{
+      @Override
+      public ValidationResult apply(Control control, String value)
+      {
+          try {
+              int i = Integer.parseInt(value);
+              if (i>=100)
+                 return ValidationResult.fromError( control, "El número no es menor de 100");
+          } catch (NumberFormatException n)
+          {
+              return ValidationResult.fromError( control, "No es un número");
+          }
+          return null;
+      }
+});*/
 
 
 }
