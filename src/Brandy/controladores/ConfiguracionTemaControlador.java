@@ -63,6 +63,20 @@ private  Stage stage;
             cbTema.getSelectionModel().select(Application.getUserAgentStylesheet()); //Este método nos devuelve el tema actual
 
         }
+
+
+        /*
+          scene.getStylesheets().add(getClass().getResource("estilos.css").toExternalForm());
+
+          estilos.css
+          .button{
+    -fx-text-fill: rgb(49, 89, 23);
+    -fx-border-color: rgb(49, 89, 23);
+    -fx-border-radius: 5;
+    -fx-background-color: red;
+    -fx-padding: 3 6 6 6;
+}
+         */
 }
 
 

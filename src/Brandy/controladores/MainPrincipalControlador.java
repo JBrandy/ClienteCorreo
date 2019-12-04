@@ -1,6 +1,6 @@
 package Brandy.controladores;
 
-import Brandy.logica.CargartableServicio;
+import Brandy.controladores.filtros.FiltrarMensajes;
 import Brandy.logica.Logica;
 import Brandy.models.Mensaje;
 import Brandy.models.TreeItemMail;
@@ -28,7 +28,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
-import javax.mail.Message;
 import javax.mail.MessagingException;
 
 public class MainPrincipalControlador implements Initializable {
@@ -271,9 +270,12 @@ public class MainPrincipalControlador implements Initializable {
         }
         stage.showAndWait();
     }
-
-
-
+/*
+    private FiltrarMensajes filtrarMensajes;
+    private void filtrar() throws Exception {
+        tableView.setItems(filtrarMensajes.filtrar(tfBuscador.getText()));
+    }
+*/
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         anadirUsuario();
@@ -345,7 +347,25 @@ public class MainPrincipalControlador implements Initializable {
                 };
             }
         });
+
+       /* filtrarMensajes = new FiltrarMensajes(Logica.getInstance().getListaCorreos());
+        //Nos subscribimos a cambios en la propiedad text del textfield
+     tfBuscador.textProperty().addListener(new ChangeListener<String>() {
+         @Override
+         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+             try {
+                 if(!tfBuscador.equals(""))
+                 tableView.setItems(filtrarMensajes.filtrar(newValue));
+             } catch (Exception e) {
+                 e.printStackTrace();
+             }
+                                                    }
+        });
+
+        */
     }
+
+
 }
 
 
