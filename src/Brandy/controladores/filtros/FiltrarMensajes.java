@@ -4,25 +4,25 @@ import Brandy.models.Mensaje;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class filtrar {
+public class FiltrarMensajes {
 
 
         private ObservableList<Mensaje> listaMensajes;
         private ObservableList<Mensaje> listaFiltrada;
 
-        public filtrar(ObservableList<Mensaje> listaPersonas) {
-            this.listaMensajes = listaPersonas;
+        public FiltrarMensajes(ObservableList<Mensaje> listaMensajes) {
+            this.listaMensajes = FXCollections.observableArrayList();
             listaFiltrada = FXCollections.observableArrayList();
         }
 
-        public ObservableList<Mensaje> filtrar(String apellidosFiltrar) throws Exception {
-            if (apellidosFiltrar!=null && !"".equals(apellidosFiltrar))
+        public ObservableList<Mensaje> filtrar(String textofiltrado) throws Exception {
+            if (textofiltrado!=null && !"".equals(textofiltrado))
             {
                 //Necesitamos filtrar
                 listaFiltrada.clear();
                 for (Mensaje mensaje : listaMensajes)
                 {
-                    if (mensaje.getContent().contains(apellidosFiltrar))
+                    if (mensaje.getAsunto().contains(textofiltrado))
                         listaFiltrada.add(mensaje);
                 }
                 return listaFiltrada;
