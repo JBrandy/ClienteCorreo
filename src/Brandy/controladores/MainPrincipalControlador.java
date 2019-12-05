@@ -336,8 +336,6 @@ public class MainPrincipalControlador implements Initializable {
                     protected void updateItem(Mensaje item, boolean empty) {
                         super.updateItem(item, empty);
                         if(item!=null){
-
-
                             if(!item.isRead()){
                                 setStyle("-fx-font-weight:bold");
                             }else
@@ -347,22 +345,23 @@ public class MainPrincipalControlador implements Initializable {
                 };
             }
         });
-
-       /* filtrarMensajes = new FiltrarMensajes(Logica.getInstance().getListaCorreos());
+FiltrarMensajes filtrarMensajes;
+       filtrarMensajes = new FiltrarMensajes(Logica.getInstance().getListaCorreos());
         //Nos subscribimos a cambios en la propiedad text del textfield
      tfBuscador.textProperty().addListener(new ChangeListener<String>() {
          @Override
          public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
              try {
-                 if(!tfBuscador.equals(""))
-                 tableView.setItems(filtrarMensajes.filtrar(newValue));
+
+                tableView.setItems(filtrarMensajes.filtrar(newValue));
+
              } catch (Exception e) {
                  e.printStackTrace();
              }
                                                     }
         });
 
-        */
+
     }
 
 

@@ -1,5 +1,6 @@
 package Brandy.controladores.filtros;
 
+import Brandy.logica.Logica;
 import Brandy.models.Mensaje;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,7 +12,7 @@ public class FiltrarMensajes {
         private ObservableList<Mensaje> listaFiltrada;
 
         public FiltrarMensajes(ObservableList<Mensaje> listaMensajes) {
-            this.listaMensajes = FXCollections.observableArrayList();
+            this.listaMensajes = Logica.getInstance().getListaCorreos();
             listaFiltrada = FXCollections.observableArrayList();
         }
 
