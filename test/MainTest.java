@@ -19,10 +19,18 @@ public class MainTest extends ApplicationTest {
         stage.show();
     }
     @Test
-    public void textoDespues() {
+    public void puslarInicio() {
+
+        clickOn("#tvCorreo");
+        write("damdijb@gmail.com");
+        clickOn("#tvContrasena");
+        write("123456A@");
         clickOn("#btInicio");
     }
-
+    @Test
+    public void pulsarMenu() {
+        clickOn("#miInicioSesion");
+    }
 
 
 
