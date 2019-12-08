@@ -201,6 +201,10 @@ public class Logica  {
        listaCorreos.clear();
        cargarListaCorreos(folder);
     }
+
+    public void finalizar() {
+        INSTANCE = null;
+    }
 }
 
 

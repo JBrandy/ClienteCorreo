@@ -1,5 +1,8 @@
 import Brandy.Launcher;
+import Brandy.logica.Logica;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
@@ -19,18 +22,29 @@ public class MainTest extends ApplicationTest {
         stage.show();
     }
     @Test
-    public void puslarInicio() {
+    public void confcuenta() {
 
+
+        clickOn("#mInicio");
+        type(KeyCode.DOWN);
+        type(KeyCode.DOWN);
+        type(KeyCode.DOWN);
+        clickOn("#mConfigurarCuentas");
+        clickOn("#btAnadirr");
         clickOn("#tvCorreo");
         write("damdijb@gmail.com");
         clickOn("#tvContrasena");
         write("123456A@");
         clickOn("#btInicio");
+
     }
-    @Test
-    public void pulsarMenu() {
-        clickOn("#miInicioSesion");
+
+    @After
+    public void finalizar()
+    {
+        Logica.getInstance().finalizar();
     }
+
 
 
 

@@ -33,9 +33,16 @@ import javax.mail.MessagingException;
 public class MainPrincipalControlador implements Initializable {
 
     static Scanner teclado = new Scanner(System.in);
+
+    private FiltrarMensajes filtrarMensajes;
+
+    @FXML
+    private Menu mInicio;
+
     @FXML
     private MenuItem miInicioSesion;
-
+    @FXML
+    private MenuItem mConfigurarCuentas;
     @FXML
     private MenuItem configurarTema;
 
@@ -198,7 +205,7 @@ public class MainPrincipalControlador implements Initializable {
 
     @FXML
     void quitarFiltro(ActionEvent event) {
-
+    tfBuscador.setText("");
     }
 
     @FXML
@@ -278,7 +285,7 @@ public class MainPrincipalControlador implements Initializable {
 */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        anadirUsuario();
+       // anadirUsuario();
 
         try {
 
@@ -345,7 +352,7 @@ public class MainPrincipalControlador implements Initializable {
                 };
             }
         });
-FiltrarMensajes filtrarMensajes;
+
        filtrarMensajes = new FiltrarMensajes(Logica.getInstance().getListaCorreos());
         //Nos subscribimos a cambios en la propiedad text del textfield
      tfBuscador.textProperty().addListener(new ChangeListener<String>() {
@@ -356,6 +363,7 @@ FiltrarMensajes filtrarMensajes;
                 tableView.setItems(filtrarMensajes.filtrar(newValue));
 
              } catch (Exception e) {
+
                  e.printStackTrace();
              }
                                                     }
