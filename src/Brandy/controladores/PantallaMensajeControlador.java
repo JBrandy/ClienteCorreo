@@ -77,6 +77,17 @@ public class PantallaMensajeControlador implements Initializable {
       String cuerpo = htmlCuerpoMensaje.getHtmlText();
       if(usuarioCorreo!=null && to!=null && !to.isEmpty()){
             //boolean mailEnviado = serviciosEmail.enviarCorreo(usuarioCorreo, to, cc, asunto, cuerpo);
+        if(!to.contains("@")){
+              Alert alert_null = new Alert(Alert.AlertType.WARNING);
+              alert_null.setTitle("Alerta");
+              alert_null.setContentText("Error formato email");
+              alert_null.showAndWait();
+
+              return; //esto sirve asi para salir del emtodo
+
+          }
+
+
           EnviarMensajeService enviarMensajeService = new EnviarMensajeService(usuarioCorreo, to, cc, asunto, cuerpo);
           enviarMensajeService.start();
 

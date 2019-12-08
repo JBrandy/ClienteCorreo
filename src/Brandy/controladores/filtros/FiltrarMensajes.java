@@ -17,19 +17,15 @@ public class FiltrarMensajes {
         }
 
         public ObservableList<Mensaje> filtrar(String textofiltrado) throws Exception {
-            if (textofiltrado!=null && !"".equals(textofiltrado))
-            {
+            if (textofiltrado!=null && !"".equals(textofiltrado)){
                 //Necesitamos filtrar
                 listaFiltrada.clear();
-                for (Mensaje mensaje : listaMensajes)
-                {
-                    if (mensaje.getAsunto().contains(textofiltrado))
+                for (Mensaje mensaje : listaMensajes) {
+                    if (mensaje.getAsunto()!=null && mensaje.getAsunto().toUpperCase().contains(textofiltrado.toUpperCase()))
                         listaFiltrada.add(mensaje);
                 }
                 return listaFiltrada;
-            }
-            else
-            {
+            }else{
                 //Tenemos que mostrar todos los registros
                 return listaMensajes;
             }

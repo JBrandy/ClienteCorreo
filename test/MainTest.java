@@ -24,7 +24,6 @@ public class MainTest extends ApplicationTest {
     @Test
     public void confcuenta() {
 
-
         clickOn("#mInicio");
         type(KeyCode.DOWN);
         type(KeyCode.DOWN);
@@ -32,11 +31,10 @@ public class MainTest extends ApplicationTest {
         clickOn("#mConfigurarCuentas");
         clickOn("#btAnadirr");
         clickOn("#tvCorreo");
-        write("damdijb@gmail.com");
-        clickOn("#tvContrasena");
-        write("123456A@");
+        //write("damdijb@gmail.com");
+        //clickOn("#tvContrasena");
+        //write("123456A@");
         clickOn("#btInicio");
-
     }
 
     @After

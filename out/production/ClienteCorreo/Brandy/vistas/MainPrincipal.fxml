@@ -26,13 +26,13 @@
   <children>
     <MenuBar prefHeight="36.0" prefWidth="900.0" VBox.vgrow="NEVER">
       <menus>
-        <Menu mnemonicParsing="false" text="Inicio">
+        <Menu fx:id="mInicio" mnemonicParsing="false" text="Inicio">
           <items>
             <MenuItem fx:id="miInicioSesion" mnemonicParsing="false" onAction="#abrirVentana" text="Iniciar Sesion" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem fx:id="configurarTema" mnemonicParsing="false" onAction="#cambiartema" text="Configuración temas" />
-            <MenuItem mnemonicParsing="false" onAction="#configuarCuentas" text="Configurar Cuentas" />
+            <MenuItem fx:id="mConfigurarCuentas" mnemonicParsing="false" onAction="#configuarCuentas" text="Configurar Cuentas" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem fx:id="miSalir" mnemonicParsing="false" onAction="#salir" text="Salir" />
           </items>
