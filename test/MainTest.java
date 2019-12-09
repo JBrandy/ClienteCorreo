@@ -35,7 +35,23 @@ public class MainTest extends ApplicationTest {
         //clickOn("#tvContrasena");
         //write("123456A@");
         clickOn("#btInicio");
+        clickOn("#btSalir");
+        clickOn("#mInicio");
+        type(KeyCode.DOWN);
+        type(KeyCode.DOWN);
+        clickOn("#configurarTema");
+
+        clickOn("#cbTema");
+        type(KeyCode.DOWN);
+        clickOn();
+        clickOn("#btAplicar");
+        clickOn("#btAceptar");
+
+
+
     }
+
+
 
     @After
     public void finalizar()
