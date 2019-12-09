@@ -4,8 +4,9 @@ import com.sun.mail.imap.IMAPFolder;
 
 import javax.mail.MessagingException;
 import javax.mail.Store;
+import java.io.Serializable;
 
-public class UsuarioCorreo {
+public class UsuarioCorreo implements Serializable {
 
     private String email;
     private String contra;

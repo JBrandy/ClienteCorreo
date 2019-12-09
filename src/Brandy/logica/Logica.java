@@ -40,6 +40,7 @@ public class Logica  {
     private Message usuarioVer;
     private Store store;
 
+
     private Logica() {
         listaCorreos = FXCollections.observableArrayList();
         listaUsuarios= FXCollections.observableArrayList();
@@ -59,6 +60,8 @@ public class Logica  {
     public List<UsuarioCorreo> getListaUsuarios() {
         return listaUsuarios;
     }
+
+
 
     public void anadirUsuario(UsuarioCorreo u){
         listaUsuarios.add(u);
