@@ -75,7 +75,17 @@ stage.close();
         tvCorreo.setText("damdijb@gmail.com");
         tvContrasena.setText("123456A@");
 
-       /*ValidationSupport vs = new ValidationSupport();
+       /*
+
+
+       ValidationSupport validationSupport = new ValidationSupport();
+        validationSupport.registerValidator(tf_email, Validator.createEmptyValidator("Este campo no puede estar vacío"));
+        validationSupport.registerValidator(pf_password, Validator.createEmptyValidator("Este campo no puede estar vacío"));
+        bt_aceptar.disableProperty().bind(validationSupport.invalidProperty());
+
+
+
+       ValidationSupport vs = new ValidationSupport();
         vs.registerValidator(tvContrasena, Validator.createEmptyValidator("el campo no puede estar vacio"));
         vs.registerValidator(tvCorreo, Validator.createEmptyValidator("el campo no puede estar vacio"));
 

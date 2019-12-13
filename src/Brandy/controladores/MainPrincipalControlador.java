@@ -98,6 +98,33 @@ public class MainPrincipalControlador implements Initializable {
 
     private TreeItemMail TreeItem;
 
+
+    @FXML
+    private Button btExamen;
+
+    @FXML
+    void examen(ActionEvent event) {
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Brandy/vistas/examen.fxml"));
+            Parent root = fxmlLoader.load();
+            ExamenControlador pantallaConfigCorreo = (ExamenControlador) fxmlLoader.getController();
+            pantallaConfigCorreo.setStage(stage);
+            stage.setTitle("Correo");
+            stage.setScene(new Scene(root, 600, 400));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.showAndWait();
+
+
+    }
+
+
+
+
     @FXML
     void configuarCuentas(ActionEvent event) {
 
@@ -366,7 +393,7 @@ public class MainPrincipalControlador implements Initializable {
 
                  e.printStackTrace();
              }
-                                                    }
+            }
         });
 
 

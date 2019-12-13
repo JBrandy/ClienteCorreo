@@ -2,6 +2,7 @@ package Brandy.models;
 import org.apache.commons.mail.util.MimeMessageParser;
 
 import java.io.IOException;
+import java.util.Date;
 import javax.mail.Address;
 import javax.mail.Flags;
 import javax.mail.Message;
@@ -46,10 +47,20 @@ public class Mensaje  {
         return String.valueOf(sub[0]);
     }
 
+    public  Date getFecha(){
+        Date sub=null;
+        try {
+            sub=mensaje.getReceivedDate();
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        return sub;
+    }
+
+
     @Override
     public String toString() {
-        return "Mensaje{" +
-                "mensaje=" + mensaje +
+        return " " + getRemitente() + "," + getFecha() +
                 '}';
     }
 
@@ -88,4 +99,7 @@ public class Mensaje  {
             e.printStackTrace();
         }return true;
     }
+
+
+
 }

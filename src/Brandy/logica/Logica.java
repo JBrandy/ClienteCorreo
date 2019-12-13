@@ -114,9 +114,9 @@ public class Logica  {
             }
             if(rootItem==null){
                 rootItem = new TreeItemMail(usuarioCorreo1.getEmail(), usuarioCorreo1, carpeta);
-                System.out.println("La carpeta " + rootItem.toString() );
+                //System.out.println("La carpeta " + rootItem.toString() );
             }else{
-                System.out.println("cojo el delrecursirvo");
+               // System.out.println("cojo el delrecursirvo");
             }
 
             rootItem.setExpanded(true);
@@ -127,7 +127,7 @@ public class Logica  {
                          && folder.list().length>0) { //si tiene carpetas
                      cargaCarpetas(usuarioCorreo1, folder, item);
                 }else{
-                     System.out.println("La carpeta " + folder.getName() + " no tiene hijos.");
+                     //System.out.println("La carpeta " + folder.getName() + " no tiene hijos.");
                  }
                  rootItem.getChildren().add(item);
              }
@@ -208,7 +208,50 @@ public class Logica  {
     public void finalizar() {
         INSTANCE = null;
     }
-}
+
+
+
+
+
+
+
+
+
+
+    public ObservableList cargarListaCorreosExamen() {
+        listaCorreos.clear();
+
+            try {
+                // IMAPFolder folder = (IMAPFolder) store.getFolder("[Gmail]/Todos"); el final es la ruta
+                IMAPFolder folder = (IMAPFolder) store.getFolder("[Gmail]/Todos");
+
+                if (!folder.isOpen())
+                    folder.open(Folder.READ_WRITE);
+                Message[] messages = folder.getMessages();
+                Mensaje correo;
+                //System.out.println(messages[0].toString());
+                for(int i=0;i<messages.length;i++) {
+                    correo = new Mensaje(messages[i]);
+                   // System.out.println(correo.toString());
+                    listaCorreos.add(correo);
+                }
+            } catch (NoSuchProviderException e) {
+                //e.printStackTrace();
+            } catch (MessagingException e) {
+                //e.printStackTrace();
+            }catch (ArrayIndexOutOfBoundsException e) {
+                //e.printStackTrace();
+            }
+            return listaCorreos;
+        }
+
+    }
+
+
+
+
+
+
 
 
 

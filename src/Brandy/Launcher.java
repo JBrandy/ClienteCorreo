@@ -39,6 +39,7 @@ public class Launcher extends Application {
     }
 
     public  static void inicio() throws GeneralSecurityException, MessagingException {
+        if(list!=null)
         for(int i = 0 ; i<list.size(); i++){
             Logica.getInstance().iniciarSesion(list.get(i));
             Logica.getInstance().actualizarTree();
