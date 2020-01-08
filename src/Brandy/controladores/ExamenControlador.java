@@ -27,7 +27,7 @@ public class ExamenControlador implements Initializable {
     @FXML
     void ver(ActionEvent event) {
         Mensaje a = cb.getSelectionModel().getSelectedItem();
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Asunto");
         alert.setHeaderText(a.getAsunto());
         alert.show();

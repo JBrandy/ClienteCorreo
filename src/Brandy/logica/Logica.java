@@ -81,6 +81,7 @@ public class Logica  {
                 Message[] messages = folder.getMessages();
                 Mensaje correo;
                 System.out.println(messages[0].toString());
+                System.out.println(folder.getFullName());
                 for(int i=0;i<messages.length;i++) {
                     correo = new Mensaje(messages[i]);
                     System.out.println(correo.toString());
@@ -223,7 +224,7 @@ public class Logica  {
 
             try {
                 // IMAPFolder folder = (IMAPFolder) store.getFolder("[Gmail]/Todos"); el final es la ruta
-                IMAPFolder folder = (IMAPFolder) store.getFolder("[Gmail]/Todos");
+                IMAPFolder folder = (IMAPFolder) store.getFolder("INBOX");
 
                 if (!folder.isOpen())
                     folder.open(Folder.READ_WRITE);
