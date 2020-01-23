@@ -71,6 +71,7 @@ public class Launcher extends Application {
         }finally{
 
 
+
             try{
                 if( null != fos ){
                     fos.close();
