@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
         import javafx.scene.control.Button;
         import javafx.scene.control.DatePicker;
         import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class PantallaAnadirTareaControlador {
 
@@ -29,4 +30,6 @@ public class PantallaAnadirTareaControlador {
 
     }
 
+    public void setStage(Stage stage) {
+    }
 }

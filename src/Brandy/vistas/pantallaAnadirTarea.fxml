@@ -8,13 +8,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="322.0" prefWidth="266.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="322.0" prefWidth="266.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Brandy.controladores.PantallaAnadirTareaControlador">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <DatePicker layoutX="51.0" layoutY="141.0" prefHeight="25.0" prefWidth="155.0" />
-            <TextField layoutX="56.0" layoutY="227.0" prefHeight="25.0" prefWidth="59.0" />
-            <TextField layoutX="147.0" layoutY="227.0" prefHeight="25.0" prefWidth="59.0" />
+            <DatePicker fx:id="date" layoutX="51.0" layoutY="141.0" prefHeight="25.0" prefWidth="155.0" />
+            <TextField fx:id="tvHora" layoutX="56.0" layoutY="227.0" prefHeight="25.0" prefWidth="59.0" />
+            <TextField fx:id="tvMinuto" layoutX="147.0" layoutY="227.0" prefHeight="25.0" prefWidth="59.0" />
             <Label layoutX="101.0" layoutY="96.0" text="Fecha">
                <font>
                   <Font size="23.0" />
@@ -30,13 +30,13 @@
                   <Font size="32.0" />
                </font>
             </Label>
-            <Button layoutX="102.0" layoutY="271.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="Añadir" />
+            <Button fx:id="btAnadir" layoutX="102.0" layoutY="271.0" mnemonicParsing="false" onAction="#anadir" prefHeight="25.0" prefWidth="57.0" text="Añadir" />
             <Label layoutX="103.0" layoutY="14.0" text="Tarea">
                <font>
                   <Font size="23.0" />
                </font>
             </Label>
-            <TextField layoutX="53.0" layoutY="54.0" prefHeight="25.0" prefWidth="155.0" />
+            <TextField fx:id="tvTarea" layoutX="53.0" layoutY="54.0" prefHeight="25.0" prefWidth="155.0" />
          </children>
     </AnchorPane>
   </children>

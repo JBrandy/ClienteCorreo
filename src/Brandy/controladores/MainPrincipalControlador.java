@@ -102,6 +102,8 @@ public class MainPrincipalControlador implements Initializable {
     @FXML
     private Button btExamen;
 
+
+
     @FXML
     void examen(ActionEvent event) {
         Stage stage = new Stage();
@@ -123,6 +125,26 @@ public class MainPrincipalControlador implements Initializable {
     }
 
 
+    @FXML
+    private Button btTareas;
+
+    @FXML
+    void abrirTareas(ActionEvent event) {
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Brandy/vistas/pantallaTareas.fxml"));
+            Parent root = fxmlLoader.load();
+            PantallaTareasControlador pantallaTareasControlador = (PantallaTareasControlador) fxmlLoader.getController();
+            pantallaTareasControlador.setStage(stage);
+            stage.setTitle("Correo");
+            stage.setScene(new Scene(root, 750, 600));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.showAndWait();
+    }
 
 
     @FXML

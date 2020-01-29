@@ -2,6 +2,7 @@ package Brandy.logica;
 
 import Brandy.controladores.MainPrincipalControlador;
 import Brandy.models.Mensaje;
+import Brandy.models.Tarea;
 import Brandy.models.TreeItemMail;
 import Brandy.models.UsuarioCorreo;
 import com.sun.mail.util.MailSSLSocketFactory;
@@ -31,6 +32,7 @@ public class Logica  {
 
     private ObservableList<Mensaje> listaCorreos;
     private List<UsuarioCorreo> listaUsuarios;
+    private List<Tarea> listaTarea;
 
     private TreeItem nodoRaiz =new TreeItem("Correos");
 
@@ -44,6 +46,7 @@ public class Logica  {
     private Logica() {
         listaCorreos = FXCollections.observableArrayList();
         listaUsuarios= FXCollections.observableArrayList();
+        listaTarea = FXCollections.observableArrayList();
     }
 
     public static Logica getInstance() {
@@ -67,6 +70,14 @@ public class Logica  {
         listaUsuarios.add(u);
     }
 
+
+    public List<Tarea> getListaTarea() {
+        return listaTarea;
+    }
+
+    public void setListaTarea(List<Tarea> listaTarea) {
+        this.listaTarea = listaTarea;
+    }
 
     public void cargarListaCorreos(Folder folder) {
         listaCorreos.clear();
