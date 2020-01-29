@@ -8,17 +8,38 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Brandy.controladores.PantallaTareasControlador">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <TableView layoutX="26.0" layoutY="91.0" prefHeight="200.0" prefWidth="575.0" AnchorPane.bottomAnchor="109.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="39.0" AnchorPane.topAnchor="91.0">
+            <TableView fx:id="tableView" layoutX="26.0" layoutY="91.0" prefHeight="200.0" prefWidth="575.0" AnchorPane.bottomAnchor="109.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="39.0" AnchorPane.topAnchor="91.0">
               <columns>
-                <TableColumn fx:id="tableTareas" prefWidth="154.0" text="Tarea" />
-                <TableColumn prefWidth="157.0" text="Fecha" />
-                <TableColumn prefWidth="81.0" text="Hora"/>
-                  <TableColumn minWidth="0.0" text="Minuto" />
-                  <TableColumn prefWidth="102.0" text="Realizado" />
+                <TableColumn prefWidth="154.0" text="Tarea" >
+                  <cellValueFactory>
+                      <PropertyValueFactory property="Tarea" />
+                  </cellValueFactory>
+              </TableColumn>
+                <TableColumn prefWidth="157.0" text="Fecha" >
+                    <cellValueFactory>
+                        <PropertyValueFactory property="Fecha" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn prefWidth="81.0" text="Hora" >
+                    <cellValueFactory>
+                        <PropertyValueFactory property="Hora" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn minWidth="0.0" text="Minuto" >
+                    <cellValueFactory>
+                        <PropertyValueFactory property="Minuto" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn prefWidth="102.0" text="Realizado" >
+                    <cellValueFactory>
+                        <PropertyValueFactory property="Realizado" />
+                    </cellValueFactory>
+                </TableColumn>
               </columns>
             </TableView>
             <Button fx:id="btAnadirTareas" layoutX="429.0" layoutY="332.0" mnemonicParsing="false" onAction="#anadir" prefHeight="35.0" prefWidth="70.0" text="Añadir" AnchorPane.bottomAnchor="33.0" AnchorPane.rightAnchor="141.0" />

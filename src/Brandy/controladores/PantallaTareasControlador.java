@@ -1,21 +1,28 @@
 package Brandy.controladores;
 
+import Brandy.logica.Logica;
+import Brandy.models.Tarea;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class PantallaTareasControlador {
+public class PantallaTareasControlador implements Initializable {
 
     @FXML
-    private TableColumn<?, ?> tableTareas;
+    private TableView<Tarea> tableView;
 
     @FXML
     private Button btAnadirTareas;
@@ -47,5 +54,11 @@ public class PantallaTareasControlador {
     }
 
     public void setStage(Stage stage) {
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        tableView.setItems((ObservableList<Tarea>) Logica.getInstance().getListaTareas());
+
     }
 }
