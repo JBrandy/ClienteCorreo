@@ -1,6 +1,5 @@
 package Brandy.logica;
 
-import Brandy.controladores.MainPrincipalControlador;
 import Brandy.models.Mensaje;
 import Brandy.models.Tarea;
 import Brandy.models.TreeItemMail;
@@ -12,16 +11,10 @@ import javafx.collections.ObservableList;
 
 import com.sun.mail.imap.IMAPFolder;
 import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
 
 import javax.mail.*;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -32,7 +25,7 @@ public class Logica  {
 
     private ObservableList<Mensaje> listaCorreos;
     private List<UsuarioCorreo> listaUsuarios;
-    private List<Tarea> listaTarea;
+    private List<Tarea> listaTareas;
 
     private TreeItem nodoRaiz =new TreeItem("Correos");
 
@@ -46,7 +39,7 @@ public class Logica  {
     private Logica() {
         listaCorreos = FXCollections.observableArrayList();
         listaUsuarios= FXCollections.observableArrayList();
-        listaTarea = FXCollections.observableArrayList();
+        listaTareas = FXCollections.observableArrayList();
     }
 
     public static Logica getInstance() {
@@ -70,13 +63,17 @@ public class Logica  {
         listaUsuarios.add(u);
     }
 
-
-    public List<Tarea> getListaTarea() {
-        return listaTarea;
+    public void anadirTarea(Tarea tarea){
+        listaTareas.add(tarea);
     }
 
-    public void setListaTarea(List<Tarea> listaTarea) {
-        this.listaTarea = listaTarea;
+
+    public List<Tarea> getListaTareas() {
+        return listaTareas;
+    }
+
+    public void setListaTareas(List<Tarea> listaTareas) {
+        this.listaTareas = listaTareas;
     }
 
     public void cargarListaCorreos(Folder folder) {

@@ -6,11 +6,11 @@ public class Tarea {
 
     private String tarea;
     private LocalDate fecha;
-    private Integer hora;
-    private Integer minuto;
+    private int hora;
+    private int minuto;
     private String realizado;
 
-    public Tarea(String tarea, LocalDate fecha, Integer hora, Integer minuto, String realizado) {
+    public Tarea(String tarea, LocalDate fecha, int hora, int minuto, String realizado) {
         this.tarea = tarea;
         this.fecha = fecha;
         this.hora = hora;
@@ -34,7 +34,7 @@ public class Tarea {
         this.fecha = fecha;
     }
 
-    public Integer getHora() {
+    public int getHora() {
         return hora;
     }
 
@@ -42,7 +42,7 @@ public class Tarea {
         this.hora = hora;
     }
 
-    public Integer getMinuto() {
+    public int getMinuto() {
         return minuto;
     }
 
