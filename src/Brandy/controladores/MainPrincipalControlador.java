@@ -1,5 +1,6 @@
 package Brandy.controladores;
 
+import Brandy.Launcher;
 import Brandy.controladores.filtros.FiltrarMensajes;
 import Brandy.logica.Logica;
 import Brandy.models.Mensaje;
@@ -33,6 +34,7 @@ import reloj.Tarea;
 import javax.mail.MessagingException;
 
 public class MainPrincipalControlador implements Initializable {
+
 
     static Scanner teclado = new Scanner(System.in);
 
@@ -73,7 +75,7 @@ public class MainPrincipalControlador implements Initializable {
     private Button btResponder;
 
     @FXML
-    private Reloj reloj;
+    private  Reloj reloj;
 
     @FXML
     private Font x1;
@@ -132,6 +134,11 @@ public class MainPrincipalControlador implements Initializable {
 
     @FXML
     private Button btTareas;
+
+
+    public  Reloj getReloj() {
+        return reloj;
+    }
 
     @FXML
     void abrirTareas(ActionEvent event) {
