@@ -17,7 +17,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.web.WebView;
-
+import reloj.Evento;
+import reloj.Reloj;
 import java.io.IOException;
 import java.net.URL;
 import java.security.GeneralSecurityException;
@@ -27,6 +28,7 @@ import java.util.Scanner;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import reloj.Tarea;
 
 import javax.mail.MessagingException;
 
@@ -69,6 +71,9 @@ public class MainPrincipalControlador implements Initializable {
 
     @FXML
     private Button btResponder;
+
+    @FXML
+    private Reloj reloj;
 
     @FXML
     private Font x1;
@@ -334,7 +339,19 @@ public class MainPrincipalControlador implements Initializable {
 */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-       // anadirUsuario();
+
+        reloj.start();
+        reloj.setFormato24Horas(false);
+
+        reloj.addEvento(new Evento() {
+            @Override
+            public void inicioTarea(Tarea tarea) {
+                Alert alert_null = new Alert(Alert.AlertType.WARNING);
+                alert_null.setTitle("Alerta");
+                alert_null.setContentText("Error formato email");
+                alert_null.showAndWait();
+            }
+        });
 
         try {
 

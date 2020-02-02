@@ -4,11 +4,9 @@ module ClienteCorreo {
     requires javafx.graphics;
     requires javafx.base;
     requires java.mail;
-  // requires validation.api;
     requires javafx.web;
     requires commons.email;
-
-
+    requires Reloj;
 
 
     exports Brandy.controladores;
