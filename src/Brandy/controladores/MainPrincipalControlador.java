@@ -25,7 +25,6 @@ import java.net.URL;
 import java.security.GeneralSecurityException;
 import java.util.ResourceBundle;
 import java.util.Scanner;
-
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -75,7 +74,7 @@ public class MainPrincipalControlador implements Initializable {
     private Button btResponder;
 
     @FXML
-    private  Reloj reloj;
+    public  Reloj reloj ;
 
     @FXML
     private Font x1;
@@ -201,6 +200,7 @@ public class MainPrincipalControlador implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Brandy/vistas/configuracionTema.fxml"));
             Parent root = fxmlLoader.load();
             ConfiguracionTemaControlador pantallaConfigCorreo = (ConfiguracionTemaControlador) fxmlLoader.getController();
+           // pantallaConfigCorreo.setMainController(this);
             pantallaConfigCorreo.setStage(stage);
             stage.setTitle("Configuracion visual");
             stage.setScene(new Scene(root, 400, 400));
@@ -209,6 +209,7 @@ public class MainPrincipalControlador implements Initializable {
             e.printStackTrace();
         }
         stage.showAndWait();
+
 
     }
 
@@ -344,6 +345,10 @@ public class MainPrincipalControlador implements Initializable {
         tableView.setItems(filtrarMensajes.filtrar(tfBuscador.getText()));
     }
 */
+
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -354,8 +359,8 @@ public class MainPrincipalControlador implements Initializable {
             @Override
             public void inicioTarea(Tarea tarea) {
                 Alert alert_null = new Alert(Alert.AlertType.WARNING);
-                alert_null.setTitle("Alerta");
-                alert_null.setContentText("Error formato email");
+                alert_null.setTitle("Funciona");
+                alert_null.setContentText("ya funciona");
                 alert_null.showAndWait();
             }
         });
