@@ -2,6 +2,7 @@ package Brandy;
 
 
 
+import Brandy.controladores.MainPrincipalControlador;
 import Brandy.logica.Logica;
 import Brandy.models.UsuarioCorreo;
 import javafx.application.Application;
@@ -34,6 +35,7 @@ public class Launcher extends Application {
         inicio();
         launch(args);
         guardarFichero();
+
 
 
     }

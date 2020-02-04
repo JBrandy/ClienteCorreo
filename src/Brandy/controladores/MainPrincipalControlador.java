@@ -1,6 +1,6 @@
 package Brandy.controladores;
 
-import Brandy.Launcher;
+
 import Brandy.controladores.filtros.FiltrarMensajes;
 import Brandy.logica.Logica;
 import Brandy.models.Mensaje;
@@ -29,7 +29,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import reloj.Tarea;
-
 import javax.mail.MessagingException;
 
 public class MainPrincipalControlador implements Initializable {
@@ -74,7 +73,7 @@ public class MainPrincipalControlador implements Initializable {
     private Button btResponder;
 
     @FXML
-    public  Reloj reloj ;
+    public Reloj reloj;
 
     @FXML
     private Font x1;
@@ -109,7 +108,6 @@ public class MainPrincipalControlador implements Initializable {
     private Button btExamen;
 
 
-
     @FXML
     void examen(ActionEvent event) {
         Stage stage = new Stage();
@@ -128,7 +126,6 @@ public class MainPrincipalControlador implements Initializable {
         stage.showAndWait();
 
 
-
     }
 
 
@@ -136,7 +133,7 @@ public class MainPrincipalControlador implements Initializable {
     private Button btTareas;
 
 
-    public  Reloj getReloj() {
+    public Reloj getReloj() {
         return reloj;
     }
 
@@ -177,16 +174,18 @@ public class MainPrincipalControlador implements Initializable {
         }
         stage.showAndWait();
 
-            }
+    }
 
     @FXML
     void caragarListaMensajes(MouseEvent event) {
 
     }
+
     @FXML
     void filtrarTable(ActionEvent event) {
 
     }
+
     @FXML
     void abrirVentana(ActionEvent event) {
         anadirUsuario();
@@ -201,8 +200,8 @@ public class MainPrincipalControlador implements Initializable {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Brandy/vistas/configuracionTema.fxml"));
             Parent root = fxmlLoader.load();
-             configuracionTemaControlador = (ConfiguracionTemaControlador) fxmlLoader.getController();
-           // pantallaConfigCorreo.setMainController(this);
+            configuracionTemaControlador = (ConfiguracionTemaControlador) fxmlLoader.getController();
+            // pantallaConfigCorreo.setMainController(this);
             configuracionTemaControlador.setStage(stage);
             stage.setTitle("Configuracion visual");
             stage.setScene(new Scene(root, 400, 400));
@@ -212,18 +211,16 @@ public class MainPrincipalControlador implements Initializable {
         }
         stage.showAndWait();
         reloj.setFormato24Horas(configuracionTemaControlador.formatoHora());
-        ;
 
 
     }
-
 
 
     @FXML
     void borrarCorreo(ActionEvent event) throws MessagingException, GeneralSecurityException {
 
         Mensaje m = tableView.getSelectionModel().getSelectedItem();
-        TreeItemMail email_tree = (TreeItemMail)treeview.getSelectionModel().getSelectedItem();
+        TreeItemMail email_tree = (TreeItemMail) treeview.getSelectionModel().getSelectedItem();
 
         if (m == null) {
             Alert alert_null = new Alert(Alert.AlertType.WARNING);
@@ -231,16 +228,13 @@ public class MainPrincipalControlador implements Initializable {
             alert_null.setContentText("No hay mensajes seleccionados");
             alert_null.showAndWait();
         } else {
-           Logica.getInstance().borrar_email(m,email_tree.getFolder());
-           webView.getEngine().loadContent(""); // Preguntar si es la manera correcta?
-           Logica.getInstance().actualizaTable(((TreeItemMail) treeview.getSelectionModel().getSelectedItem()).getFolder());
+            Logica.getInstance().borrar_email(m, email_tree.getFolder());
+            webView.getEngine().loadContent(""); // Preguntar si es la manera correcta?
+            Logica.getInstance().actualizaTable(((TreeItemMail) treeview.getSelectionModel().getSelectedItem()).getFolder());
 
 
         }
     }
-
-
-
 
 
     @FXML
@@ -271,7 +265,7 @@ public class MainPrincipalControlador implements Initializable {
 
     @FXML
     void quitarFiltro(ActionEvent event) {
-    tfBuscador.setText("");
+        tfBuscador.setText("");
     }
 
     @FXML
@@ -300,7 +294,6 @@ public class MainPrincipalControlador implements Initializable {
     void salir(ActionEvent event) {
 
     }
-
 
     private void anadirUsuario() {
         Stage stage = new Stage();
@@ -343,14 +336,6 @@ public class MainPrincipalControlador implements Initializable {
         }
         stage.showAndWait();
     }
-/*
-    private FiltrarMensajes filtrarMensajes;
-    private void filtrar() throws Exception {
-        tableView.setItems(filtrarMensajes.filtrar(tfBuscador.getText()));
-    }
-*/
-
-
 
 
     @Override
@@ -368,6 +353,7 @@ public class MainPrincipalControlador implements Initializable {
                 alert_null.showAndWait();
             }
         });
+
 
         try {
 
@@ -388,7 +374,7 @@ public class MainPrincipalControlador implements Initializable {
             public void changed(ObservableValue<? extends TreeItem<String>> observableValue, TreeItem<String> stringTreeItem, TreeItem<String> t1) {
                 System.out.println(treeview.getSelectionModel().getSelectedItem().toString());
 
-                Logica.getInstance().cargarListaCorreos(((TreeItemMail)t1).getFolder());
+                Logica.getInstance().cargarListaCorreos(((TreeItemMail) t1).getFolder());
             }
         });
 
@@ -397,7 +383,7 @@ public class MainPrincipalControlador implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Mensaje> observable, Mensaje oldValue, Mensaje newValue) {
                 try {
-                    if (newValue!=null)
+                    if (newValue != null)
                         webView.getEngine().loadContent(newValue.getContent());
                     else
                         webView.getEngine().loadContent("");
@@ -419,15 +405,14 @@ public class MainPrincipalControlador implements Initializable {
         tableView.setRowFactory(new Callback<TableView<Mensaje>, TableRow<Mensaje>>() {
             @Override
             public TableRow<Mensaje> call(TableView<Mensaje> param) {
-                return new TableRow<>()
-                {
+                return new TableRow<>() {
                     @Override
                     protected void updateItem(Mensaje item, boolean empty) {
                         super.updateItem(item, empty);
-                        if(item!=null){
-                            if(!item.isRead()){
+                        if (item != null) {
+                            if (!item.isRead()) {
                                 setStyle("-fx-font-weight:bold");
-                            }else
+                            } else
                                 setStyle("");
                         }
                     }
@@ -435,28 +420,22 @@ public class MainPrincipalControlador implements Initializable {
             }
         });
 
-       filtrarMensajes = new FiltrarMensajes(Logica.getInstance().getListaCorreos());
+        filtrarMensajes = new FiltrarMensajes(Logica.getInstance().getListaCorreos());
         //Nos subscribimos a cambios en la propiedad text del textfield
-     tfBuscador.textProperty().addListener(new ChangeListener<String>() {
-         @Override
-         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-             try {
+        tfBuscador.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                try {
 
-                tableView.setItems(filtrarMensajes.filtrar(newValue));
+                    tableView.setItems(filtrarMensajes.filtrar(newValue));
 
-             } catch (Exception e) {
+                } catch (Exception e) {
 
-                 e.printStackTrace();
-             }
+                    e.printStackTrace();
+                }
             }
         });
 
-
     }
 
-
 }
-
-
-
-

@@ -49,11 +49,13 @@ public class PantallaTareasControlador implements Initializable {
             e.printStackTrace();
         }
         stage.showAndWait();
+        tableView.setItems(FXCollections.observableArrayList(LogicaReloj.getInstance().getListaTareas()));
     }
 
     @FXML
     void eliminar(ActionEvent event) {
-
+        LogicaReloj.getInstance().borrarTarea(tableView.getSelectionModel().getSelectedItem());
+        tableView.setItems(FXCollections.observableArrayList(LogicaReloj.getInstance().getListaTareas()));
     }
 
     public void setStage(Stage stage) {
