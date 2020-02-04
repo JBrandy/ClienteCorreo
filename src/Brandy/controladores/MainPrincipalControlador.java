@@ -128,6 +128,7 @@ public class MainPrincipalControlador implements Initializable {
         stage.showAndWait();
 
 
+
     }
 
 
@@ -196,12 +197,13 @@ public class MainPrincipalControlador implements Initializable {
     void cambiartema(ActionEvent event) {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
+        ConfiguracionTemaControlador configuracionTemaControlador = null;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Brandy/vistas/configuracionTema.fxml"));
             Parent root = fxmlLoader.load();
-            ConfiguracionTemaControlador pantallaConfigCorreo = (ConfiguracionTemaControlador) fxmlLoader.getController();
+             configuracionTemaControlador = (ConfiguracionTemaControlador) fxmlLoader.getController();
            // pantallaConfigCorreo.setMainController(this);
-            pantallaConfigCorreo.setStage(stage);
+            configuracionTemaControlador.setStage(stage);
             stage.setTitle("Configuracion visual");
             stage.setScene(new Scene(root, 400, 400));
 
@@ -209,6 +211,8 @@ public class MainPrincipalControlador implements Initializable {
             e.printStackTrace();
         }
         stage.showAndWait();
+        reloj.setFormato24Horas(configuracionTemaControlador.formatoHora());
+        ;
 
 
     }

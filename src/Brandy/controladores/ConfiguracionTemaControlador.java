@@ -56,13 +56,8 @@ private MainPrincipalControlador mainPrincipalControlador = new MainPrincipalCon
 
         @FXML
         void aplicar(ActionEvent event) {
-            if (cbTema.getSelectionModel().getSelectedItem()!=null && !formatoHora.isSelected())
-              Application.setUserAgentStylesheet(cbTema.getSelectionModel().getSelectedItem());
-            else {
-                    Application.setUserAgentStylesheet(cbTema.getSelectionModel().getSelectedItem());
+                Application.setUserAgentStylesheet(cbTema.getSelectionModel().getSelectedItem());
 
-
-            }
 
 
         }
@@ -75,10 +70,15 @@ private MainPrincipalControlador mainPrincipalControlador = new MainPrincipalCon
         stage.close();
         }
 
+        public boolean formatoHora (){
+
+                return formatoHora.isSelected();
+        }
+
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
                 cbTema.getItems().addAll(Application.STYLESHEET_CASPIAN,Application.STYLESHEET_MODENA);
-            cbTema.getSelectionModel().select(Application.getUserAgentStylesheet()); //Este método nos devuelve el tema actual
+                cbTema.getSelectionModel().select(Application.getUserAgentStylesheet()); //Este método nos devuelve el tema actual
 
         }
 
