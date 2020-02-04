@@ -19,7 +19,7 @@ import java.security.GeneralSecurityException;
 import java.util.List;
 import java.util.Properties;
 
-public class Logica  {
+public class Logica {
 
     private static Logica INSTANCE = null;
 
@@ -29,7 +29,7 @@ public class Logica  {
     private List<Tarea> listaTareas;
 
 
-    private TreeItem nodoRaiz =new TreeItem("Correos");
+    private TreeItem nodoRaiz = new TreeItem("Correos");
 
     private String email;
     private String contra;
@@ -40,8 +40,8 @@ public class Logica  {
 
     private Logica() {
         listaCorreos = FXCollections.observableArrayList();
-        listaUsuarios= FXCollections.observableArrayList();
-        listaTareas= LogicaReloj.getInstance().getListaTareas();
+        listaUsuarios = FXCollections.observableArrayList();
+        listaTareas = LogicaReloj.getInstance().getListaTareas();
 
     }
 
@@ -69,21 +69,17 @@ public class Logica  {
     }
 
 
-
-    public void anadirUsuario(UsuarioCorreo u){
+    public void anadirUsuario(UsuarioCorreo u) {
         listaUsuarios.add(u);
     }
-
-
-
 
 
     public void cargarListaCorreos(Folder folder) {
         listaCorreos.clear();
 
-        if(folder!=null){
+        if (folder != null) {
             try {
-               // IMAPFolder folder = (IMAPFolder) store.getFolder("[Gmail]/Todos"); el final es la ruta
+                // IMAPFolder folder = (IMAPFolder) store.getFolder("[Gmail]/Todos"); el final es la ruta
                 //IMAPFolder folder = (IMAPFolder) store.getFolder(folderString);
 
                 if (!folder.isOpen())
@@ -92,7 +88,7 @@ public class Logica  {
                 Mensaje correo;
                 System.out.println(messages[0].toString());
                 System.out.println(folder.getFullName());
-                for(int i=0;i<messages.length;i++) {
+                for (int i = 0; i < messages.length; i++) {
                     correo = new Mensaje(messages[i]);
                     System.out.println(correo.toString());
                     listaCorreos.add(correo);
@@ -101,7 +97,7 @@ public class Logica  {
                 //e.printStackTrace();
             } catch (MessagingException e) {
                 //e.printStackTrace();
-            }catch (ArrayIndexOutOfBoundsException e) {
+            } catch (ArrayIndexOutOfBoundsException e) {
                 //e.printStackTrace();
             }
         }
@@ -109,40 +105,39 @@ public class Logica  {
     }
 
 
-
-    private TreeItemMail cargaCarpetas(UsuarioCorreo usuarioCorreo1, Folder carpeta,TreeItemMail rootItem) throws MessagingException, GeneralSecurityException {
+    private TreeItemMail cargaCarpetas(UsuarioCorreo usuarioCorreo1, Folder carpeta, TreeItemMail rootItem) throws MessagingException, GeneralSecurityException {
 
         Folder[] folders = null;
-        if(store!=null) {
+        if (store != null) {
 
-            if(carpeta==null){
+            if (carpeta == null) {
                 folders = store.getDefaultFolder().list(); //todas las del sistema
-                System.out.println("La carpeta " + folders.toString() );
-            }else{
+                System.out.println("La carpeta " + folders.toString());
+            } else {
                 folders = carpeta.list();
-                System.out.println("La carpeta " + carpeta.getName() );
+                System.out.println("La carpeta " + carpeta.getName());
 //carpetas de la carpeta en la que estoy
             }
-            if(rootItem==null){
+            if (rootItem == null) {
                 rootItem = new TreeItemMail(usuarioCorreo1.getEmail(), usuarioCorreo1, carpeta);
                 //System.out.println("La carpeta " + rootItem.toString() );
-            }else{
-               // System.out.println("cojo el delrecursirvo");
+            } else {
+                // System.out.println("cojo el delrecursirvo");
             }
 
             rootItem.setExpanded(true);
-             for (Folder folder : folders) {
-                 //Añadiendo carpetas al tree
-                 TreeItemMail item = new TreeItemMail(folder.getName(), usuarioCorreo1, folder);
-                 if ((folder.getType() & Folder.HOLDS_FOLDERS) != 0
-                         && folder.list().length>0) { //si tiene carpetas
-                     cargaCarpetas(usuarioCorreo1, folder, item);
-                }else{
-                     //System.out.println("La carpeta " + folder.getName() + " no tiene hijos.");
-                 }
-                 rootItem.getChildren().add(item);
-             }
-    }
+            for (Folder folder : folders) {
+                //Añadiendo carpetas al tree
+                TreeItemMail item = new TreeItemMail(folder.getName(), usuarioCorreo1, folder);
+                if ((folder.getType() & Folder.HOLDS_FOLDERS) != 0
+                        && folder.list().length > 0) { //si tiene carpetas
+                    cargaCarpetas(usuarioCorreo1, folder, item);
+                } else {
+                    //System.out.println("La carpeta " + folder.getName() + " no tiene hijos.");
+                }
+                rootItem.getChildren().add(item);
+            }
+        }
         return rootItem;
     }
 
@@ -153,28 +148,28 @@ public class Logica  {
         sf.setTrustAllHosts(true);
         prop.put("mail.imaps.ssl.trust", "*");
         prop.put("mail.imaps.ssl.socketFactory", sf);
-       store = usuarioCorreo1.getStore();
+        store = usuarioCorreo1.getStore();
         Session session = Session.getDefaultInstance(prop, null);
         store = session.getStore("imaps");
-        store.connect("imap.googlemail.com",usuarioCorreo1.getEmail(), usuarioCorreo1.getContra());
+        store.connect("imap.googlemail.com", usuarioCorreo1.getEmail(), usuarioCorreo1.getContra());
     }
 
 
     /*
     Clase de configurar mwetodos
      */
-    public void eliminar (UsuarioCorreo u) throws GeneralSecurityException, MessagingException {
+    public void eliminar(UsuarioCorreo u) throws GeneralSecurityException, MessagingException {
         Logica.getInstance().getListaUsuarios().remove(u);
 
 
     }
 
 
-    public  TreeItem actualizarTree() throws GeneralSecurityException, MessagingException {
+    public TreeItem actualizarTree() throws GeneralSecurityException, MessagingException {
         nodoRaiz.getChildren().clear();
         //nodoRaiz = new TreeItem("Correos");
-        for (int i = 0; i< getListaUsuarios().size(); i++){
-           iniciarSesion(getListaUsuarios().get(i));
+        for (int i = 0; i < getListaUsuarios().size(); i++) {
+            iniciarSesion(getListaUsuarios().get(i));
             nodoRaiz.setExpanded(true);
             nodoRaiz.getChildren().add((cargaCarpetas(getListaUsuarios().get(i), null, null)));
         }
@@ -184,10 +179,9 @@ public class Logica  {
     }
 
 
+    public void borrar_email(Mensaje m_borrar, Folder email_tree) {
 
-    public  void borrar_email(Mensaje m_borrar, Folder email_tree) {
-
-        if(email_tree.toString().equals("[Gmail]/Papelera")){
+        if (email_tree.toString().equals("[Gmail]/Papelera")) {
 
             try {
                 m_borrar.getMensaje().setFlag(Flags.Flag.DELETED, true);
@@ -196,12 +190,12 @@ public class Logica  {
                 e.printStackTrace();
             }
 
-        }else {
+        } else {
             Message[] m = new Message[]{m_borrar.getMensaje()};
             Folder trash = null;
             try {
-               trash = email_tree.getStore().getFolder("[Gmail]/Papelera");
-               // trash = store.getFolder("[Gmail]/Papelera");
+                trash = email_tree.getStore().getFolder("[Gmail]/Papelera");
+                // trash = store.getFolder("[Gmail]/Papelera");
                 email_tree.copyMessages(m, trash);
                 email_tree.close();
             } catch (MessagingException e) {
@@ -211,9 +205,9 @@ public class Logica  {
 
     }
 
-    public void actualizaTable (Folder folder){
-       listaCorreos.clear();
-       cargarListaCorreos(folder);
+    public void actualizaTable(Folder folder) {
+        listaCorreos.clear();
+        cargarListaCorreos(folder);
     }
 
     public void finalizar() {
@@ -221,42 +215,34 @@ public class Logica  {
     }
 
 
-
-
-
-
-
-
-
-
     public ObservableList cargarListaCorreosExamen() {
         listaCorreos.clear();
 
-            try {
-                // IMAPFolder folder = (IMAPFolder) store.getFolder("[Gmail]/Todos"); el final es la ruta
-                IMAPFolder folder = (IMAPFolder) store.getFolder("INBOX");
+        try {
+            // IMAPFolder folder = (IMAPFolder) store.getFolder("[Gmail]/Todos"); el final es la ruta
+            IMAPFolder folder = (IMAPFolder) store.getFolder("INBOX");
 
-                if (!folder.isOpen())
-                    folder.open(Folder.READ_WRITE);
-                Message[] messages = folder.getMessages();
-                Mensaje correo;
-                //System.out.println(messages[0].toString());
-                for(int i=0;i<messages.length;i++) {
-                    correo = new Mensaje(messages[i]);
-                   // System.out.println(correo.toString());
-                    listaCorreos.add(correo);
-                }
-            } catch (NoSuchProviderException e) {
-                //e.printStackTrace();
-            } catch (MessagingException e) {
-                //e.printStackTrace();
-            }catch (ArrayIndexOutOfBoundsException e) {
-                //e.printStackTrace();
+            if (!folder.isOpen())
+                folder.open(Folder.READ_WRITE);
+            Message[] messages = folder.getMessages();
+            Mensaje correo;
+            //System.out.println(messages[0].toString());
+            for (int i = 0; i < messages.length; i++) {
+                correo = new Mensaje(messages[i]);
+                // System.out.println(correo.toString());
+                listaCorreos.add(correo);
             }
-            return listaCorreos;
+        } catch (NoSuchProviderException e) {
+            //e.printStackTrace();
+        } catch (MessagingException e) {
+            //e.printStackTrace();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            //e.printStackTrace();
         }
-
+        return listaCorreos;
     }
+
+}
 
 
 

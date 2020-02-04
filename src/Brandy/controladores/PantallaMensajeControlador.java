@@ -57,12 +57,13 @@ public class PantallaMensajeControlador implements Initializable {
         serviciosEmail = new ServiciosEmail();
         progressIndicator.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
         progressIndicator.setVisible(false);
-    /**
-     * Asigno al botonel servicio
-     */
+        /**
+         * Asigno al botonel servicio
+         */
         btEnviar.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                    enviar();
+            @Override
+            public void handle(ActionEvent e) {
+                enviar();
             }
         });
 
@@ -70,75 +71,70 @@ public class PantallaMensajeControlador implements Initializable {
 
     public void enviar() {
 
-      UsuarioCorreo usuarioCorreo = cbDe.getSelectionModel().getSelectedItem();
-      String to = tfPara.getText();
-      String cc = tfCc.getText();
-      String asunto = tfAsunto.getText();
-      String cuerpo = htmlCuerpoMensaje.getHtmlText();
-      if(usuarioCorreo!=null && to!=null && !to.isEmpty()){
+        UsuarioCorreo usuarioCorreo = cbDe.getSelectionModel().getSelectedItem();
+        String to = tfPara.getText();
+        String cc = tfCc.getText();
+        String asunto = tfAsunto.getText();
+        String cuerpo = htmlCuerpoMensaje.getHtmlText();
+        if (usuarioCorreo != null && to != null && !to.isEmpty()) {
             //boolean mailEnviado = serviciosEmail.enviarCorreo(usuarioCorreo, to, cc, asunto, cuerpo);
-        if(!to.contains("@")){
-              Alert alert_null = new Alert(Alert.AlertType.WARNING);
-              alert_null.setTitle("Alerta");
-              alert_null.setContentText("Error formato email");
-              alert_null.showAndWait();
+            if (!to.contains("@")) {
+                Alert alert_null = new Alert(Alert.AlertType.WARNING);
+                alert_null.setTitle("Alerta");
+                alert_null.setContentText("Error formato email");
+                alert_null.showAndWait();
 
-              return; //esto sirve asi para salir del emtodo
+                return; //esto sirve asi para salir del emtodo
 
-          }
-
-
-          EnviarMensajeService enviarMensajeService = new EnviarMensajeService(usuarioCorreo, to, cc, asunto, cuerpo);
-          enviarMensajeService.start();
-
-          enviarMensajeService.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-              @Override
-              public void handle(WorkerStateEvent workerStateEvent) {
-                  //Recuperamos el valor de retorno
-                  progressIndicator.setVisible(false);
-                  stage.close();
-              }
-          });
-          enviarMensajeService.setOnFailed(new EventHandler<WorkerStateEvent>() {
-              @Override
-              public void handle(WorkerStateEvent workerStateEvent) {
-                  Alert alert_null = new Alert(Alert.AlertType.WARNING);
-                  alert_null.setTitle("Alerta");
-                  alert_null.setContentText("Error al enviar");
-                  alert_null.showAndWait();
-                  progressIndicator.setVisible(false);
-
-              }
-          });
-
-          enviarMensajeService.setOnRunning(new EventHandler<WorkerStateEvent>() {
-              @Override
-              public void handle(WorkerStateEvent workerStateEvent) {
-
-                  progressIndicator.setVisible(true);
-              }
-          });
+            }
 
 
-      }else{
-          Alert alert = new Alert(Alert.AlertType.ERROR);
-          alert.setTitle("ERROR");
-          alert.setHeaderText("Debes seleccionar una valor en el combo y para quien va el mensaje");
-          alert.show();
-      }
+            EnviarMensajeService enviarMensajeService = new EnviarMensajeService(usuarioCorreo, to, cc, asunto, cuerpo);
+            enviarMensajeService.start();
+
+            enviarMensajeService.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                @Override
+                public void handle(WorkerStateEvent workerStateEvent) {
+                    //Recuperamos el valor de retorno
+                    progressIndicator.setVisible(false);
+                    stage.close();
+                }
+            });
+            enviarMensajeService.setOnFailed(new EventHandler<WorkerStateEvent>() {
+                @Override
+                public void handle(WorkerStateEvent workerStateEvent) {
+                    Alert alert_null = new Alert(Alert.AlertType.WARNING);
+                    alert_null.setTitle("Alerta");
+                    alert_null.setContentText("Error al enviar");
+                    alert_null.showAndWait();
+                    progressIndicator.setVisible(false);
+
+                }
+            });
+
+            enviarMensajeService.setOnRunning(new EventHandler<WorkerStateEvent>() {
+                @Override
+                public void handle(WorkerStateEvent workerStateEvent) {
+
+                    progressIndicator.setVisible(true);
+                }
+            });
 
 
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Debes seleccionar una valor en el combo y para quien va el mensaje");
+            alert.show();
         }
 
 
+    }
 
 
     public void cancelar(ActionEvent event) {
         stage.close();
     }
-
-
-
 
 
     public void setStage(Stage stage) {
@@ -153,21 +149,18 @@ public class PantallaMensajeControlador implements Initializable {
         htmlCuerpoMensaje.setHtmlText(msg.getContent());
 
 
-
-
     }
+
     public void responder(Mensaje msg) throws Exception {
         UsuarioCorreo usuarioCorreo = cbDe.getSelectionModel().getSelectedItem();
         tfPara.setText(msg.getRemitente());
         tfCc.setText("");
-        tfAsunto.setText("RE:"+msg.getAsunto());
-        String contentResponder = "\n......................................................................................\n"+msg.getContent();
+        tfAsunto.setText("RE:" + msg.getAsunto());
+        String contentResponder = "\n......................................................................................\n" + msg.getContent();
         htmlCuerpoMensaje.setHtmlText(contentResponder);
 
 
-
     }
-
 
 
 }

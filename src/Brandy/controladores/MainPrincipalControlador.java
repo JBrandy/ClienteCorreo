@@ -20,15 +20,18 @@ import javafx.scene.text.Font;
 import javafx.scene.web.WebView;
 import reloj.Evento;
 import reloj.Reloj;
+
 import java.io.IOException;
 import java.net.URL;
 import java.security.GeneralSecurityException;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import reloj.Tarea;
+
 import javax.mail.MessagingException;
 
 public class MainPrincipalControlador implements Initializable {

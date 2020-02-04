@@ -1,4 +1,5 @@
 package Brandy.controladores;
+
 import Brandy.logica.Logica;
 import Brandy.models.UsuarioCorreo;
 import javafx.collections.ObservableList;
@@ -57,15 +58,15 @@ public class ConfigurarCorreoControlador implements Initializable {
     @FXML
     void eliminar(ActionEvent event) throws GeneralSecurityException, MessagingException {
 
-       Logica.getInstance().eliminar(tableCorreos.getSelectionModel().getSelectedItem());
-       Logica.getInstance().actualizarTree();
+        Logica.getInstance().eliminar(tableCorreos.getSelectionModel().getSelectedItem());
+        Logica.getInstance().actualizarTree();
 
 
     }
 
     @FXML
     void salir(ActionEvent event) {
-     stage.close();
+        stage.close();
     }
 
     @Override

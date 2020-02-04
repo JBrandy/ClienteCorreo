@@ -1,9 +1,8 @@
 package Brandy.controladores;
 
 
-import Brandy.logica.Logica;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -24,7 +22,7 @@ import java.util.ResourceBundle;
 
 public class PantallaTareasControlador implements Initializable {
 
-   @FXML
+    @FXML
     private TableView<Tarea> tableView;
 
     @FXML
@@ -63,7 +61,7 @@ public class PantallaTareasControlador implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-            tableView.setItems(FXCollections.observableArrayList(LogicaReloj.getInstance().getListaTareas()));
+        tableView.setItems(FXCollections.observableArrayList(LogicaReloj.getInstance().getListaTareas()));
 
     }
 }

@@ -42,7 +42,6 @@ public class PantallaAnadirTareaControlador {
         LogicaReloj.getInstance().anadirTarea(tarea);
 
 
-
     }
 
     public void setStage(Stage stage) {

@@ -17,15 +17,15 @@ public class ServiciosEmail {
     // https://www.javatpoint.com/example-of-sending-email-using-java-mail-api
 
     public boolean enviarCorreo(UsuarioCorreo usuarioCorreo, String to, String cc, String asunto, String cuerpo) throws MessagingException {
-       Session session = getSession(usuarioCorreo);
+        Session session = getSession(usuarioCorreo);
         //Prepare email message
         Message message = prepareMessage(session, usuarioCorreo.getEmail(), to, asunto, cuerpo, cc);
-        if(message!=null){
+        if (message != null) {
 
-                //Send mail
-                Transport.send(message);
-                System.out.println("Message sent successfully");
-                return true;
+            //Send mail
+            Transport.send(message);
+            System.out.println("Message sent successfully");
+            return true;
 
         }
         return false;
@@ -61,7 +61,7 @@ public class ServiciosEmail {
     //Message.RecipientType.BCC Destinatario al que se envía copia, pero sin que los demás destinatarios puedan verlo.
 
 
-    private Session getSession(UsuarioCorreo usuarioCorreo){
+    private Session getSession(UsuarioCorreo usuarioCorreo) {
         System.out.println("Preparing to send email");
         Properties properties = new Properties();
         MailSSLSocketFactory sf = null;

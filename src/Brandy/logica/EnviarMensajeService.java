@@ -3,6 +3,7 @@ package Brandy.logica;
 import Brandy.models.UsuarioCorreo;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+
 /* se tipa con el metodok que queramos*/
 public class EnviarMensajeService extends Service<Boolean> {
 
@@ -26,8 +27,8 @@ public class EnviarMensajeService extends Service<Boolean> {
     protected Task<Boolean> createTask() {
         return new Task<>() {
             @Override
-            protected Boolean call() throws Exception{
-                return serviciosEmail.enviarCorreo(usuarioCorreo,to,cc,asunto,cuerpo);
+            protected Boolean call() throws Exception {
+                return serviciosEmail.enviarCorreo(usuarioCorreo, to, cc, asunto, cuerpo);
             }
         };
     }
@@ -35,6 +36,6 @@ public class EnviarMensajeService extends Service<Boolean> {
 
 
     /* ecuando esxtendemos devolvera un taSK TIPADO CON LO QUE LE PASAMOS POR EL EXTENDS
-        *
-    * */
+     *
+     * */
 }

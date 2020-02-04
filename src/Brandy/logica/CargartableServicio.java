@@ -12,11 +12,11 @@ import javax.mail.MessagingException;
 public class CargartableServicio extends Service<Boolean> {
 
 
-  private Mensaje mensaje;
-  private Message messge;
+    private Mensaje mensaje;
+    private Message messge;
 
     public CargartableServicio(Mensaje mensaje) {
-        this.messge=messge;
+        this.messge = messge;
         this.mensaje = new Mensaje(messge);
     }
 
@@ -24,7 +24,7 @@ public class CargartableServicio extends Service<Boolean> {
     protected Task<Boolean> createTask() {
         return new Task<>() {
             @Override
-            protected Boolean call() throws Exception{
+            protected Boolean call() throws Exception {
                 return mensaje.isRead();
             }
         };
