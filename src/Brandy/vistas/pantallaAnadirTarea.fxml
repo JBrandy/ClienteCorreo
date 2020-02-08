@@ -12,31 +12,32 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <DatePicker fx:id="date" layoutX="51.0" layoutY="141.0" prefHeight="25.0" prefWidth="155.0" />
-            <TextField fx:id="tvHora" layoutX="56.0" layoutY="227.0" prefHeight="25.0" prefWidth="59.0" />
-            <TextField fx:id="tvMinuto" layoutX="147.0" layoutY="227.0" prefHeight="25.0" prefWidth="59.0" />
-            <Label layoutX="101.0" layoutY="96.0" text="Fecha">
+            <DatePicker fx:id="date" layoutX="51.0" layoutY="141.0" prefHeight="25.0" prefWidth="155.0" AnchorPane.topAnchor="141.0" />
+            <TextField fx:id="tvHora" layoutX="56.0" layoutY="227.0" prefHeight="25.0" prefWidth="59.0" AnchorPane.topAnchor="227.0" />
+            <TextField fx:id="tvMinuto" layoutX="147.0" layoutY="227.0" prefHeight="25.0" prefWidth="59.0" AnchorPane.topAnchor="227.0" />
+            <Label layoutX="101.0" layoutY="96.0" text="Fecha" AnchorPane.topAnchor="96.0">
                <font>
                   <Font size="23.0" />
                </font>
             </Label>
-            <Label layoutX="51.0" layoutY="178.0" text="Hora y Minutos">
+            <Label layoutX="51.0" layoutY="178.0" text="Hora y Minutos" AnchorPane.topAnchor="178.0">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="126.0" layoutY="214.0" prefHeight="17.0" prefWidth="15.0" text=":">
+            <Label layoutX="126.0" layoutY="214.0" prefHeight="17.0" prefWidth="15.0" text=":" AnchorPane.topAnchor="227.0">
                <font>
                   <Font size="32.0" />
                </font>
             </Label>
-            <Button fx:id="btAnadir" layoutX="102.0" layoutY="271.0" mnemonicParsing="false" onAction="#anadir" prefHeight="25.0" prefWidth="57.0" text="Añadir" />
-            <Label layoutX="103.0" layoutY="14.0" text="Tarea">
+            <Button fx:id="btAnadir" layoutX="57.0" layoutY="270.0" mnemonicParsing="false" onAction="#anadir" prefHeight="25.0" prefWidth="57.0" text="Añadir" AnchorPane.bottomAnchor="26.0" />
+            <Label layoutX="103.0" layoutY="14.0" text="Tarea" AnchorPane.topAnchor="14.0">
                <font>
                   <Font size="23.0" />
                </font>
             </Label>
-            <TextField fx:id="tvTarea" layoutX="53.0" layoutY="54.0" prefHeight="25.0" prefWidth="155.0" />
+            <TextField fx:id="tvTarea" layoutX="53.0" layoutY="54.0" prefHeight="25.0" prefWidth="155.0" AnchorPane.topAnchor="54.0" />
+            <Button fx:id="btSalir" layoutX="149.0" layoutY="269.0" mnemonicParsing="false" onAction="#salir" prefHeight="26.0" prefWidth="56.0" text="Salir" AnchorPane.bottomAnchor="26.200000000000045" />
          </children>
     </AnchorPane>
   </children>

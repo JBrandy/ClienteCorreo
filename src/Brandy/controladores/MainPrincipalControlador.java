@@ -351,8 +351,11 @@ public class MainPrincipalControlador implements Initializable {
             @Override
             public void inicioTarea(Tarea tarea) {
                 Alert alert_null = new Alert(Alert.AlertType.WARNING);
-                alert_null.setTitle("Funciona");
-                alert_null.setContentText("ya funciona");
+                alert_null.setTitle("Recordatoria de tarea");
+                alert_null.setContentText(tarea.getTarea());
+                    if (alert_null.isResizable())
+                        tarea.setRealizado("Realizado");
+
                 alert_null.showAndWait();
             }
         });

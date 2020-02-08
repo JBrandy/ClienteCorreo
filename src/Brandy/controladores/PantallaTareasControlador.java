@@ -41,7 +41,7 @@ public class PantallaTareasControlador implements Initializable {
             PantallaAnadirTareaControlador pantallaAnadirTareaControlador = (PantallaAnadirTareaControlador) fxmlLoader.getController();
             pantallaAnadirTareaControlador.setStage(stage);
             stage.setTitle("Correo");
-            stage.setScene(new Scene(root, 600, 400));
+            stage.setScene(new Scene(root, 275, 350));
 
         } catch (IOException e) {
             e.printStackTrace();
