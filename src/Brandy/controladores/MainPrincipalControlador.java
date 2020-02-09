@@ -359,7 +359,7 @@ public class MainPrincipalControlador implements Initializable {
                 ButtonType buttonTypeOne = new ButtonType("Realizado");
                 ButtonType buttonTypeTwo = new ButtonType("NO Realizado");
 
-                ButtonType buttonTypeCancel = new ButtonType("Pendiente", ButtonBar.ButtonData.CANCEL_CLOSE);
+                ButtonType buttonTypeCancel = new ButtonType("Nota", ButtonBar.ButtonData.CANCEL_CLOSE);
 
                 alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeCancel);
 
@@ -371,8 +371,14 @@ public class MainPrincipalControlador implements Initializable {
                     tarea.setRealizado("NO Realizado");
 
                 }  else {
-                    // ... user chose CANCEL or closed the dialog
-                    tarea.setRealizado("Pendiente");
+                    TextInputDialog dialog = new TextInputDialog("Escribe aquí tu nota");
+                    dialog.setTitle("Recordatorio de Tareas");
+                    dialog.setHeaderText("Escribe pendiente, posponer etc ");
+                    Optional<String> result2 = dialog.showAndWait();
+
+                    result2.ifPresent(nota -> tarea.setRealizado(result2.get()));
+
+                    ;
                 }
 
             }
