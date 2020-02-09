@@ -24,6 +24,7 @@ import reloj.Reloj;
 import java.io.IOException;
 import java.net.URL;
 import java.security.GeneralSecurityException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
@@ -350,13 +351,24 @@ public class MainPrincipalControlador implements Initializable {
         reloj.addEvento(new Evento() {
             @Override
             public void inicioTarea(Tarea tarea) {
-                Alert alert_null = new Alert(Alert.AlertType.WARNING);
-                alert_null.setTitle("Recordatoria de tarea");
-                alert_null.setContentText(tarea.getTarea());
-                    if (alert_null.isResizable())
-                        tarea.setRealizado("Realizado");
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Recordatoria de tarea");
+                alert.setContentText(" Has realizado la tarea: "+tarea.getTarea());
+               /*
+                 ButtonType buttonTypeTwo = new ButtonType("No realizado");
+                 alert.getButtonTypes().setAll(
+                 Asi podreañadir losbotones que quiera a la alerta :D
+                */
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK){
+                    // ... user chose OK
+                    tarea.setRealizado("Realizado");
+                } else if (result.get() == ButtonType.CANCEL) {
+                    tarea.setRealizado("No Realizado");
+                } else {
+                    // ... user chose CANCEL or closed the dialog
+                }
 
-                alert_null.showAndWait();
             }
         });
 
