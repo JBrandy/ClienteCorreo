@@ -220,6 +220,7 @@ public class MainPrincipalControlador implements Initializable {
         }
         stage.showAndWait();
         reloj.setFormato24Horas(configuracionTemaControlador.formatoHora());
+        reloj.setFormato24Horas(configuracionTemaControlador.formatoHora());
 
 
     }
