@@ -42,6 +42,11 @@ public class MainPrincipalControlador implements Initializable {
 
     private FiltrarMensajes filtrarMensajes;
 
+    private ButtonType buttonTypeOne = new ButtonType("Realizado");
+    private ButtonType buttonTypeTwo = new ButtonType("NO Realizado");
+
+    private ButtonType buttonTypeCancel = new ButtonType("Nota", ButtonBar.ButtonData.CANCEL_CLOSE);
+
     @FXML
     private Menu mInicio;
 
@@ -353,24 +358,18 @@ public class MainPrincipalControlador implements Initializable {
             public void inicioTarea(Tarea tarea) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Recordatorio de Tareas");
-                alert.setHeaderText("Has realizado la tarea: "+ tarea.getTarea());
+                alert.setHeaderText("Has realizado la tarea: " + tarea.getTarea());
                 alert.setContentText("Escoge unaopción.");
-
-                ButtonType buttonTypeOne = new ButtonType("Realizado");
-                ButtonType buttonTypeTwo = new ButtonType("NO Realizado");
-
-                ButtonType buttonTypeCancel = new ButtonType("Nota", ButtonBar.ButtonData.CANCEL_CLOSE);
-
                 alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeCancel);
 
                 Optional<ButtonType> result = alert.showAndWait();
-                if (result.get() == buttonTypeOne){
+                if (result.get() == buttonTypeOne) {
                     tarea.setRealizado("Realizado");
                 } else if (result.get() == buttonTypeTwo) {
                     // ... user chose "Two"
                     tarea.setRealizado("NO Realizado");
 
-                }  else {
+                } else {
                     TextInputDialog dialog = new TextInputDialog("Escribe aquí tu nota");
                     dialog.setTitle("Recordatorio de Tareas");
                     dialog.setHeaderText("Escribe pendiente, posponer etc ");
