@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import reloj.Reloj;
 
 import javax.mail.MessagingException;
 import java.io.*;
@@ -20,7 +21,7 @@ import java.util.List;
 
 public class Launcher extends Application {
    private static   List<UsuarioCorreo> list;
-
+    private static Reloj reloj;
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("vistas/mainPrincipal.fxml"));
@@ -35,10 +36,16 @@ public class Launcher extends Application {
         inicio();
         launch(args);
         guardarFichero();
+        fin();
 
 
 
     }
+
+    public static void fin(){
+        reloj.stopReloj();
+    }
+
 
     public  static void inicio() throws GeneralSecurityException, MessagingException {
         if(list!=null)
@@ -92,9 +99,14 @@ public class Launcher extends Application {
 
             fis = new FileInputStream("src\\bbdd.dat");
             ois = new ObjectInputStream(fis);
-           list =(List<UsuarioCorreo>) ois.readObject(); //
-            System.out.println(list.get(0).toString());
-            Logica.getInstance().getListaUsuarios().addAll(list);
+            try{
+                list =(List<UsuarioCorreo>) ois.readObject(); //
+                System.out.println(list.get(0).toString());
+                Logica.getInstance().getListaUsuarios().addAll(list);
+            }catch (IndexOutOfBoundsException e){
+
+            }
+
 
 
 
