@@ -352,21 +352,27 @@ public class MainPrincipalControlador implements Initializable {
             @Override
             public void inicioTarea(Tarea tarea) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Recordatoria de tarea");
-                alert.setContentText(" Has realizado la tarea: "+tarea.getTarea());
-               /*
-                 ButtonType buttonTypeTwo = new ButtonType("No realizado");
-                 alert.getButtonTypes().setAll(
-                 Asi podreañadir losbotones que quiera a la alerta :D
-                */
+                alert.setTitle("Recordatorio de Tareas");
+                alert.setHeaderText("Has realizado la tarea: "+ tarea.getTarea());
+                alert.setContentText("Escoge unaopción.");
+
+                ButtonType buttonTypeOne = new ButtonType("Realizado");
+                ButtonType buttonTypeTwo = new ButtonType("NO Realizado");
+
+                ButtonType buttonTypeCancel = new ButtonType("Pendiente", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeCancel);
+
                 Optional<ButtonType> result = alert.showAndWait();
-                if (result.get() == ButtonType.OK){
-                    // ... user chose OK
+                if (result.get() == buttonTypeOne){
                     tarea.setRealizado("Realizado");
-                } else if (result.get() == ButtonType.CANCEL) {
-                    tarea.setRealizado("No Realizado");
-                } else {
+                } else if (result.get() == buttonTypeTwo) {
+                    // ... user chose "Two"
+                    tarea.setRealizado("NO Realizado");
+
+                }  else {
                     // ... user chose CANCEL or closed the dialog
+                    tarea.setRealizado("Pendiente");
                 }
 
             }

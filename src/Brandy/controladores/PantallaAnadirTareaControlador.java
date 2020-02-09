@@ -52,7 +52,7 @@ public class PantallaAnadirTareaControlador {
         String realizado = null;
         Tarea tarea = new Tarea(tareaS, fecha, hora, minuto, null);
         LogicaReloj.getInstance().anadirTarea(tarea);
-        Alert alert_null = new Alert(Alert.AlertType.CONFIRMATION);
+        Alert alert_null = new Alert(Alert.AlertType.INFORMATION);
         alert_null.setTitle("Información de Tareas");
         alert_null.setContentText("La Tarea "+ tareaS+ " ha sido añadida correctamente");
         alert_null.showAndWait();
