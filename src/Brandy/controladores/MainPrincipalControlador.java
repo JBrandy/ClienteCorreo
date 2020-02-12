@@ -44,8 +44,8 @@ public class MainPrincipalControlador implements Initializable {
 
     private ButtonType buttonTypeOne = new ButtonType("Realizado");
     private ButtonType buttonTypeTwo = new ButtonType("NO Realizado");
-
     private ButtonType buttonTypeCancel = new ButtonType("Nota", ButtonBar.ButtonData.CANCEL_CLOSE);
+
 
     @FXML
     private Menu mInicio;
@@ -220,7 +220,7 @@ public class MainPrincipalControlador implements Initializable {
         }
         stage.showAndWait();
         reloj.setFormato24Horas(configuracionTemaControlador.formatoHora());
-        reloj.setFormato24Horas(configuracionTemaControlador.formatoHora());
+       
 
 
     }

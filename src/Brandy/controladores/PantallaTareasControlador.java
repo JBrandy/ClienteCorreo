@@ -1,6 +1,7 @@
 package Brandy.controladores;
 
 
+import Brandy.logica.Logica;
 import javafx.collections.FXCollections;
 
 import javafx.event.ActionEvent;
@@ -47,13 +48,14 @@ public class PantallaTareasControlador implements Initializable {
             e.printStackTrace();
         }
         stage.showAndWait();
-        tableView.setItems(FXCollections.observableArrayList(LogicaReloj.getInstance().getListaTareas()));
+        tableView.setItems(FXCollections.observableArrayList(Logica.getInstance().getListaTareas()));
     }
 
     @FXML
     void eliminar(ActionEvent event) {
         LogicaReloj.getInstance().borrarTarea(tableView.getSelectionModel().getSelectedItem());
-        tableView.setItems(FXCollections.observableArrayList(LogicaReloj.getInstance().getListaTareas()));
+        Logica.getInstance().getListaTareas().remove(tableView.getSelectionModel().getSelectedItem());
+        tableView.setItems(FXCollections.observableArrayList(Logica.getInstance().getListaTareas()));
     }
 
     public void setStage(Stage stage) {
@@ -61,7 +63,7 @@ public class PantallaTareasControlador implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        tableView.setItems(FXCollections.observableArrayList(LogicaReloj.getInstance().getListaTareas()));
+        tableView.setItems(FXCollections.observableArrayList(Logica.getInstance().getListaTareas()));
 
     }
 }

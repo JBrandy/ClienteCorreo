@@ -41,7 +41,7 @@ public class Logica {
     private Logica() {
         listaCorreos = FXCollections.observableArrayList();
         listaUsuarios = FXCollections.observableArrayList();
-        listaTareas = LogicaReloj.getInstance().getListaTareas();
+        listaTareas = FXCollections.observableArrayList();
 
     }
 
