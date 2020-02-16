@@ -24,9 +24,7 @@ import reloj.Reloj;
 import java.io.IOException;
 import java.net.URL;
 import java.security.GeneralSecurityException;
-import java.util.Optional;
-import java.util.ResourceBundle;
-import java.util.Scanner;
+import java.util.*;
 
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -111,6 +109,20 @@ public class MainPrincipalControlador implements Initializable {
     private MenuItem btCongif;
 
     private TreeItemMail TreeItem;
+
+    @FXML
+    private Button btImprimir;
+
+
+
+    @FXML
+    void imprimir(ActionEvent event) {
+        JRBeanCollectionDataSource jr = new JRBeanCollectionDataSource(lista); //lista sería la colección a mostrar. Típicamente saldría de la lógica de nuestra aplicación
+        Map<String,Object> parametros = new HashMap<>(); //En este caso no hay parámetros, aunque podría haberlos
+        JasperPrint print = JasperFillManager.fillReport(getClass().getResourceAsStream("/Brandy/controladores/informes/jasper/primerinforme.jasper"), parametros, jr);
+        JasperExportManager.exportReportToPdfFile(print, "informes/primerinforme.pdf");
+    }
+
 
 
     @FXML
@@ -345,6 +357,8 @@ public class MainPrincipalControlador implements Initializable {
             e.printStackTrace();
         }
         stage.showAndWait();
+
+
     }
 
 

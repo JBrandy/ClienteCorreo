@@ -11,16 +11,15 @@ import javax.mail.internet.MimeMessage;
 
 public class Mensaje  {
 
-    private Message mensaje;
-    public Mensaje(Message mensaje) {
-        this.mensaje = mensaje;
+    private Message message;
+    public Mensaje(Message message) {
+        this.message = message;
     }
-
 
     public String getAsunto(){
         String sub=null;
         try {
-            sub = mensaje.getSubject();
+            sub = message.getSubject();
         } catch (MessagingException e) {
             e.printStackTrace();
         }
@@ -30,7 +29,7 @@ public class Mensaje  {
     public Object getContenido(){
         Object obj=null;
         try {
-            obj = mensaje.getContent();
+            obj = message.getContent();
         } catch (MessagingException | IOException e) {
             e.printStackTrace();
         }
@@ -40,7 +39,7 @@ public class Mensaje  {
     public  String getRemitente(){
         Address[] sub=null;
         try {
-            sub=mensaje.getFrom();
+            sub= message.getFrom();
         } catch (MessagingException e) {
             e.printStackTrace();
         }
@@ -50,7 +49,7 @@ public class Mensaje  {
     public  Date getFecha(){
         Date sub=null;
         try {
-            sub=mensaje.getReceivedDate();
+            sub= message.getReceivedDate();
         } catch (MessagingException e) {
             e.printStackTrace();
         }
@@ -69,14 +68,14 @@ public class Mensaje  {
 
     public String getContent() throws Exception {
         String resultado = "";
-        MimeMessageParser parser = new MimeMessageParser((MimeMessage) mensaje);
+        MimeMessageParser parser = new MimeMessageParser((MimeMessage) message);
         parser.parse();
 
-        if (mensaje.isMimeType("text/plain")) {
+        if (message.isMimeType("text/plain")) {
             resultado = parser.getPlainContent();
-        } else if (mensaje.isMimeType("multipart/*")) {
+        } else if (message.isMimeType("multipart/*")) {
             resultado = parser.getHtmlContent();
-        } else if (mensaje.isMimeType(" text/html")) {
+        } else if (message.isMimeType(" text/html")) {
             resultado = parser.getHtmlContent();
 
         }
@@ -84,17 +83,17 @@ public class Mensaje  {
         return resultado;
     }
 
-    public Message getMensaje() {
-        return mensaje;
+    public Message getMessage() {
+        return message;
     }
 
-    public void setMensaje(Message mensaje) {
-        this.mensaje = mensaje;
+    public void setMessage(Message message) {
+        this.message = message;
     }
 
     public boolean isRead()  {
         try {
-            return mensaje.isSet(Flags.Flag.SEEN);
+            return message.isSet(Flags.Flag.SEEN);
         } catch (MessagingException e) {
             e.printStackTrace();
         }return true;

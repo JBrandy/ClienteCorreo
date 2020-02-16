@@ -10,7 +10,6 @@ import javafx.collections.ObservableList;
 
 import com.sun.mail.imap.IMAPFolder;
 import javafx.scene.control.TreeItem;
-import reloj.LogicaReloj;
 import reloj.Tarea;
 
 import javax.mail.*;
@@ -184,14 +183,14 @@ public class Logica {
         if (email_tree.toString().equals("[Gmail]/Papelera")) {
 
             try {
-                m_borrar.getMensaje().setFlag(Flags.Flag.DELETED, true);
+                m_borrar.getMessage().setFlag(Flags.Flag.DELETED, true);
                 email_tree.close();
             } catch (MessagingException e) {
                 e.printStackTrace();
             }
 
         } else {
-            Message[] m = new Message[]{m_borrar.getMensaje()};
+            Message[] m = new Message[]{m_borrar.getMessage()};
             Folder trash = null;
             try {
                 trash = email_tree.getStore().getFolder("[Gmail]/Papelera");
