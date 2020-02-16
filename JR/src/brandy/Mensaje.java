@@ -1,50 +1,118 @@
 package brandy;
 
+import org.apache.commons.mail.util.MimeMessageParser;
+
+import javax.mail.Address;
+import javax.mail.Flags;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import java.io.IOException;
 import java.util.Date;
 
 public class Mensaje {
+
+    private Message message;
+    public Mensaje(Message message) {
+        this.message = message;
+    }
+
 
     private String asunto;
     private String contenido;
     private Date fecha;
     private String remitente;
 
-    public Mensaje(String asunto, String contenido, Date fecha, String remitente) {
-        this.asunto = asunto;
-        this.contenido = contenido;
-        this.fecha = fecha;
-        this.remitente = remitente;
+    public Mensaje(String asunto, String contenido, Date fecha, String remitente) throws Exception {
+        this.asunto = getAsunto();
+        this.contenido = getContent();
+        this.fecha = getFecha();
+        this.remitente = getRemitente();
     }
 
-    public String getAsunto() {
-        return asunto;
+    public String getAsunto(){
+        String sub=null;
+        try {
+            sub = message.getSubject();
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        return sub;
     }
 
-    public void setAsunto(String asunto) {
-        this.asunto = asunto;
+    public Object getContenido(){
+        Object obj=null;
+        try {
+            obj = message.getContent();
+        } catch (MessagingException | IOException e) {
+            e.printStackTrace();
+        }
+        return obj;
     }
 
-    public String getContenido() {
-        return contenido;
+    public  String getRemitente(){
+        Address[] sub=null;
+        try {
+            sub= message.getFrom();
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        return String.valueOf(sub[0]);
     }
 
-    public void setContenido(String contenido) {
-        this.contenido = contenido;
+    public  Date getFecha(){
+        Date sub=null;
+        try {
+            sub= message.getReceivedDate();
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        return sub;
     }
 
-    public Date getFecha() {
-        return fecha;
+
+    @Override
+    public String toString() {
+        return " " + getRemitente() + "," + getFecha() +
+                '}';
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+
+
+
+    public String getContent() throws Exception {
+        String resultado = "";
+        MimeMessageParser parser = new MimeMessageParser((MimeMessage) message);
+        parser.parse();
+
+        if (message.isMimeType("text/plain")) {
+            resultado = parser.getPlainContent();
+        } else if (message.isMimeType("multipart/*")) {
+            resultado = parser.getHtmlContent();
+        } else if (message.isMimeType(" text/html")) {
+            resultado = parser.getHtmlContent();
+
+        }
+
+        return resultado;
     }
 
-    public String getRemitente() {
-        return remitente;
+    public Message getMessage() {
+        return message;
     }
 
-    public void setRemitente(String remitente) {
-        this.remitente = remitente;
+    public void setMessage(Message message) {
+        this.message = message;
     }
+
+    public boolean isRead()  {
+        try {
+            return message.isSet(Flags.Flag.SEEN);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }return true;
+    }
+
+
+
 }

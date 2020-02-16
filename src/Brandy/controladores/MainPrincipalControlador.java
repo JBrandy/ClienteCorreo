@@ -131,7 +131,7 @@ public class MainPrincipalControlador implements Initializable {
         Map<String,Object> parametros = new HashMap<>(); //En este caso no hay parámetros, aunque podría haberlos
         JasperPrint print = null;
         try {
-            print = JasperFillManager.fillReport(getClass().getResourceAsStream("/Brandy/jasper/Correo.jasper"), parametros, jr);
+            print = JasperFillManager.fillReport(getClass().getResourceAsStream("/Brandy/jasper/Correo2.jasper"), parametros, jr);
         } catch (JRException e) {
             e.printStackTrace();
         }

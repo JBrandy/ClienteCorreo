@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FactoriaCorreo {
-    public static List<Mensaje> createListaCorreos()
-    {
+    public static List<Mensaje> createListaCorreos() throws Exception {
         List<Mensaje> listaCorreos = new ArrayList<>();
         listaCorreos.add(new Mensaje("asunto","contenido", Date.valueOf(LocalDate.now()),"remitente"));
         return listaCorreos;
