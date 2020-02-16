@@ -4,6 +4,7 @@ module ClienteCorreo {
     requires javafx.graphics;
     requires javafx.base;
     requires java.mail;
+    requires java.sql;
     requires javafx.web;
     requires commons.email;
     requires Reloj;

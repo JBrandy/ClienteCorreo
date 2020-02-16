@@ -121,7 +121,7 @@ public class MainPrincipalControlador implements Initializable {
 
 
     @FXML
-    void imprimir(ActionEvent event) throws JRException {
+    void imprimir(ActionEvent event)  {
         List<Mensaje> lista = new ArrayList<>();
         Mensaje m = tableView.getSelectionModel().getSelectedItem();
 
@@ -129,8 +129,17 @@ public class MainPrincipalControlador implements Initializable {
 
         JRBeanCollectionDataSource jr = new JRBeanCollectionDataSource(lista); //lista sería la colección a mostrar. Típicamente saldría de la lógica de nuestra aplicación
         Map<String,Object> parametros = new HashMap<>(); //En este caso no hay parámetros, aunque podría haberlos
-        JasperPrint print = JasperFillManager.fillReport(getClass().getResourceAsStream("/Brandy/controladores/informes/jasper/PruebaCorreos.jasper"), parametros, jr);
-        JasperExportManager.exportReportToPdfFile(print, "primerinforme.pdf");
+        JasperPrint print = null;
+        try {
+            print = JasperFillManager.fillReport(getClass().getResourceAsStream("/Brandy/jasper/Correo.jasper"), parametros, jr);
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
+        try {
+            JasperExportManager.exportReportToPdfFile(print, "Correo.pdf");
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
     }
 
 
