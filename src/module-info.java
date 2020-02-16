@@ -7,6 +7,7 @@ module ClienteCorreo {
     requires javafx.web;
     requires commons.email;
     requires Reloj;
+    requires jasperreports;
 
 
     exports Brandy.controladores;

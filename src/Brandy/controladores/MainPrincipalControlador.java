@@ -18,6 +18,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.web.WebView;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import reloj.Evento;
 import reloj.Reloj;
 
@@ -116,11 +121,16 @@ public class MainPrincipalControlador implements Initializable {
 
 
     @FXML
-    void imprimir(ActionEvent event) {
+    void imprimir(ActionEvent event) throws JRException {
+        List<Mensaje> lista = new ArrayList<>();
+        Mensaje m = tableView.getSelectionModel().getSelectedItem();
+
+        lista.add(m);
+
         JRBeanCollectionDataSource jr = new JRBeanCollectionDataSource(lista); //lista sería la colección a mostrar. Típicamente saldría de la lógica de nuestra aplicación
         Map<String,Object> parametros = new HashMap<>(); //En este caso no hay parámetros, aunque podría haberlos
-        JasperPrint print = JasperFillManager.fillReport(getClass().getResourceAsStream("/Brandy/controladores/informes/jasper/primerinforme.jasper"), parametros, jr);
-        JasperExportManager.exportReportToPdfFile(print, "informes/primerinforme.pdf");
+        JasperPrint print = JasperFillManager.fillReport(getClass().getResourceAsStream("/Brandy/controladores/informes/jasper/PruebaCorreos.jasper"), parametros, jr);
+        JasperExportManager.exportReportToPdfFile(print, "primerinforme.pdf");
     }
 
 
