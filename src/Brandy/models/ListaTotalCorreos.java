@@ -93,7 +93,7 @@ public class ListaTotalCorreos {
                 if (messages.length > 0) {
                     for (int i = 0; i < messages.length; i++) {
                         correo = new Mensaje(messages[i]);
-                        listaTotalCorreosList.add(new ListaTotalCorreos(usuarioCorreo.getEmail(),folder.getName(),correo.getAsunto(),correo.getRemitente(), correo.getFecha()));
+                        listaTotalCorreosList.add(new ListaTotalCorreos(usuarioCorreo.getEmail(),folder.getFullName(),correo.getAsunto(),correo.getRemitente(), correo.getFecha()));
                     }
                 }
 
