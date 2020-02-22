@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListaUsuarios" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="99afe30f-c534-4a01-8f78-8ce28d9616d3">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="BBDDUsuarios"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="contra" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<variable name="email1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{email}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="120" splitType="Stretch">
+			<image>
+				<reportElement x="-20" y="-20" width="595" height="130" uuid="90e27136-a4af-46ce-a1ee-85688bb33490"/>
+				<imageExpression><![CDATA["C:/Users/Jesús Brandy/Desktop/listaUsuarios.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="70" y="0" width="100" height="30" uuid="6ec61c77-3366-46ad-9344-875a0945c263">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7b28b918-8294-4240-98c3-658cc907474a"/>
+				</reportElement>
+				<text><![CDATA[Correo de Usuario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="0" width="100" height="30" uuid="dcce644a-1176-48c4-b811-a67ff51b5419">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f049ed45-2dd1-49b7-9da3-9fd1940ab510"/>
+				</reportElement>
+				<text><![CDATA[Contraseña]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="40" width="561" height="1" uuid="b91bcb58-906d-40b8-895f-1f853f8c97e5"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement x="70" y="0" width="100" height="30" uuid="efebde9c-fee2-4356-a393-55b3970c90db">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7b28b918-8294-4240-98c3-658cc907474a"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="0" width="100" height="30" uuid="0cb99df3-8c2c-4e3c-9cee-6465800cd385">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f049ed45-2dd1-49b7-9da3-9fd1940ab510"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{contra}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="85" splitType="Stretch">
+			<image>
+				<reportElement x="-20" y="-9" width="595" height="89" uuid="fad8f750-550d-4378-853d-a59d700cd714"/>
+				<imageExpression><![CDATA["C:/Users/Jesús Brandy/Desktop/PiePagina.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="194" splitType="Stretch">
+			<textField>
+				<reportElement x="190" y="150" width="100" height="30" uuid="faf50ec1-4dc0-4142-9e1d-aaaca032b384"/>
+				<textFieldExpression><![CDATA[$V{email1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="43" y="150" width="130" height="30" uuid="6b29300e-ddf5-4a5d-a7f6-5f19ba1d6a4e"/>
+				<text><![CDATA[El total de Usuarios es:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

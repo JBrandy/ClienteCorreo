@@ -1,6 +1,8 @@
 package Brandy.controladores;
 
 import Brandy.logica.Logica;
+import Brandy.models.Email;
+import Brandy.models.Mensaje;
 import Brandy.models.UsuarioCorreo;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,12 +15,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
 import java.net.URL;
 import java.security.GeneralSecurityException;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ConfigurarCorreoControlador implements Initializable {
 
@@ -35,6 +42,38 @@ public class ConfigurarCorreoControlador implements Initializable {
 
     @FXML
     private Button btSalir;
+
+    @FXML
+    private Button btImprimir;
+
+
+
+
+
+    @FXML
+    void imprimir(ActionEvent event) {
+
+        List<UsuarioCorreo> lista = new ArrayList<>();
+        lista = tableCorreos.getItems();
+
+
+        JRBeanCollectionDataSource jr = new JRBeanCollectionDataSource(lista); //lista sería la colección a mostrar. Típicamente saldría de la lógica de nuestra aplicación
+        Map<String,Object> parametros = new HashMap<>(); //En este caso no hay parámetros, aunque podría haberlos
+        JasperPrint print = null;
+        try {
+            print = JasperFillManager.fillReport(getClass().getResourceAsStream("/Brandy/jasper/ListaUsuarios.jasper"), parametros, jr);
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
+        try {
+            JasperExportManager.exportReportToPdfFile(print, "Lista de Usuarios.pdf");
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 
     @FXML
     void anadir(ActionEvent event) throws GeneralSecurityException, MessagingException {

@@ -84,8 +84,8 @@
         </AnchorPane>
       <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="482.0" prefWidth="538.0">
         <children>
-          <Label alignment="CENTER" font="$x1" layoutX="26.0" layoutY="21.0" style="&#10;" text="Correos" textAlignment="CENTER" textFill="$x2" wrapText="false" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="21.0" />
-                  <TableView fx:id="tableView" layoutX="7.0" layoutY="118.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="419.0" prefWidth="538.0" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+          <Label alignment="CENTER" font="$x1" layoutX="24.0" layoutY="14.0" style="&#10;" text="Correos" textAlignment="CENTER" textFill="$x2" wrapText="false" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="14.0" />
+                  <TableView fx:id="tableView" layoutX="7.0" layoutY="49.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="430.0" prefWidth="538.0" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="49.0">
                     <columns>
                       <TableColumn prefWidth="137.0" text="Remitente">
                         <cellValueFactory>
@@ -101,6 +101,7 @@
 
                     </columns>
                   </TableView>
+                  <Button fx:id="btImprimirLista" layoutX="363.0" layoutY="14.0" mnemonicParsing="false" onAction="#imprimirLista" prefHeight="26.0" prefWidth="145.0" text="Exportar Correos a PDF" AnchorPane.rightAnchor="29.00000000000003" AnchorPane.topAnchor="14.0" />
         </children>
       </AnchorPane>
         <AnchorPane prefHeight="471.0" prefWidth="234.0">

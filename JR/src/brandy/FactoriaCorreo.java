@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FactoriaCorreo {
-    public static List<Mensaje> createListaCorreos() throws Exception {
-        List<Mensaje> listaCorreos = new ArrayList<>();
-        listaCorreos.add(new Mensaje("asunto","contenido", Date.valueOf(LocalDate.now()),"remitente"));
+    public static List<Email> createListaCorreos() throws Exception {
+        List<Email> listaCorreos = new ArrayList<>();
+        listaCorreos.add(new Email("asunto","contenido", Date.valueOf(LocalDate.now()),"remitente"));
         return listaCorreos;
     }
 }

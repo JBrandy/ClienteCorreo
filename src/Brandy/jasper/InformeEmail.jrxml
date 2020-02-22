@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InformeEmail" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5d5363cb-6da3-437a-a877-e27b9b805172">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="BBDDCorreo"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="fecha" class="java.util.Date"/>
+	<field name="contenido" class="java.lang.String"/>
+	<field name="asunto" class="java.lang.String"/>
+	<field name="remitente" class="java.lang.String"/>
+	<pageHeader>
+		<band height="124" splitType="Stretch">
+			<image>
+				<reportElement x="-20" y="-20" width="595" height="130" uuid="a41ab664-41bd-4c1c-b67e-236088e975be"/>
+				<imageExpression><![CDATA["C:/Users/Jesús Brandy/Desktop/CorreoEle.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="37" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="141" height="30" uuid="55d8d104-9c7c-4f4b-ac62-a36efaea5858">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4a716d2f-225f-4d23-a517-dffe9f2bd81b"/>
+				</reportElement>
+				<text><![CDATA[Fecha del correo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="0" width="138" height="30" uuid="47a65f2e-c5e0-41f2-af65-e03f520d1d2a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7dca4577-0b40-4a68-b5eb-a9e18d94f235"/>
+				</reportElement>
+				<text><![CDATA[Asunto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="0" width="138" height="30" uuid="3dd4b77a-475c-4c64-8ba4-0eb494cce5c8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3901942d-48d7-427d-8e5d-04d541e33635"/>
+				</reportElement>
+				<text><![CDATA[Remitente]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="314" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="141" height="30" uuid="e5016c7f-0af3-46dc-8f40-63422240bc06">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4a716d2f-225f-4d23-a517-dffe9f2bd81b"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="90" width="542" height="199" uuid="9b07e2c5-38ff-497f-9518-6227062b3862">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="855b3e4f-274e-4bac-9985-c83e04c07b63"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{contenido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="138" height="30" uuid="f9c5be88-3d37-40c8-a0d9-084bd745b496">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7dca4577-0b40-4a68-b5eb-a9e18d94f235"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{asunto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="0" width="138" height="30" uuid="2b60fce7-f5e8-42b2-a173-f67cce62cb56">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3901942d-48d7-427d-8e5d-04d541e33635"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{remitente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="55" width="138" height="30" uuid="3e5875ce-8e20-4ccb-8452-6df2a69c2724">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="855b3e4f-274e-4bac-9985-c83e04c07b63"/>
+				</reportElement>
+				<text><![CDATA[Cuerpo del mensaje:]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="94" splitType="Stretch">
+			<image>
+				<reportElement x="-20" y="0" width="595" height="94" uuid="e3a325ff-93e3-4dba-9108-5be55c6d022f"/>
+				<imageExpression><![CDATA["C:/Users/Jesús Brandy/Desktop/PiePagina.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageFooter>
+</jasperReport>

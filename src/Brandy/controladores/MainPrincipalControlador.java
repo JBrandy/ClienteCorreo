@@ -3,6 +3,7 @@ package Brandy.controladores;
 
 import Brandy.controladores.filtros.FiltrarMensajes;
 import Brandy.logica.Logica;
+import Brandy.models.Email;
 import Brandy.models.Mensaje;
 import Brandy.models.TreeItemMail;
 import javafx.beans.value.ChangeListener;
@@ -118,20 +119,22 @@ public class MainPrincipalControlador implements Initializable {
     @FXML
     private Button btImprimir;
 
+    @FXML
+    private Button btImprimirLista;
 
 
     @FXML
-    void imprimir(ActionEvent event)  {
-        List<Mensaje> lista = new ArrayList<>();
+    void imprimir(ActionEvent event) throws Exception {
+        List<Email> lista = new ArrayList<>();
         Mensaje m = tableView.getSelectionModel().getSelectedItem();
-
-        lista.add(m);
+        Email email = new Email(m.getAsunto(),m.getContent(),m.getFecha(),m.getRemitente());
+        lista.add(email);
 
         JRBeanCollectionDataSource jr = new JRBeanCollectionDataSource(lista); //lista sería la colección a mostrar. Típicamente saldría de la lógica de nuestra aplicación
         Map<String,Object> parametros = new HashMap<>(); //En este caso no hay parámetros, aunque podría haberlos
         JasperPrint print = null;
         try {
-            print = JasperFillManager.fillReport(getClass().getResourceAsStream("/Brandy/jasper/Correo2.jasper"), parametros, jr);
+            print = JasperFillManager.fillReport(getClass().getResourceAsStream("/Brandy/jasper/InformeEmail.jasper"), parametros, jr);
         } catch (JRException e) {
             e.printStackTrace();
         }
@@ -142,6 +145,32 @@ public class MainPrincipalControlador implements Initializable {
         }
     }
 
+    @FXML
+    void imprimirLista(ActionEvent event) {
+        List<Mensaje> lista = new ArrayList<>();
+        lista  = tableView.getItems();
+        List<Email> listaEmail = new ArrayList<>();
+
+        for (Mensaje m: lista) {
+            String asunto = m.getAsunto();
+            String remitente = m.getRemitente();
+            Date fecha =m.getFecha();
+            listaEmail.add(new Email(asunto,"",fecha,remitente));
+        }
+        JRBeanCollectionDataSource jr = new JRBeanCollectionDataSource(lista); //lista sería la colección a mostrar. Típicamente saldría de la lógica de nuestra aplicación
+        Map<String,Object> parametros = new HashMap<>(); //En este caso no hay parámetros, aunque podría haberlos
+        JasperPrint print = null;
+        try {
+            print = JasperFillManager.fillReport(getClass().getResourceAsStream("/Brandy/jasper/ListaCorreos.jasper"), parametros, jr);
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
+        try {
+            JasperExportManager.exportReportToPdfFile(print, "Lista de Correos.pdf");
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     @FXML

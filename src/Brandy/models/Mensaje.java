@@ -17,17 +17,8 @@ public class Mensaje  {
     }
 
 
-    private String asunto;
-    private String contenido;
-    private Date fecha;
-    private String remitente;
 
-    public Mensaje(String asunto, String contenido, Date fecha, String remitente) throws Exception {
-        this.asunto = getAsunto();
-        this.contenido = getContent();
-        this.fecha = getFecha();
-        this.remitente = getRemitente();
-    }
+
 
     public String getAsunto(){
         String sub=null;
