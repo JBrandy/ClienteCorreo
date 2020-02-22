@@ -28,6 +28,7 @@ public class Logica {
     private List<Tarea> listaTareas;
 
 
+
     private TreeItem nodoRaiz = new TreeItem("Correos");
 
     private String email;
@@ -71,6 +72,7 @@ public class Logica {
     public void anadirUsuario(UsuarioCorreo u) {
         listaUsuarios.add(u);
     }
+
 
 
     public void cargarListaCorreos(Folder folder) {

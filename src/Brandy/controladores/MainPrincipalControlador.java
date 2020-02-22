@@ -4,6 +4,7 @@ package Brandy.controladores;
 import Brandy.controladores.filtros.FiltrarMensajes;
 import Brandy.logica.Logica;
 import Brandy.models.Email;
+import Brandy.models.ListaTotalCorreos;
 import Brandy.models.Mensaje;
 import Brandy.models.TreeItemMail;
 import javafx.beans.value.ChangeListener;
@@ -121,6 +122,29 @@ public class MainPrincipalControlador implements Initializable {
 
     @FXML
     private Button btImprimirLista;
+
+    @FXML
+    private Button btPrueba;
+
+    @FXML
+    void imprirTodo(ActionEvent event) throws GeneralSecurityException, MessagingException {
+        ListaTotalCorreos listaTotalCorreos = new ListaTotalCorreos();
+       listaTotalCorreos.cargarTodosCorreos(Logica.getInstance().getListaUsuarios().get(0), null,null);
+        System.out.println(listaTotalCorreos.getListaTotalCorreosList().size());
+        JRBeanCollectionDataSource jr = new JRBeanCollectionDataSource(listaTotalCorreos.getListaTotalCorreosList()); //lista sería la colección a mostrar. Típicamente saldría de la lógica de nuestra aplicación
+        Map<String,Object> parametros = new HashMap<>(); //En este caso no hay parámetros, aunque podría haberlos
+        JasperPrint print = null;
+        try {
+            print = JasperFillManager.fillReport(getClass().getResourceAsStream("/Brandy/jasper/ListaTodosCorreos.jasper"), parametros, jr);
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
+        try {
+            JasperExportManager.exportReportToPdfFile(print, "Lista total de usuario.pdf");
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     @FXML
