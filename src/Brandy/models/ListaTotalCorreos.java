@@ -1,5 +1,6 @@
 package Brandy.models;
 
+import Brandy.logica.Logica;
 import javafx.collections.FXCollections;
 
 import javax.mail.*;
@@ -14,8 +15,9 @@ public class ListaTotalCorreos {
     private String asunto;
     private String remitente;
     private Date fecha;
-    private Store store;
-    private List<ListaTotalCorreos> listaTotalCorreosList = FXCollections.observableArrayList();
+    private List <ListaTotalCorreos> list = FXCollections.observableArrayList();
+
+
 
     public ListaTotalCorreos() {
 
@@ -69,80 +71,42 @@ public class ListaTotalCorreos {
         this.fecha = fecha;
     }
 
-    public List<ListaTotalCorreos> getListaTotalCorreosList() {
-        return listaTotalCorreosList;
+    public List<ListaTotalCorreos> getList() {
+        return list;
     }
 
-    public void setListaTotalCorreosList(List<ListaTotalCorreos> listaTotalCorreosList) {
-        this.listaTotalCorreosList = listaTotalCorreosList;
-    }
+    public void cargarDatosInforme(UsuarioCorreo usuarioCorreo){
 
-    public void cargarListaCorreos(Folder folder, UsuarioCorreo usuarioCorreo) {
+        for (int i = 0; i < Logica.getInstance().getFolders().length; i++) {
+            Folder folder1 = Logica.getInstance().getFolders()[i];
+            if (folder1 != null) {
+                try {
 
-        if (folder != null) {
-            try {
-                // IMAPFolder folder = (IMAPFolder) store.getFolder("[Gmail]/Todos"); el final es la ruta
-                //IMAPFolder folder = (IMAPFolder) store.getFolder(folderString);
+                    if (!folder1.isOpen())
+                        folder1.open(Folder.READ_WRITE);
+                    Message[] messages = folder1.getMessages();
+                    Mensaje correo;
+                    System.out.println(messages[0].toString());
+                    System.out.println(folder1.getFullName());
+                    for (int j = 0; j < messages.length; j++) {
+                        correo = new Mensaje(messages[j]);
 
-                if (!folder.isOpen())
-                    folder.open(Folder.READ_WRITE);
-                Message[] messages = folder.getMessages();
-                Mensaje correo;
-                System.out.println(messages[0].toString());
-                System.out.println(folder.getFullName());
-                if (messages.length > 0) {
-                    for (int i = 0; i < messages.length; i++) {
-                        correo = new Mensaje(messages[i]);
-                        listaTotalCorreosList.add(new ListaTotalCorreos(usuarioCorreo.getEmail(),folder.getFullName(),correo.getAsunto(),correo.getRemitente(), correo.getFecha()));
+                        list.add(new ListaTotalCorreos(usuarioCorreo.getEmail(), folder1.getFullName(),
+                                correo.getAsunto(),correo.getRemitente(), correo.getFecha()));
+
                     }
+                } catch (NoSuchProviderException e) {
+                    //e.printStackTrace();
+                } catch (MessagingException e) {
+                    //e.printStackTrace();
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    //e.printStackTrace();
                 }
-
-            } catch (NoSuchProviderException e) {
-                //e.printStackTrace();
-            } catch (MessagingException e) {
-                //e.printStackTrace();
-            } catch (ArrayIndexOutOfBoundsException e) {
-                //e.printStackTrace();
             }
         }
+
 
     }
 
 
-    public void cargarTodosCorreos(UsuarioCorreo usuarioCorreo1, Folder carpeta, TreeItemMail rootItem) throws MessagingException, GeneralSecurityException {
-
-        Folder[] folders = null;
-        if (store != null) {
-
-            if (carpeta == null) {
-                folders = store.getDefaultFolder().list(); //todas las del sistema
-                System.out.println("La carpeta " + folders.toString());
-                cargarListaCorreos(carpeta, usuarioCorreo1);
-            } else {
-                folders = carpeta.list();
-                System.out.println("La carpeta " + carpeta.getName());
-                cargarListaCorreos(carpeta, usuarioCorreo1);
-//carpetas de la carpeta en la que estoy
-            }
-            if (rootItem == null) {
-                rootItem = new TreeItemMail(usuarioCorreo1.getEmail(), usuarioCorreo1, carpeta);
-                //System.out.println("La carpeta " + rootItem.toString() );
-            } else {
-                // System.out.println("cojo el delrecursirvo");
-            }
-
-            rootItem.setExpanded(true);
-            for (Folder folder : folders) {
-                //Añadiendo carpetas al tree
-                TreeItemMail item = new TreeItemMail(folder.getName(), usuarioCorreo1, folder);
-                if ((folder.getType() & Folder.HOLDS_FOLDERS) != 0
-                        && folder.list().length > 0) { //si tiene carpetas
-                    cargarTodosCorreos(usuarioCorreo1, folder, item);
-                } else {
-                    //System.out.println("La carpeta " + folder.getName() + " no tiene hijos.");
-                }
-                rootItem.getChildren().add(item);
-            }
-        }
-    }
 }

@@ -20,6 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.web.WebView;
+import javafx.stage.FileChooser;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -28,6 +29,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import reloj.Evento;
 import reloj.Reloj;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.security.GeneralSecurityException;
@@ -117,6 +119,9 @@ public class MainPrincipalControlador implements Initializable {
 
     private TreeItemMail TreeItem;
 
+    private FileChooser fileChooser = new FileChooser();
+
+
     @FXML
     private Button btImprimir;
 
@@ -126,12 +131,20 @@ public class MainPrincipalControlador implements Initializable {
     @FXML
     private Button btPrueba;
 
+
+    public File getFile() {
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", "*.pdf");
+        fileChooser.getExtensionFilters().add(extFilter);
+        return fileChooser.showSaveDialog(null);
+    }
+
     @FXML
     void imprirTodo(ActionEvent event) throws GeneralSecurityException, MessagingException {
+        File file = getFile();
         ListaTotalCorreos listaTotalCorreos = new ListaTotalCorreos();
-       listaTotalCorreos.cargarTodosCorreos(Logica.getInstance().getListaUsuarios().get(0), null,null);
-        System.out.println(listaTotalCorreos.getListaTotalCorreosList().size());
-        JRBeanCollectionDataSource jr = new JRBeanCollectionDataSource(listaTotalCorreos.getListaTotalCorreosList()); //lista sería la colección a mostrar. Típicamente saldría de la lógica de nuestra aplicación
+        listaTotalCorreos.cargarDatosInforme(Logica.getInstance().getListaUsuarios().get(0));
+
+        JRBeanCollectionDataSource jr = new JRBeanCollectionDataSource(listaTotalCorreos.getList()); //lista sería la colección a mostrar. Típicamente saldría de la lógica de nuestra aplicación
         Map<String,Object> parametros = new HashMap<>(); //En este caso no hay parámetros, aunque podría haberlos
         JasperPrint print = null;
         try {
@@ -140,7 +153,7 @@ public class MainPrincipalControlador implements Initializable {
             e.printStackTrace();
         }
         try {
-            JasperExportManager.exportReportToPdfFile(print, "Lista total de usuario.pdf");
+            JasperExportManager.exportReportToPdfFile(print, file.toPath().toString());
         } catch (JRException e) {
             e.printStackTrace();
         }
@@ -149,6 +162,10 @@ public class MainPrincipalControlador implements Initializable {
 
     @FXML
     void imprimir(ActionEvent event) throws Exception {
+
+        File file = getFile();
+
+
         List<Email> lista = new ArrayList<>();
         Mensaje m = tableView.getSelectionModel().getSelectedItem();
         Email email = new Email(m.getAsunto(),m.getContent(),m.getFecha(),m.getRemitente());
@@ -163,14 +180,17 @@ public class MainPrincipalControlador implements Initializable {
             e.printStackTrace();
         }
         try {
-            JasperExportManager.exportReportToPdfFile(print, "Correo.pdf");
+            JasperExportManager.exportReportToPdfFile(print, file.toPath().toString());
         } catch (JRException e) {
             e.printStackTrace();
         }
     }
 
+
+
     @FXML
     void imprimirLista(ActionEvent event) {
+        File file = getFile();
         List<Mensaje> lista = new ArrayList<>();
         lista  = tableView.getItems();
         List<Email> listaEmail = new ArrayList<>();
@@ -190,7 +210,7 @@ public class MainPrincipalControlador implements Initializable {
             e.printStackTrace();
         }
         try {
-            JasperExportManager.exportReportToPdfFile(print, "Lista de Correos.pdf");
+            JasperExportManager.exportReportToPdfFile(print, file.toPath().toString());
         } catch (JRException e) {
             e.printStackTrace();
         }

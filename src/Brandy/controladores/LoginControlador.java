@@ -48,7 +48,6 @@ stage.close();
             String contra =tvContrasena.getText();
             u =new UsuarioCorreo(email,contra);
             Logica.getInstance().anadirUsuario(u);
-            System.out.println("AAAAAÑÑÑÑÑADIMOOOOSS!!!");
             Logica.getInstance().actualizarTree();
             stage.close();
         }catch (GeneralSecurityException e){

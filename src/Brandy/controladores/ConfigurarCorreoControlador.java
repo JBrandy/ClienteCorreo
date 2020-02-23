@@ -22,6 +22,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 import javax.mail.MessagingException;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.security.GeneralSecurityException;
@@ -53,6 +54,8 @@ public class ConfigurarCorreoControlador implements Initializable {
     @FXML
     void imprimir(ActionEvent event) {
 
+        MainPrincipalControlador mainPrincipalControlador = new MainPrincipalControlador();
+        File file = mainPrincipalControlador.getFile();
         List<UsuarioCorreo> lista = new ArrayList<>();
         lista = tableCorreos.getItems();
 
@@ -66,7 +69,7 @@ public class ConfigurarCorreoControlador implements Initializable {
             e.printStackTrace();
         }
         try {
-            JasperExportManager.exportReportToPdfFile(print, "Lista de Usuarios.pdf");
+            JasperExportManager.exportReportToPdfFile(print, file.getPath());
         } catch (JRException e) {
             e.printStackTrace();
         }
