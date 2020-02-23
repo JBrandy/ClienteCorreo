@@ -87,6 +87,24 @@ public class Mensaje  {
         return resultado;
     }
 
+
+    public String getTextoContenido() throws Exception {
+        String resultado = "";
+        MimeMessageParser parser = new MimeMessageParser((MimeMessage) message);
+        parser.parse();
+
+        if (message.isMimeType("text/plain")) {
+            resultado = parser.getPlainContent();
+        } else if (message.isMimeType("multipart/*")) {
+            resultado = parser.getPlainContent();
+        } else if (message.isMimeType(" text/html")) {
+            resultado = parser.getPlainContent();
+
+        }
+
+        return resultado;
+    }
+
     public Message getMessage() {
         return message;
     }

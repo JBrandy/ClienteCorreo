@@ -27,12 +27,18 @@
 				<reportElement x="70" y="0" width="100" height="30" uuid="6ec61c77-3366-46ad-9344-875a0945c263">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7b28b918-8294-4240-98c3-658cc907474a"/>
 				</reportElement>
-				<text><![CDATA[Correo de Usuario]]></text>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Usuario:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="360" y="0" width="100" height="30" uuid="dcce644a-1176-48c4-b811-a67ff51b5419">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f049ed45-2dd1-49b7-9da3-9fd1940ab510"/>
 				</reportElement>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
 				<text><![CDATA[Contraseña]]></text>
 			</staticText>
 			<line>
@@ -59,7 +65,7 @@
 	<pageFooter>
 		<band height="85" splitType="Stretch">
 			<image>
-				<reportElement x="-20" y="-9" width="595" height="89" uuid="fad8f750-550d-4378-853d-a59d700cd714"/>
+				<reportElement x="-27" y="0" width="630" height="84" uuid="46e9feeb-bdc2-4758-929f-20af41005014"/>
 				<imageExpression><![CDATA["C:/Users/Jesús Brandy/Desktop/PiePagina.png"]]></imageExpression>
 			</image>
 		</band>
@@ -67,11 +73,17 @@
 	<summary>
 		<band height="194" splitType="Stretch">
 			<textField>
-				<reportElement x="190" y="150" width="100" height="30" uuid="faf50ec1-4dc0-4142-9e1d-aaaca032b384"/>
+				<reportElement x="210" y="150" width="100" height="30" uuid="faf50ec1-4dc0-4142-9e1d-aaaca032b384"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$V{email1}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="43" y="150" width="130" height="30" uuid="6b29300e-ddf5-4a5d-a7f6-5f19ba1d6a4e"/>
+				<reportElement x="43" y="150" width="157" height="30" uuid="6b29300e-ddf5-4a5d-a7f6-5f19ba1d6a4e"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
 				<text><![CDATA[El total de Usuarios es:]]></text>
 			</staticText>
 		</band>

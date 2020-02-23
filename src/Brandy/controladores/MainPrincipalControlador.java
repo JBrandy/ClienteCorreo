@@ -142,6 +142,7 @@ public class MainPrincipalControlador implements Initializable {
     void imprirTodo(ActionEvent event) throws GeneralSecurityException, MessagingException {
         File file = getFile();
         ListaTotalCorreos listaTotalCorreos = new ListaTotalCorreos();
+
         listaTotalCorreos.cargarDatosInforme(Logica.getInstance().getListaUsuarios().get(0));
 
         JRBeanCollectionDataSource jr = new JRBeanCollectionDataSource(listaTotalCorreos.getList()); //lista sería la colección a mostrar. Típicamente saldría de la lógica de nuestra aplicación
@@ -168,7 +169,7 @@ public class MainPrincipalControlador implements Initializable {
 
         List<Email> lista = new ArrayList<>();
         Mensaje m = tableView.getSelectionModel().getSelectedItem();
-        Email email = new Email(m.getAsunto(),m.getContent(),m.getFecha(),m.getRemitente());
+        Email email = new Email(m.getAsunto(),m.getTextoContenido(),m.getFecha(),m.getRemitente());
         lista.add(email);
 
         JRBeanCollectionDataSource jr = new JRBeanCollectionDataSource(lista); //lista sería la colección a mostrar. Típicamente saldría de la lógica de nuestra aplicación
