@@ -69,7 +69,8 @@ public class ConfigurarCorreoControlador implements Initializable {
             e.printStackTrace();
         }
         try {
-            JasperExportManager.exportReportToPdfFile(print, file.getPath());
+            JasperExportManager.exportReportToPdfFile(print, file.getPath()
+            );
         } catch (JRException e) {
             e.printStackTrace();
         }

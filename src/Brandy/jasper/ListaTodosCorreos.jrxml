@@ -16,7 +16,7 @@
 	<variable name="fecha2" class="java.lang.Integer" calculation="Count">
 		<variableExpression><![CDATA[$F{fecha}]]></variableExpression>
 	</variable>
-	<group name="Group1">
+	<group name="Group1" keepTogether="true">
 		<groupExpression><![CDATA[$F{folder}]]></groupExpression>
 		<groupHeader>
 			<band height="65">
