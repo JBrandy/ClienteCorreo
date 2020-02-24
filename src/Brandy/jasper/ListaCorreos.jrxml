@@ -96,7 +96,7 @@
 	<pageFooter>
 		<band height="94" splitType="Stretch">
 			<image>
-				<reportElement x="-27" y="10" width="630" height="84" uuid="4cf97f5a-c1a8-4359-9378-0353f3fd8a09"/>
+				<reportElement x="-23" y="10" width="597" height="84" uuid="4cf97f5a-c1a8-4359-9378-0353f3fd8a09"/>
 				<imageExpression><![CDATA["C:/Users/Jesús Brandy/Desktop/PiePagina.png"]]></imageExpression>
 			</image>
 		</band>
@@ -104,14 +104,14 @@
 	<summary>
 		<band height="50" splitType="Stretch">
 			<textField>
-				<reportElement x="190" y="15" width="100" height="30" uuid="ac02f5f5-d747-4dfd-bdc9-91c52713db63"/>
+				<reportElement x="190" y="12" width="100" height="30" uuid="ac02f5f5-d747-4dfd-bdc9-91c52713db63"/>
 				<textElement>
 					<font size="12" isBold="true" isUnderline="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{fecha1}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="51" y="15" width="133" height="30" uuid="6dbcf90f-dd1b-444a-b2ee-930a1dc1b8e2"/>
+				<reportElement x="51" y="12" width="133" height="30" uuid="6dbcf90f-dd1b-444a-b2ee-930a1dc1b8e2"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>

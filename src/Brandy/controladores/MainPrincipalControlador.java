@@ -169,7 +169,7 @@ public class MainPrincipalControlador implements Initializable {
 
         List<Email> lista = new ArrayList<>();
         Mensaje m = tableView.getSelectionModel().getSelectedItem();
-        Email email = new Email(m.getAsunto(),m.getTextoContenido(),m.getFecha(),m.getRemitente());
+        Email email = new Email(m.getAsunto(),m.getTextoContenido(m),m.getFecha(),m.getRemitente());
         lista.add(email);
 
         JRBeanCollectionDataSource jr = new JRBeanCollectionDataSource(lista); //lista sería la colección a mostrar. Típicamente saldría de la lógica de nuestra aplicación

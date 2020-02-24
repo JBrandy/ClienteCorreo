@@ -9,7 +9,8 @@ module ClienteCorreo {
     requires commons.email;
     requires Reloj;
     requires jasperreports;
-
+    requires org.jsoup;
+    requires jdk.jsobject;
 
     exports Brandy.controladores;
     exports Brandy;

@@ -1,5 +1,6 @@
 package Brandy.models;
 import org.apache.commons.mail.util.MimeMessageParser;
+import org.jsoup.Jsoup;
 
 import java.io.IOException;
 import java.util.Date;
@@ -88,21 +89,9 @@ public class Mensaje  {
     }
 
 
-    public String getTextoContenido() throws Exception {
-        String resultado = "";
-        MimeMessageParser parser = new MimeMessageParser((MimeMessage) message);
-        parser.parse();
+    public String getTextoContenido(Mensaje m) throws Exception {
 
-        if (message.isMimeType("text/plain")) {
-            resultado = parser.getPlainContent();
-        } else if (message.isMimeType("multipart/*")) {
-            resultado = parser.getPlainContent();
-        } else if (message.isMimeType(" text/html")) {
-            resultado = parser.getPlainContent();
-
-        }
-
-        return resultado;
+        return Jsoup.parse(m.getContent()).text();
     }
 
     public Message getMessage() {
