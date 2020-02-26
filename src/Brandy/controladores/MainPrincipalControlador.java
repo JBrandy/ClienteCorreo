@@ -140,24 +140,20 @@ public class MainPrincipalControlador implements Initializable {
 
     @FXML
     void imprirTodo(ActionEvent event) throws GeneralSecurityException, MessagingException {
-        File file = getFile();
-        ListaTotalCorreos listaTotalCorreos = new ListaTotalCorreos();
-
-        listaTotalCorreos.cargarDatosInforme(Logica.getInstance().getListaUsuarios().get(0));
-
-        JRBeanCollectionDataSource jr = new JRBeanCollectionDataSource(listaTotalCorreos.getList()); //lista sería la colección a mostrar. Típicamente saldría de la lógica de nuestra aplicación
-        Map<String,Object> parametros = new HashMap<>(); //En este caso no hay parámetros, aunque podría haberlos
-        JasperPrint print = null;
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
         try {
-            print = JasperFillManager.fillReport(getClass().getResourceAsStream("/Brandy/jasper/ListaTodosCorreos.jasper"), parametros, jr);
-        } catch (JRException e) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Brandy/vistas/historico.fxml"));
+            Parent root = fxmlLoader.load();
+            HistoricoControlador pantallaTareasControlador = (HistoricoControlador) fxmlLoader.getController();
+            pantallaTareasControlador.setStage(stage);
+            stage.setTitle("Historico ");
+            stage.setScene(new Scene(root, 450, 200));
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        try {
-            JasperExportManager.exportReportToPdfFile(print, file.toPath().toString());
-        } catch (JRException e) {
-            e.printStackTrace();
-        }
+        stage.showAndWait();
     }
 
 
