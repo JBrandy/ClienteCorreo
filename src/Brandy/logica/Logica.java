@@ -30,7 +30,7 @@ public class Logica {
 
 
     private TreeItem nodoRaiz = new TreeItem("Correos");
-    private  Folder[] folders;
+
     private String email;
     private String contra;
     private UsuarioCorreo usuarioCorreo;
@@ -73,13 +73,7 @@ public class Logica {
         listaUsuarios.add(u);
     }
 
-    public Folder[] getFolders() {
-        return folders;
-    }
 
-    public void setFolders(Folder[] folders) {
-        this.folders = folders;
-    }
 
     public void cargarListaCorreos(Folder folder) {
         listaCorreos.clear();
@@ -114,7 +108,7 @@ public class Logica {
 
     private TreeItemMail cargaCarpetas(UsuarioCorreo usuarioCorreo1, Folder carpeta, TreeItemMail rootItem) throws MessagingException, GeneralSecurityException {
 
-        folders = null;
+          Folder[] folders = null;
         if (store != null) {
 
             if (carpeta == null) {

@@ -1,12 +1,14 @@
 package Brandy.models;
 
 import Brandy.logica.Logica;
+import com.sun.mail.util.MailSSLSocketFactory;
 import javafx.collections.FXCollections;
 
 import javax.mail.*;
 import java.security.GeneralSecurityException;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 public class ListaTotalCorreos {
 
@@ -17,7 +19,8 @@ public class ListaTotalCorreos {
     private Date fecha;
     private List <ListaTotalCorreos> list = FXCollections.observableArrayList();
 
-
+    private  Folder[] folders;
+    private Store store;
 
     public ListaTotalCorreos() {
 
@@ -77,8 +80,8 @@ public class ListaTotalCorreos {
 
     public void cargarDatosInforme(UsuarioCorreo usuarioCorreo){
 
-        for (int i = 0; i < Logica.getInstance().getFolders().length; i++) {
-            Folder folder1 = Logica.getInstance().getFolders()[i];
+        for (int i = 0; i < folders.length; i++) {
+            Folder folder1 = folders[i];
             if (folder1 != null) {
                 try {
 
@@ -106,6 +109,53 @@ public class ListaTotalCorreos {
         }
 
 
+    }
+
+
+    public void cargaCarpetas(UsuarioCorreo usuarioCorreo1, Folder carpeta, TreeItemMail rootItem) throws MessagingException, GeneralSecurityException {
+
+        folders = null;
+        if (store != null) {
+
+            if (carpeta == null) {
+                folders = store.getDefaultFolder().list(); //todas las del sistema
+            } else {
+                folders = carpeta.list();
+//carpetas de la carpeta en la que estoy
+            }
+            if (rootItem == null) {
+                rootItem = new TreeItemMail(usuarioCorreo1.getEmail(), usuarioCorreo1, carpeta);
+                //System.out.println("La carpeta " + rootItem.toString() );
+            } else {
+                // System.out.println("cojo el delrecursirvo");
+            }
+
+            rootItem.setExpanded(true);
+            for (Folder folder : folders) {
+                //Añadiendo carpetas al tree
+                TreeItemMail item = new TreeItemMail(folder.getName(), usuarioCorreo1, folder);
+                if ((folder.getType() & Folder.HOLDS_FOLDERS) != 0
+                        && folder.list().length > 0) { //si tiene carpetas
+                    cargaCarpetas(usuarioCorreo1, folder, item);
+                } else {
+                    //System.out.println("La carpeta " + folder.getName() + " no tiene hijos.");
+                }
+                rootItem.getChildren().add(item);
+            }
+        }
+    }
+
+    public void iniciarSesion(UsuarioCorreo usuarioCorreo1) throws GeneralSecurityException, MessagingException {
+        Properties prop = new Properties();
+        prop.setProperty("mail.store.protocol", "imaps");
+        MailSSLSocketFactory sf = new MailSSLSocketFactory();
+        sf.setTrustAllHosts(true);
+        prop.put("mail.imaps.ssl.trust", "*");
+        prop.put("mail.imaps.ssl.socketFactory", sf);
+        store = usuarioCorreo1.getStore();
+        Session session = Session.getDefaultInstance(prop, null);
+        store = session.getStore("imaps");
+        store.connect("imap.googlemail.com", usuarioCorreo1.getEmail(), usuarioCorreo1.getContra());
     }
 
 

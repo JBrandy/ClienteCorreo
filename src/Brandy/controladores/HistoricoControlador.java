@@ -18,8 +18,10 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
+import javax.mail.MessagingException;
 import java.io.File;
 import java.net.URL;
+import java.security.GeneralSecurityException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -31,10 +33,11 @@ public class HistoricoControlador implements Initializable {
     private ComboBox<UsuarioCorreo> combo;
 
     @FXML
-    void Imprimir(ActionEvent event) {
+    void Imprimir(ActionEvent event) throws GeneralSecurityException, MessagingException {
         File file = getFile();
         ListaTotalCorreos listaTotalCorreos = new ListaTotalCorreos();
-
+        listaTotalCorreos.iniciarSesion(combo.getSelectionModel().getSelectedItem());
+        listaTotalCorreos.cargaCarpetas(combo.getSelectionModel().getSelectedItem(),null,null);
         listaTotalCorreos.cargarDatosInforme(combo.getSelectionModel().getSelectedItem());
 
         JRBeanCollectionDataSource jr = new JRBeanCollectionDataSource(listaTotalCorreos.getList()); //lista sería la colección a mostrar. Típicamente saldría de la lógica de nuestra aplicación
