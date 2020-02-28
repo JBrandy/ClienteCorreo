@@ -4,7 +4,6 @@ package Brandy.controladores;
 import Brandy.controladores.filtros.FiltrarMensajes;
 import Brandy.logica.Logica;
 import Brandy.models.Email;
-import Brandy.models.ListaTotalCorreos;
 import Brandy.models.Mensaje;
 import Brandy.models.TreeItemMail;
 import javafx.beans.value.ChangeListener;
@@ -144,7 +143,7 @@ private JFXHelpContentViewer viewer ;
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         try {
-            URL url = this.getClass().getResource("/help/articles.zip");
+            URL url = new File("D:\\HelpGenerator\\help\\articles.zip").toURI().toURL();
             JavaHelpFactory factory = new JavaHelpFactory(url);
             factory.create();
             viewer = new JFXHelpContentViewer();
@@ -157,11 +156,6 @@ private JFXHelpContentViewer viewer ;
         }
 
     }
-
-
-
-
-
 
 
     public File getFile() {
