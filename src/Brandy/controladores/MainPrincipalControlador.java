@@ -26,6 +26,8 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import org.docgene.help.JavaHelpFactory;
+import org.docgene.help.gui.jfx.JFXHelpContentViewer;
 import reloj.Evento;
 import reloj.Reloj;
 
@@ -130,6 +132,36 @@ public class MainPrincipalControlador implements Initializable {
 
     @FXML
     private Button btPrueba;
+
+
+    @FXML
+    private MenuItem help;
+
+
+private JFXHelpContentViewer viewer ;
+    @FXML
+    void help(ActionEvent event) {
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        try {
+            URL url = this.getClass().getResource("/help/articles.zip");
+            JavaHelpFactory factory = new JavaHelpFactory(url);
+            factory.create();
+            viewer = new JFXHelpContentViewer();
+            factory.install(viewer);
+            viewer.getHelpWindow(stage, "Help Content", 600, 700);
+            viewer.showHelpDialog(600,600);
+        }catch (Throwable e)
+        {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+
+
 
 
     public File getFile() {

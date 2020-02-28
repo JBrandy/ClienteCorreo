@@ -11,6 +11,9 @@ module ClienteCorreo {
     requires jasperreports;
     requires org.jsoup;
     requires jdk.jsobject;
+    requires org.elasticlunr;
+    requires docGenerator;
+    requires org.docgene.help.jfx;
 
     exports Brandy.controladores;
     exports Brandy;
