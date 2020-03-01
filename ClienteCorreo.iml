@@ -14,15 +14,6 @@
     <orderEntry type="library" name="org.apache.commons:commons-email:1.5" level="project" />
     <orderEntry type="library" name="validation-api-1.1.0.final" level="project" />
     <orderEntry type="library" name="org.testfx:testfx-junit:4.0.15-alpha" level="application" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../RelojV2/artifacts/Reloj/Reloj.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="library" name="net.sf.jasperreports:jasperreports:6.11.0" level="application" />
     <orderEntry type="module-library">
       <library>
@@ -55,6 +46,15 @@
       <library>
         <CLASSES>
           <root url="jar://D:/Helpgenerator/docJGenerator/lib/elasticlunr.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../RelojV2/artifacts/Reloj/Reloj.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

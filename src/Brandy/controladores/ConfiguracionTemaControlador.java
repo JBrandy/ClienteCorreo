@@ -16,6 +16,7 @@ import java.util.ResourceBundle;
 public class ConfiguracionTemaControlador implements Initializable {
 
     private Stage stage;
+    private static boolean fh;
     private MainPrincipalControlador mainPrincipalControlador = new MainPrincipalControlador();
 
 
@@ -70,14 +71,25 @@ public class ConfiguracionTemaControlador implements Initializable {
     }
 
     public boolean formatoHora() {
+        if(formatoHora.isSelected() == true){
+            fh = true;
+            return formatoHora.isSelected();
+        }else{
+            fh = false;
+            return formatoHora.isSelected();
+        }
 
-        return formatoHora.isSelected();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cbTema.getItems().addAll(Application.STYLESHEET_CASPIAN, Application.STYLESHEET_MODENA);
-        cbTema.getSelectionModel().select(Application.getUserAgentStylesheet()); //Este método nos devuelve el tema actual
+        cbTema.getSelectionModel().select(Application.getUserAgentStylesheet());
+        //Este método nos devuelve el tema actual
+        formatoHora.setSelected(fh);
+
+
+
 
     }
 
