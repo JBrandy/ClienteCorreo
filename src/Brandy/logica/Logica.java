@@ -87,8 +87,8 @@ public class Logica {
                     folder.open(Folder.READ_WRITE);
                 Message[] messages = folder.getMessages();
                 Mensaje correo;
-                System.out.println(messages[0].toString());
-                System.out.println(folder.getFullName());
+                //System.out.println(messages[0].toString());
+               // System.out.println(folder.getFullName());
                 for (int i = 0; i < messages.length; i++) {
                     correo = new Mensaje(messages[i]);
                     System.out.println(correo.toString());
@@ -113,10 +113,10 @@ public class Logica {
 
             if (carpeta == null) {
                 folders = store.getDefaultFolder().list(); //todas las del sistema
-                System.out.println("La carpeta " + folders.toString());
+                //System.out.println("La carpeta " + folders.toString());
             } else {
                 folders = carpeta.list();
-                System.out.println("La carpeta " + carpeta.getName());
+                //System.out.println("La carpeta " + carpeta.getName());
 //carpetas de la carpeta en la que estoy
             }
             if (rootItem == null) {

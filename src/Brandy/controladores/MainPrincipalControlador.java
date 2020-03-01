@@ -137,7 +137,8 @@ public class MainPrincipalControlador implements Initializable {
     private MenuItem help;
 
 
-private JFXHelpContentViewer viewer ;
+    private JFXHelpContentViewer viewer;
+
     @FXML
     void help(ActionEvent event) {
         Stage stage = new Stage();
@@ -149,9 +150,8 @@ private JFXHelpContentViewer viewer ;
             viewer = new JFXHelpContentViewer();
             factory.install(viewer);
             viewer.getHelpWindow(stage, "Help Content", 600, 700);
-            viewer.showHelpDialog(600,600);
-        }catch (Throwable e)
-        {
+            viewer.showHelpDialog(600, 600);
+        } catch (Throwable e) {
             e.printStackTrace();
         }
 
@@ -191,23 +191,33 @@ private JFXHelpContentViewer viewer ;
 
         List<Email> lista = new ArrayList<>();
         Mensaje m = tableView.getSelectionModel().getSelectedItem();
-        Email email = new Email(m.getAsunto(),m.getTextoContenido(m),m.getFecha(),m.getRemitente());
-        lista.add(email);
+        if(m==null){
+            Alert alert_null = new Alert(Alert.AlertType.WARNING);
+            alert_null.setTitle("Alerta");
+            alert_null.setContentText("No hay mensaje seleccionado");
+            alert_null.showAndWait();
+        }else{
+            Email email = new Email(m.getAsunto(), m.getTextoContenido(m), m.getFecha(), m.getRemitente());
 
-        JRBeanCollectionDataSource jr = new JRBeanCollectionDataSource(lista); //lista sería la colección a mostrar. Típicamente saldría de la lógica de nuestra aplicación
-        Map<String,Object> parametros = new HashMap<>(); //En este caso no hay parámetros, aunque podría haberlos
-        JasperPrint print = null;
-        try {
-            print = JasperFillManager.fillReport(getClass().getResourceAsStream("/Brandy/jasper/InformeEmail.jasper"), parametros, jr);
-        } catch (JRException e) {
-            e.printStackTrace();
+            lista.add(email);
+
+            JRBeanCollectionDataSource jr = new JRBeanCollectionDataSource(lista); //lista sería la colección a mostrar. Típicamente saldría de la lógica de nuestra aplicación
+            Map<String, Object> parametros = new HashMap<>(); //En este caso no hay parámetros, aunque podría haberlos
+            JasperPrint print = null;
+            try {
+                print = JasperFillManager.fillReport(getClass().getResourceAsStream("/Brandy/jasper/InformeEmail.jasper"), parametros, jr);
+            } catch (JRException e) {
+                e.printStackTrace();
+            }
+            try {
+                JasperExportManager.exportReportToPdfFile(print, file.toPath().toString());
+            } catch (JRException e) {
+                e.printStackTrace();
+            }
         }
-        try {
-            JasperExportManager.exportReportToPdfFile(print, file.toPath().toString());
-        } catch (JRException e) {
-            e.printStackTrace();
+
         }
-    }
+
 
 
 
@@ -215,17 +225,22 @@ private JFXHelpContentViewer viewer ;
     void imprimirLista(ActionEvent event) {
         File file = getFile();
         List<Mensaje> lista = new ArrayList<>();
-        lista  = tableView.getItems();
+        lista = tableView.getItems();
         List<Email> listaEmail = new ArrayList<>();
-
-        for (Mensaje m: lista) {
+        if(lista.isEmpty()){
+            Alert alert_null = new Alert(Alert.AlertType.WARNING);
+            alert_null.setTitle("Alerta");
+            alert_null.setContentText("No tienes una tabla seleccionada");
+            alert_null.showAndWait();
+        }else{
+        for (Mensaje m : lista) {
             String asunto = m.getAsunto();
             String remitente = m.getRemitente();
-            Date fecha =m.getFecha();
-            listaEmail.add(new Email(asunto,"",fecha,remitente));
+            Date fecha = m.getFecha();
+            listaEmail.add(new Email(asunto, "", fecha, remitente));
         }
         JRBeanCollectionDataSource jr = new JRBeanCollectionDataSource(lista); //lista sería la colección a mostrar. Típicamente saldría de la lógica de nuestra aplicación
-        Map<String,Object> parametros = new HashMap<>(); //En este caso no hay parámetros, aunque podría haberlos
+        Map<String, Object> parametros = new HashMap<>(); //En este caso no hay parámetros, aunque podría haberlos
         JasperPrint print = null;
         try {
             print = JasperFillManager.fillReport(getClass().getResourceAsStream("/Brandy/jasper/ListaCorreos.jasper"), parametros, jr);
@@ -238,7 +253,7 @@ private JFXHelpContentViewer viewer ;
             e.printStackTrace();
         }
     }
-
+    }
 
     @FXML
     private Button btExamen;
@@ -347,7 +362,6 @@ private JFXHelpContentViewer viewer ;
         }
         stage.showAndWait();
         reloj.setFormato24Horas(configuracionTemaControlador.formatoHora());
-       
 
 
     }

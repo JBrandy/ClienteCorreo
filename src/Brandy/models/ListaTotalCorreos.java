@@ -89,8 +89,8 @@ public class ListaTotalCorreos {
                         folder1.open(Folder.READ_WRITE);
                     Message[] messages = folder1.getMessages();
                     Mensaje correo;
-                    System.out.println(messages[0].toString());
-                    System.out.println(folder1.getFullName());
+                   // System.out.println(messages[0].toString());
+                  //  System.out.println(folder1.getFullName());
                     for (int j = 0; j < messages.length; j++) {
                         correo = new Mensaje(messages[j]);
 
