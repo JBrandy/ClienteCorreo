@@ -1,15 +1,17 @@
 package Brandy;
 
 
-
 import Brandy.controladores.MainPrincipalControlador;
+import Brandy.controladores.PantallaMensajeControlador;
 import Brandy.logica.Logica;
 import Brandy.models.UsuarioCorreo;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import reloj.Reloj;
 
 import javax.mail.MessagingException;
@@ -20,14 +22,28 @@ import java.util.List;
 
 
 public class Launcher extends Application {
-   private static   List<UsuarioCorreo> list;
-    private static Reloj reloj;
+    private static List<UsuarioCorreo> list;
+
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("vistas/mainPrincipal.fxml"));
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Brandy/vistas/mainPrincipal.fxml"));
+        Parent root = fxmlLoader.load();
+        MainPrincipalControlador pantallaInicio = (MainPrincipalControlador) fxmlLoader.getController();
         stage.setTitle("Bandeja");
         stage.setScene(new Scene(root, 1000, 700));
         stage.show();
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                System.out.println("prueba");
+                pantallaInicio.finalizarReloj();
+
+
+
+            }
+        });
+
 
     }
 
@@ -36,23 +52,21 @@ public class Launcher extends Application {
         inicio();
         launch(args);
         guardarFichero();
-        fin();
+
 
 
 
     }
 
-    public static void fin(){
-        reloj.stopReloj();
-    }
 
 
-    public  static void inicio() throws GeneralSecurityException, MessagingException {
-        if(list!=null)
-        for(int i = 0 ; i<list.size(); i++){
-            Logica.getInstance().iniciarSesion(list.get(i));
-            Logica.getInstance().actualizarTree();
-        }
+
+    public static void inicio() throws GeneralSecurityException, MessagingException {
+        if (list != null)
+            for (int i = 0; i < list.size(); i++) {
+                Logica.getInstance().iniciarSesion(list.get(i));
+                Logica.getInstance().actualizarTree();
+            }
 
 
     }
@@ -60,10 +74,10 @@ public class Launcher extends Application {
     public static void guardarFichero() {
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
-        List<UsuarioCorreo>  aux = new ArrayList<>(Logica.getInstance().getListaUsuarios());
+        List<UsuarioCorreo> aux = new ArrayList<>(Logica.getInstance().getListaUsuarios());
 
         try {
-            fos= new FileOutputStream("src\\bbdd.dat");
+            fos = new FileOutputStream("bbdd.dat");
             oos = new ObjectOutputStream(fos);
 
             oos.writeObject(aux);
@@ -77,15 +91,14 @@ public class Launcher extends Application {
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }finally{
+        } finally {
 
 
-
-            try{
-                if( null != fos ){
+            try {
+                if (null != fos) {
                     fos.close();
                 }
-            }catch (Exception e2){
+            } catch (Exception e2) {
                 e2.printStackTrace();
             }
         }
@@ -97,30 +110,27 @@ public class Launcher extends Application {
 
         try {
 
-            fis = new FileInputStream("src\\bbdd.dat");
+            fis = new FileInputStream("bbdd.dat");
             ois = new ObjectInputStream(fis);
-            try{
-                list =(List<UsuarioCorreo>) ois.readObject(); //
+            try {
+                list = (List<UsuarioCorreo>) ois.readObject(); //
                 System.out.println(list.get(0).toString());
                 Logica.getInstance().getListaUsuarios().addAll(list);
-            }catch (IndexOutOfBoundsException e){
+            } catch (IndexOutOfBoundsException e) {
 
             }
 
 
-
-
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
 
 
-            try{
-                if( null != fis ){
+            try {
+                if (null != fis) {
                     fis.close();
                 }
-            }catch (Exception e2){
+            } catch (Exception e2) {
                 e2.printStackTrace();
             }
         }

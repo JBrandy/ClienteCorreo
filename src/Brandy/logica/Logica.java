@@ -91,7 +91,7 @@ public class Logica {
                // System.out.println(folder.getFullName());
                 for (int i = 0; i < messages.length; i++) {
                     correo = new Mensaje(messages[i]);
-                    System.out.println(correo.toString());
+                    //System.out.println(correo.toString());
                     listaCorreos.add(correo);
                 }
             } catch (NoSuchProviderException e) {

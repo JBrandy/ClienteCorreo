@@ -144,7 +144,7 @@ public class MainPrincipalControlador implements Initializable {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         try {
-            URL url = new File("D:\\HelpGenerator\\help\\articles.zip").toURI().toURL();
+            URL url = new File("D:\\HelpGenerator\\help2\\articles.zip").toURI().toURL();
            // File file = new File("help/articles.zip");
            // URL url1 = file.toURI().toURL();
             JavaHelpFactory factory = new JavaHelpFactory(url);
@@ -171,7 +171,7 @@ public class MainPrincipalControlador implements Initializable {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Brandy/vistas/historico.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("jasper/historico.fxml"));
             Parent root = fxmlLoader.load();
             HistoricoControlador pantallaTareasControlador = (HistoricoControlador) fxmlLoader.getController();
             pantallaTareasControlador.setStage(stage);
@@ -495,6 +495,11 @@ public class MainPrincipalControlador implements Initializable {
 
     }
 
+
+
+    public void finalizarReloj(){
+        reloj.stopReloj();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
