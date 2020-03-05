@@ -89,8 +89,7 @@ public class ListaTotalCorreos {
                         folder1.open(Folder.READ_WRITE);
                     Message[] messages = folder1.getMessages();
                     Mensaje correo;
-                   // System.out.println(messages[0].toString());
-                  //  System.out.println(folder1.getFullName());
+
                     for (int j = 0; j < messages.length; j++) {
                         correo = new Mensaje(messages[j]);
 
@@ -112,35 +111,23 @@ public class ListaTotalCorreos {
     }
 
 
-    public void cargaCarpetas(UsuarioCorreo usuarioCorreo1, Folder carpeta, TreeItemMail rootItem) throws MessagingException, GeneralSecurityException {
+    public void cargaCarpetas(UsuarioCorreo usuarioCorreo1, Folder carpeta, TreeItemMail rootItem) throws MessagingException {
 
         folders = null;
         if (store != null) {
-
             if (carpeta == null) {
                 folders = store.getDefaultFolder().list(); //todas las del sistema
             } else {
                 folders = carpeta.list();
-//carpetas de la carpeta en la que estoy
-            }
-            if (rootItem == null) {
-                rootItem = new TreeItemMail(usuarioCorreo1.getEmail(), usuarioCorreo1, carpeta);
-                //System.out.println("La carpeta " + rootItem.toString() );
-            } else {
-                // System.out.println("cojo el delrecursirvo");
             }
 
-            rootItem.setExpanded(true);
             for (Folder folder : folders) {
-                //Añadiendo carpetas al tree
                 TreeItemMail item = new TreeItemMail(folder.getName(), usuarioCorreo1, folder);
                 if ((folder.getType() & Folder.HOLDS_FOLDERS) != 0
                         && folder.list().length > 0) { //si tiene carpetas
                     cargaCarpetas(usuarioCorreo1, folder, item);
                 } else {
-                    //System.out.println("La carpeta " + folder.getName() + " no tiene hijos.");
                 }
-                rootItem.getChildren().add(item);
             }
         }
     }

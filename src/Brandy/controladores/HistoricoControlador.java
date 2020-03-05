@@ -44,7 +44,9 @@ public class HistoricoControlador implements Initializable {
         Map<String,Object> parametros = new HashMap<>(); //En este caso no hay parámetros, aunque podría haberlos
         JasperPrint print = null;
         try {
-            print = JasperFillManager.fillReport(getClass().getResourceAsStream("/Brandy/jasper/ListaTodosCorreos.jasper"), parametros, jr);
+            print = JasperFillManager.fillReport("jasper/ListaTodosCorreos.jasper", parametros, jr);
+
+            //print = JasperFillManager.fillReport(getClass().getResourceAsStream("/Brandy/jasper/ListaTodosCorreos.jasper"), parametros, jr);
         } catch (JRException e) {
             e.printStackTrace();
         }

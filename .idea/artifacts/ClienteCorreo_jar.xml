@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact name="ClienteCorreo:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ClienteCorreo_jar</output-path>
+    <root id="root">
+      <element id="archive" name="ClienteCorreo.jar">
+        <element id="module-output" name="ClienteCorreo" />
+      </element>
+      <element id="file-copy" path="$PROJECT_DIR$/../../RelojV2/artifacts/Reloj/Reloj.jar" />
+      <element id="library" level="application" name="net.sf.jasperreports:jasperreports:6.11.0" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../jsoup-1.12.2.jar" />
+      <element id="library" level="project" name="validation-api-1.1.0.final" />
+      <element id="library" level="application" name="org.testfx:testfx-junit:4.0.15-alpha" />
+      <element id="library" level="project" name="org.apache.commons:commons-email:1.5" />
+      <element id="library" level="project" name="javax.mail" />
+      <element id="library" level="application" name="lib" />
+    </root>
+  </artifact>
+</component>

@@ -145,6 +145,8 @@ public class MainPrincipalControlador implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         try {
             URL url = new File("D:\\HelpGenerator\\help\\articles.zip").toURI().toURL();
+           // File file = new File("help/articles.zip");
+           // URL url1 = file.toURI().toURL();
             JavaHelpFactory factory = new JavaHelpFactory(url);
             factory.create();
             viewer = new JFXHelpContentViewer();
@@ -205,7 +207,9 @@ public class MainPrincipalControlador implements Initializable {
             Map<String, Object> parametros = new HashMap<>(); //En este caso no hay parámetros, aunque podría haberlos
             JasperPrint print = null;
             try {
-                print = JasperFillManager.fillReport(getClass().getResourceAsStream("/Brandy/jasper/InformeEmail.jasper"), parametros, jr);
+
+                print = JasperFillManager.fillReport("jasper/InformeEmail.jasper", parametros, jr);
+                // print = JasperFillManager.fillReport(getClass().getResourceAsStream("/Brandy/jasper/InformeEmail.jasper"), parametros, jr);
             } catch (JRException e) {
                 e.printStackTrace();
             }
@@ -243,7 +247,8 @@ public class MainPrincipalControlador implements Initializable {
         Map<String, Object> parametros = new HashMap<>(); //En este caso no hay parámetros, aunque podría haberlos
         JasperPrint print = null;
         try {
-            print = JasperFillManager.fillReport(getClass().getResourceAsStream("/Brandy/jasper/ListaCorreos.jasper"), parametros, jr);
+            print = JasperFillManager.fillReport("jasper/ListaCorreos.jasper", parametros, jr);
+            //print = JasperFillManager.fillReport(getClass().getResourceAsStream("/Brandy/jasper/ListaCorreos.jasper"), parametros, jr);
         } catch (JRException e) {
             e.printStackTrace();
         }
@@ -545,7 +550,7 @@ public class MainPrincipalControlador implements Initializable {
         treeview.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TreeItem<String>>() {
             @Override
             public void changed(ObservableValue<? extends TreeItem<String>> observableValue, TreeItem<String> stringTreeItem, TreeItem<String> t1) {
-                System.out.println(treeview.getSelectionModel().getSelectedItem().toString());
+               // System.out.println(treeview.getSelectionModel().getSelectedItem().toString());
 
                 Logica.getInstance().cargarListaCorreos(((TreeItemMail) t1).getFolder());
             }
