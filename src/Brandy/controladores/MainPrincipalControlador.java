@@ -151,8 +151,8 @@ public class MainPrincipalControlador implements Initializable {
             factory.create();
             viewer = new JFXHelpContentViewer();
             factory.install(viewer);
-            viewer.getHelpWindow(stage, "Help Content", 600, 700);
-            viewer.showHelpDialog(600, 600);
+            viewer.getHelpWindow(stage, "Ayuda Correo electrónico", 900, 600);
+            viewer.showHelpDialog(350, 50);
         } catch (Throwable e) {
             e.printStackTrace();
         }
