@@ -147,7 +147,7 @@ public class MainPrincipalControlador implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         try {
             //URL url = new File("D:\\HelpGenerator\\help2\\articles.zip").toURI().toURL();
-            File file = new File("help/articles.zip");
+            File file = new File("help\\articles.zip");
             URL url1 = file.toURI().toURL();
             JavaHelpFactory factory = new JavaHelpFactory(url1);
             factory.create();

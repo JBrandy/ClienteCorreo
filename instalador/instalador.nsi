@@ -1,4 +1,4 @@
-Name "Mensajeria "
+Name "Mensajeria"
 
 OutFile "ClienteCorreoJB.exe"
 
@@ -18,16 +18,11 @@ Page instfiles
 !include "MUI.nsh"
 !insertmacro MUI_LANGUAGE "Spanish"
 
-
-!include "MUI2.nsh"
-
-#!define MUI_ICON "C:\Users\Jesús Brandy\Desktop\icono.ico"
+ 
 
 
 #Seccion principal
 Section
-
-
 
 
 # directorio de instalacion
@@ -69,7 +64,9 @@ createShortCut "$DESKTOP\Desinstalar.lnk" "$INSTDIR\uninstall.exe"
 
 SetOutPath $INSTDIR\files
 CreateShortCut \
-  `$DESKTOP\ClienteCorreo.lnk` \ `$INSTDIR\files\java-runtime\bin\java.exe` \ `--module-path "$INSTDIR\files\javafx-sdk-13.0.1\lib" --add-modules javafx.controls,javafx.fxml,javafx.graphics,javafx.web,javafx.base --add-opens=javafx.graphics/javafx.scene=ALL-UNNAMED -jar "$INSTDIR\files\ClienteCorreo.jar"` \
+  `$DESKTOP\ClienteCorreo.lnk` \ 
+  `$INSTDIR\files\java-runtime\bin\javaw.exe` \
+  `--module-path "$INSTDIR\files\javafx-sdk-13.0.1\lib" --add-modules javafx.controls,javafx.fxml,javafx.graphics,javafx.web,javafx.base --add-opens=javafx.graphics/javafx.scene=ALL-UNNAMED -jar "$INSTDIR\files\ClienteCorreo.jar"` \
   
 SetOutPath $INSTDIR
 
