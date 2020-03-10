@@ -290,6 +290,7 @@ public class MainPrincipalControlador implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Brandy/vistas/pantallaTareas.fxml"));
             Parent root = fxmlLoader.load();
             PantallaTareasControlador pantallaTareasControlador = (PantallaTareasControlador) fxmlLoader.getController();
+            pantallaTareasControlador.getReloj(reloj);
             pantallaTareasControlador.setStage(stage);
             stage.setTitle("Correo");
             stage.setScene(new Scene(root, 750, 600));

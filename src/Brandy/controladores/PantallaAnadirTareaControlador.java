@@ -34,6 +34,7 @@ public class PantallaAnadirTareaControlador {
     @FXML
     private TextField tvTarea;
 
+    private Reloj reloj;
 
     @FXML
     private Button btSalir;
@@ -52,6 +53,8 @@ public class PantallaAnadirTareaControlador {
         String realizado = null;
         Tarea tarea = new Tarea(tareaS, fecha, hora, minuto, null);
         MetodosTareas.getInstance().anadirTarea(tarea);
+
+        //reloj.anadirTarea(tarea);
         Logica.getInstance().getListaTareas().add(tarea);
         //MetodosTareas.getInstance().cargarTareas(Logica.getInstance().getListaTareas());
         if(tarea!=null){
@@ -71,6 +74,8 @@ public class PantallaAnadirTareaControlador {
     public void setStage(Stage stage) {
         this.stage = stage;
     }
-
+    public void getReloj(Reloj reloj) {
+        this.reloj=reloj;
+    }
 
 }

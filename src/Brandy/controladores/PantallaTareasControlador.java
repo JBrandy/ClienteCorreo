@@ -15,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import reloj.MetodosTareas;
+import reloj.Reloj;
 import reloj.Tarea;
 
 import java.io.IOException;
@@ -32,6 +33,7 @@ public class PantallaTareasControlador implements Initializable {
     @FXML
     private Button btEliminarTareas;
 
+    private Reloj reloj;
 
     @FXML
     void anadir(ActionEvent event) {
@@ -41,6 +43,8 @@ public class PantallaTareasControlador implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Brandy/vistas/pantallaAnadirTarea.fxml"));
             Parent root = fxmlLoader.load();
             PantallaAnadirTareaControlador pantallaAnadirTareaControlador = (PantallaAnadirTareaControlador) fxmlLoader.getController();
+            pantallaAnadirTareaControlador.getReloj(reloj);
+
             pantallaAnadirTareaControlador.setStage(stage);
             stage.setTitle("Correo");
             stage.setScene(new Scene(root, 275, 350));
@@ -71,4 +75,7 @@ public class PantallaTareasControlador implements Initializable {
     }
 
 
+    public void getReloj(Reloj reloj) {
+        this.reloj=reloj;
+    }
 }

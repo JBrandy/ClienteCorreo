@@ -36,7 +36,6 @@ public class Launcher extends Application {
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent windowEvent) {
-                System.out.println("prueba");
                 pantallaInicio.finalizarReloj();
 
 
