@@ -14,7 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import reloj.LogicaReloj;
+import reloj.MetodosTareas;
 import reloj.Tarea;
 
 import java.io.IOException;
@@ -31,6 +31,7 @@ public class PantallaTareasControlador implements Initializable {
 
     @FXML
     private Button btEliminarTareas;
+
 
     @FXML
     void anadir(ActionEvent event) {
@@ -53,8 +54,10 @@ public class PantallaTareasControlador implements Initializable {
 
     @FXML
     void eliminar(ActionEvent event) {
-        LogicaReloj.getInstance().borrarTarea(tableView.getSelectionModel().getSelectedItem());
+        MetodosTareas.getInstance().borrarTarea(tableView.getSelectionModel().getSelectedItem());
         Logica.getInstance().getListaTareas().remove(tableView.getSelectionModel().getSelectedItem());
+        //MetodosTareas.getInstance().cargarTareas(Logica.getInstance().getListaTareas());
+
         tableView.setItems(FXCollections.observableArrayList(Logica.getInstance().getListaTareas()));
     }
 
@@ -66,4 +69,6 @@ public class PantallaTareasControlador implements Initializable {
         tableView.setItems(FXCollections.observableArrayList(Logica.getInstance().getListaTareas()));
 
     }
+
+
 }

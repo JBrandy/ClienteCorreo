@@ -132,6 +132,8 @@ public class MainPrincipalControlador implements Initializable {
     @FXML
     private Button btPrueba;
 
+    @FXML
+    private Button btTareas;
 
     @FXML
     private MenuItem help;
@@ -144,10 +146,10 @@ public class MainPrincipalControlador implements Initializable {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         try {
-            URL url = new File("D:\\HelpGenerator\\help2\\articles.zip").toURI().toURL();
-           // File file = new File("help/articles.zip");
-           // URL url1 = file.toURI().toURL();
-            JavaHelpFactory factory = new JavaHelpFactory(url);
+            //URL url = new File("D:\\HelpGenerator\\help2\\articles.zip").toURI().toURL();
+            File file = new File("help/articles.zip");
+            URL url1 = file.toURI().toURL();
+            JavaHelpFactory factory = new JavaHelpFactory(url1);
             factory.create();
             viewer = new JFXHelpContentViewer();
             factory.install(viewer);
@@ -171,11 +173,11 @@ public class MainPrincipalControlador implements Initializable {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("jasper/historico.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Brandy/vistas/historico.fxml"));
             Parent root = fxmlLoader.load();
-            HistoricoControlador pantallaTareasControlador = (HistoricoControlador) fxmlLoader.getController();
-            pantallaTareasControlador.setStage(stage);
-            stage.setTitle("Historico ");
+            HistoricoControlador historicoControlador = (HistoricoControlador) fxmlLoader.getController();
+            historicoControlador.setStage(stage);
+            stage.setTitle("Histórico ");
             stage.setScene(new Scene(root, 450, 200));
 
         } catch (IOException e) {
@@ -193,12 +195,12 @@ public class MainPrincipalControlador implements Initializable {
 
         List<Email> lista = new ArrayList<>();
         Mensaje m = tableView.getSelectionModel().getSelectedItem();
-        if(m==null){
+        if (m == null) {
             Alert alert_null = new Alert(Alert.AlertType.WARNING);
             alert_null.setTitle("Alerta");
             alert_null.setContentText("No hay mensaje seleccionado");
             alert_null.showAndWait();
-        }else{
+        } else {
             Email email = new Email(m.getAsunto(), m.getTextoContenido(m), m.getFecha(), m.getRemitente());
 
             lista.add(email);
@@ -210,19 +212,14 @@ public class MainPrincipalControlador implements Initializable {
 
                 print = JasperFillManager.fillReport("jasper/InformeEmail.jasper", parametros, jr);
                 // print = JasperFillManager.fillReport(getClass().getResourceAsStream("/Brandy/jasper/InformeEmail.jasper"), parametros, jr);
-            } catch (JRException e) {
-                e.printStackTrace();
-            }
-            try {
+
                 JasperExportManager.exportReportToPdfFile(print, file.toPath().toString());
             } catch (JRException e) {
                 e.printStackTrace();
             }
         }
 
-        }
-
-
+    }
 
 
     @FXML
@@ -231,33 +228,29 @@ public class MainPrincipalControlador implements Initializable {
         List<Mensaje> lista = new ArrayList<>();
         lista = tableView.getItems();
         List<Email> listaEmail = new ArrayList<>();
-        if(lista.isEmpty()){
+        if (lista.isEmpty()) {
             Alert alert_null = new Alert(Alert.AlertType.WARNING);
             alert_null.setTitle("Alerta");
             alert_null.setContentText("No tienes una tabla seleccionada");
             alert_null.showAndWait();
-        }else{
-        for (Mensaje m : lista) {
-            String asunto = m.getAsunto();
-            String remitente = m.getRemitente();
-            Date fecha = m.getFecha();
-            listaEmail.add(new Email(asunto, "", fecha, remitente));
+        } else {
+            for (Mensaje m : lista) {
+                String asunto = m.getAsunto();
+                String remitente = m.getRemitente();
+                Date fecha = m.getFecha();
+                listaEmail.add(new Email(asunto, "", fecha, remitente));
+            }
+            JRBeanCollectionDataSource jr = new JRBeanCollectionDataSource(lista); //lista sería la colección a mostrar. Típicamente saldría de la lógica de nuestra aplicación
+            Map<String, Object> parametros = new HashMap<>(); //En este caso no hay parámetros, aunque podría haberlos
+            JasperPrint print = null;
+            try {
+                print = JasperFillManager.fillReport("jasper/ListaCorreos.jasper", parametros, jr);
+                //print = JasperFillManager.fillReport(getClass().getResourceAsStream("/Brandy/jasper/ListaCorreos.jasper"), parametros, jr);
+                JasperExportManager.exportReportToPdfFile(print, file.toPath().toString());
+            } catch (JRException e) {
+                e.printStackTrace();
+            }
         }
-        JRBeanCollectionDataSource jr = new JRBeanCollectionDataSource(lista); //lista sería la colección a mostrar. Típicamente saldría de la lógica de nuestra aplicación
-        Map<String, Object> parametros = new HashMap<>(); //En este caso no hay parámetros, aunque podría haberlos
-        JasperPrint print = null;
-        try {
-            print = JasperFillManager.fillReport("jasper/ListaCorreos.jasper", parametros, jr);
-            //print = JasperFillManager.fillReport(getClass().getResourceAsStream("/Brandy/jasper/ListaCorreos.jasper"), parametros, jr);
-        } catch (JRException e) {
-            e.printStackTrace();
-        }
-        try {
-            JasperExportManager.exportReportToPdfFile(print, file.toPath().toString());
-        } catch (JRException e) {
-            e.printStackTrace();
-        }
-    }
     }
 
     @FXML
@@ -283,10 +276,6 @@ public class MainPrincipalControlador implements Initializable {
 
 
     }
-
-
-    @FXML
-    private Button btTareas;
 
 
     public Reloj getReloj() {
@@ -358,15 +347,17 @@ public class MainPrincipalControlador implements Initializable {
             Parent root = fxmlLoader.load();
             configuracionTemaControlador = (ConfiguracionTemaControlador) fxmlLoader.getController();
             // pantallaConfigCorreo.setMainController(this);
-            configuracionTemaControlador.setStage(stage);
-            stage.setTitle("Configuracion visual");
-            stage.setScene(new Scene(root, 400, 400));
-
+            if(configuracionTemaControlador!=null) {
+                configuracionTemaControlador.setStage(stage);
+                stage.setTitle("Configuracion visual");
+                stage.setScene(new Scene(root, 400, 400));
+                stage.showAndWait();
+                reloj.setFormato24Horas(configuracionTemaControlador.formatoHora());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        stage.showAndWait();
-        reloj.setFormato24Horas(configuracionTemaControlador.formatoHora());
+
 
 
     }
@@ -496,8 +487,7 @@ public class MainPrincipalControlador implements Initializable {
     }
 
 
-
-    public void finalizarReloj(){
+    public void finalizarReloj() {
         reloj.stopReloj();
     }
 
@@ -531,7 +521,7 @@ public class MainPrincipalControlador implements Initializable {
 
                     result2.ifPresent(nota -> tarea.setRealizado(result2.get()));
 
-                    ;
+
                 }
 
             }
@@ -555,7 +545,7 @@ public class MainPrincipalControlador implements Initializable {
         treeview.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TreeItem<String>>() {
             @Override
             public void changed(ObservableValue<? extends TreeItem<String>> observableValue, TreeItem<String> stringTreeItem, TreeItem<String> t1) {
-               // System.out.println(treeview.getSelectionModel().getSelectedItem().toString());
+                // System.out.println(treeview.getSelectionModel().getSelectedItem().toString());
 
                 Logica.getInstance().cargarListaCorreos(((TreeItemMail) t1).getFolder());
             }

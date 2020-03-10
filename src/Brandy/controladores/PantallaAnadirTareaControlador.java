@@ -9,7 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import reloj.LogicaReloj;
+import reloj.MetodosTareas;
+import reloj.Reloj;
 import reloj.Tarea;
 
 import java.time.LocalDate;
@@ -41,7 +42,6 @@ public class PantallaAnadirTareaControlador {
     void salir(ActionEvent event) {
         stage.close();
     }
-
     @FXML
     void anadir(ActionEvent event) {
 
@@ -51,13 +51,14 @@ public class PantallaAnadirTareaControlador {
         int minuto = Integer.parseInt(tvMinuto.getText());
         String realizado = null;
         Tarea tarea = new Tarea(tareaS, fecha, hora, minuto, null);
-        LogicaReloj.getInstance().anadirTarea(tarea);
+        MetodosTareas.getInstance().anadirTarea(tarea);
         Logica.getInstance().getListaTareas().add(tarea);
+        //MetodosTareas.getInstance().cargarTareas(Logica.getInstance().getListaTareas());
         if(tarea!=null){
-        Alert alert_null = new Alert(Alert.AlertType.INFORMATION);
-        alert_null.setTitle("Información de Tareas");
-        alert_null.setContentText("La Tarea "+ tareaS+ " ha sido añadida correctamente");
-        alert_null.showAndWait();
+        Alert alert_tarea = new Alert(Alert.AlertType.INFORMATION);
+        alert_tarea.setTitle("Información de Tareas");
+        alert_tarea.setContentText("La Tarea "+ tareaS+ " ha sido añadida correctamente");
+        alert_tarea.showAndWait();
         }
 
 
@@ -70,4 +71,6 @@ public class PantallaAnadirTareaControlador {
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+
+
 }
