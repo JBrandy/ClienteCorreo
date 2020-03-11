@@ -96,6 +96,12 @@ public class MainPrincipalControlador implements Initializable {
     private Font x1;
 
     @FXML
+    private Label deLabel;
+
+    @FXML
+    private Label asuntoLabel;
+
+    @FXML
     private Color x2;
 
     @FXML
@@ -550,18 +556,22 @@ public class MainPrincipalControlador implements Initializable {
             @Override
             public void changed(ObservableValue<? extends TreeItem<String>> observableValue, TreeItem<String> stringTreeItem, TreeItem<String> t1) {
                 // System.out.println(treeview.getSelectionModel().getSelectedItem().toString());
+                 Logica.getInstance().cargarListaCorreos(((TreeItemMail) t1).getFolder());
 
-                Logica.getInstance().cargarListaCorreos(((TreeItemMail) t1).getFolder());
             }
         });
 
         // para ver el contenido del correoseleccionado en la tabla
+
         tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Mensaje>() {
             @Override
             public void changed(ObservableValue<? extends Mensaje> observable, Mensaje oldValue, Mensaje newValue) {
                 try {
-                    if (newValue != null)
+                    if (newValue != null){
                         webView.getEngine().loadContent(newValue.getContent());
+                        deLabel.setText(newValue.getRemitente());
+                        asuntoLabel.setText(newValue.getAsunto());
+                    }
                     else
                         webView.getEngine().loadContent("");
                 } catch (Exception e) {

@@ -76,7 +76,7 @@ public class Launcher extends Application {
         List<UsuarioCorreo> aux = new ArrayList<>(Logica.getInstance().getListaUsuarios());
 
         try {
-            fos = new FileOutputStream("bbdd.dat");
+            fos = new FileOutputStream("bbdd/bbdd.dat");
             oos = new ObjectOutputStream(fos);
 
             oos.writeObject(aux);
@@ -109,7 +109,7 @@ public class Launcher extends Application {
 
         try {
 
-            fis = new FileInputStream("bbdd.dat");
+            fis = new FileInputStream("bbdd/bbdd.dat");
             ois = new ObjectInputStream(fis);
             try {
                 list = (List<UsuarioCorreo>) ois.readObject(); //

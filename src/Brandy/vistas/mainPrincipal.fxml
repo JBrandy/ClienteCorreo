@@ -109,12 +109,12 @@
       </AnchorPane>
         <AnchorPane prefHeight="471.0" prefWidth="234.0">
           <children>
-                  <WebView fx:id="webView" layoutY="75.0" prefHeight="406.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0" />
-            <Label alignment="CENTER" layoutX="14.0" layoutY="20.0" style="&#10;" text="Detalle del mensaje" textAlignment="CENTER" textFill="$x2" wrapText="false" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="20.0">
+                  <WebView fx:id="webView" layoutY="105.0" prefHeight="371.0" prefWidth="269.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="105.0" />
+            <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" style="&#10;" text="Detalle del mensaje" textAlignment="CENTER" textFill="$x2" wrapText="false" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
                      <font>
                         <Font size="16.0" />
                      </font></Label>
-                  <Button fx:id="btImprimir" layoutX="188.0" layoutY="14.0" mnemonicParsing="false" onAction="#imprimir" prefHeight="38.0" prefWidth="50.0" AnchorPane.rightAnchor="30.400000000000006" AnchorPane.topAnchor="14.0">
+                  <Button fx:id="btImprimir" layoutX="202.0" layoutY="7.0" mnemonicParsing="false" onAction="#imprimir" prefHeight="38.0" prefWidth="50.0" AnchorPane.rightAnchor="16.400000000000006" AnchorPane.topAnchor="7.0">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -122,6 +122,10 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
+                  <Label layoutX="14.0" layoutY="52.0" prefHeight="18.0" prefWidth="20.0" text="De:" />
+                  <Label fx:id="deLabel" layoutX="39.0" layoutY="52.0" />
+                  <Label layoutX="14.0" layoutY="80.0" prefHeight="18.0" prefWidth="50.0" text="Asunto:" />
+                  <Label fx:id="asuntoLabel" layoutX="64.0" layoutY="81.0" />
           </children>
         </AnchorPane>
       </items>
