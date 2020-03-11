@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Main-Class: Brandy.Launcher
+Class-Path: javafx-swt.jar javafx.web.jar javafx.base.jar javafx.fxml.ja
+ r javafx.media.jar javafx.swing.jar javafx.controls.jar javafx.graphics
+ .jar validation-api-1.1.0.final.jar docGenerator.jar docGeneJFXHelp.jar
+  testfx-junit-4.0.15-alpha.jar testfx-core-4.0.15-alpha.jar hamcrest-co
+ re-1.3.jar assertj-core-3.11.1.jar junit-4.12.jar jsoup-1.12.2.jar comm
+ ons-email-1.5.jar Reloj.jar validation-api-1.1.0.final.jar javax.mail.j
+ ar activation.jar elasticlunr.jar jasperreports-6.11.0.jar commons-bean
+ utils-1.9.4.jar commons-collections-3.2.2.jar commons-digester-2.1.jar 
+ commons-logging-1.1.1.jar commons-collections4-4.2.jar itext-2.1.7.js7.
+ jar bcprov-jdk15on-1.62.jar jcommon-1.0.23.jar jfreechart-1.0.19.jar ec
+ j-4.4.2.jar castor-xml-1.4.1.jar castor-core-1.4.1.jar commons-lang3-3.
+ 4.jar javax.inject-1.jar jackson-core-2.10.0.jar jackson-databind-2.10.
+ 0.jar jackson-annotations-2.10.0.jar
+

@@ -36,6 +36,9 @@ File /r "..\out\artifacts\ClienteCorreo_jar\*"
 SetOutPath $INSTDIR\files\help
 File  "..\help\articles.zip" 
 
+SetOutPath $INSTDIR\files\bbdd
+File  "..\bbdd\bbdd.dat"
+
 SetOutPath $INSTDIR\files
 File /r "..\jasper" 
 SetOutPath $INSTDIR\files\jasper
@@ -48,6 +51,7 @@ File /r "C:\Users\Jesús Brandy\Desktop\javafx-sdk-13.0.1\*"
 
 SetOutPath $INSTDIR\files\java-runtime 
 File /r "C:\Java\jdk-13\bin\java-runtime\*"
+
 
 WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\ClienteCorreoJB\
              "DisplayName" "ClienteCorreoJBrandy"
@@ -66,7 +70,7 @@ SetOutPath $INSTDIR\files
 CreateShortCut \
   `$DESKTOP\ClienteCorreo.lnk` \ 
   `$INSTDIR\files\java-runtime\bin\javaw.exe` \
-  `--module-path "$INSTDIR\files\javafx-sdk-13.0.1\lib" --add-modules javafx.controls,javafx.fxml,javafx.graphics,javafx.web,javafx.base --add-opens=javafx.graphics/javafx.scene=ALL-UNNAMED -jar "$INSTDIR\files\ClienteCorreo.jar"` \
+  `--module-path "$INSTDIR\files\javafx\lib" --add-modules javafx.controls,javafx.fxml,javafx.graphics,javafx.web,javafx.base --add-opens=javafx.graphics/javafx.scene=ALL-UNNAMED -jar "$INSTDIR\files\ClienteCorreo.jar"` \
   
 SetOutPath $INSTDIR
 
