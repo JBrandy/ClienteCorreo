@@ -146,6 +146,9 @@ public class MainPrincipalControlador implements Initializable {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         try {
+            /*
+           ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡ IMPORTANTE CAMBIAR ESTA URL !!!!!!!!!!
+             */
             //URL url = new File("D:\\HelpGenerator\\help2\\articles.zip").toURI().toURL();
             File file = new File("help\\articles.zip");
             URL url1 = file.toURI().toURL();
