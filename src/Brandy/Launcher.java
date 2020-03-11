@@ -38,7 +38,7 @@ public class Launcher extends Application {
             public void handle(WindowEvent windowEvent) {
                 pantallaInicio.finalizarReloj();
 
-
+//
 
             }
         });
