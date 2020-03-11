@@ -51,12 +51,14 @@ stage.close();
             Logica.getInstance().actualizarTree();
             stage.close();
         }catch (GeneralSecurityException e){
+            Logica.getInstance().getListaUsuarios().remove(u);
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setHeaderText("Error en el usuario o la contraseña");
             alert.show();
             System.out.println(e.getMessage());
         }catch (MessagingException e){
+            Logica.getInstance().getListaUsuarios().remove(u);
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setHeaderText("Error en el usuario o la contraseña");
